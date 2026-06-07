@@ -1,0 +1,19 @@
+<svg width="100%" viewBox="0 0 770 170" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>SERP-Pulse</title>
+  <rect x="0" y="0" width="760" height="160" rx="16" fill="#F0F4FF"/>
+  <g transform="translate(22, 18)">
+    <text x="0" y="95" font-size="96" font-weight="800" fill="#1a73e8" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">S</text>
+    <text x="68" y="95" font-size="96" font-weight="800" fill="#1a73e8" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">E</text>
+    <text x="134" y="95" font-size="96" font-weight="800" fill="#1a73e8" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">R</text>
+    <text x="202" y="95" font-size="96" font-weight="800" fill="#1a73e8" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">P</text>
+    <line x1="272" y1="54" x2="280" y2="54" stroke="#93b4f5" stroke-width="2.5" stroke-linecap="round"/>
+    <polyline points="280,54 285,54 290,38 295,70 300,44 305,54 313,54" fill="none" stroke="#1a73e8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="290" cy="38" r="4" fill="#EA4335"/>
+    <line x1="313" y1="54" x2="321" y2="54" stroke="#93b4f5" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="328" y="95" font-size="96" font-weight="800" fill="#1a73e8" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">P</text>
+    <text x="396" y="95" font-size="96" font-weight="800" fill="#1a73e8" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">u</text>
+    <text x="458" y="95" font-size="96" font-weight="800" fill="#1a73e8" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">l</text>
+    <text x="484" y="95" font-size="96" font-weight="800" fill="#1a73e8" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">s</text>
+    <text x="538" y="95" font-size="96" font-weight="800" fill="#1a73e8" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">e</text>
+  </g>
+</svg>

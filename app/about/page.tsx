@@ -1,0 +1,107 @@
+import type { Metadata } from 'next'
+import SiteNav from '@/components/SiteNav'
+import SiteFooter from '@/components/SiteFooter'
+
+export const metadata: Metadata = {
+  title: 'About — SERP-Pulse',
+  description: 'SERP-Pulse was built by Sahil Kareer after 6 years in SEO agencies. The story behind the tool.',
+}
+
+const APP = 'https://seopulse-rose.vercel.app'
+const FOUNDER_IMG = 'https://media.licdn.com/dms/image/v2/D5603AQHU9JOiEY6kRA/profile-displayphoto-crop_800_800/B56ZkhZSDtHkAI-/0/1757201900647?e=1782345600&v=beta&t=qpVo3miyByRzkqHHlFL4liQJsT6uNObbH87VE8Kn0xs'
+
+export default function AboutPage() {
+  return (
+    <>
+      <SiteNav />
+
+      <section className="page-hero dark-sec"><div className="w">
+        <div className="breadcrumb"><a href="/">Home</a><span>→</span><span style={{color:'var(--tl3)'}}>About</span></div>
+        <h1>Built by an SEO.<br/><span className="ac">For SEOs.</span></h1>
+        <p className="hero-sub">SERP-Pulse was born from <strong>6 years of SEO and agency experience</strong> — the frustration of scattered data, invisible AI traffic, and tools that don&apos;t talk to each other.</p>
+      </div></section>
+
+      <section className="feat-sec" style={{background:'var(--wh)'}}><div className="w">
+        <div style={{display:'grid',gridTemplateColumns:'280px 1fr',gap:56,alignItems:'start',maxWidth:960,margin:'0 auto'}} className="about-grid rv">
+
+          {/* Founder photo card */}
+          <div style={{textAlign:'center'}}>
+            <div style={{
+              position:'relative',width:220,height:220,margin:'0 auto 20px',
+              borderRadius:'50%',
+              padding:3,
+              background:'linear-gradient(135deg,#0891b2,#06d6c7)',
+              boxShadow:'0 20px 60px rgba(8,145,178,.25)',
+            }}>
+              <div style={{width:'100%',height:'100%',borderRadius:'50%',overflow:'hidden',background:'var(--bg2)'}}>
+                <img
+                  src={FOUNDER_IMG}
+                  alt="Sahil Kareer — Founder, SERP-Pulse"
+                  width={214} height={214}
+                  style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center',display:'block'}}
+                />
+              </div>
+            </div>
+            <div style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:4}}>Sahil Kareer</div>
+            <div style={{fontSize:14,color:'var(--mt)',marginBottom:12}}>Founder &amp; Developer</div>
+            <a href="https://www.linkedin.com/in/sahil-kareer-5b9a71109/" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex',alignItems:'center',gap:6,fontSize:12,fontWeight:600,color:'var(--tl)',background:'var(--ts)',padding:'6px 14px',borderRadius:20,textDecoration:'none',border:'1px solid rgba(8,145,178,.15)'}}>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+              Connect on LinkedIn
+            </a>
+            <div style={{marginTop:12,display:'inline-flex',alignItems:'center',gap:4,fontSize:11,fontWeight:600,color:'var(--tl)',background:'var(--ts)',padding:'4px 10px',borderRadius:5}}>
+              6+ years SEO &amp; Agency Ops
+            </div>
+          </div>
+
+          {/* Story */}
+          <div>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:28,fontWeight:800,letterSpacing:-1,marginBottom:16}}>The story behind SERP-Pulse.</h2>
+            <p style={{fontSize:15,color:'var(--mt)',lineHeight:1.75,marginBottom:14}}>Working across agencies, in-house teams, and as an independent consultant, I watched SEO professionals waste hours every week switching between Google Search Console, Google Analytics 4, and spreadsheets just to answer basic questions about their projects.</p>
+            <p style={{fontSize:15,color:'var(--mt)',lineHeight:1.75,marginBottom:14}}>I also noticed the growing blind spot around AI-generated traffic. As ChatGPT, Claude, Perplexity, and Gemini started sending real visitors to websites, standard analytics tools couldn&apos;t see any of it — everything was categorised as &ldquo;direct.&rdquo;</p>
+            <p style={{fontSize:15,color:'var(--mt)',lineHeight:1.75,marginBottom:14}}>SERP-Pulse was built to solve both. One dashboard where marketers, agencies, and business owners can see what&apos;s happening across every project — including the AI citations that no other tool tracks.</p>
+            <p style={{fontSize:15,color:'var(--ink)',lineHeight:1.75,fontWeight:500,marginBottom:24}}>The goal isn&apos;t to replace your existing tools. It&apos;s to make your decision-making faster, easier, and genuinely more actionable.</p>
+            <div style={{display:'flex',gap:12,flexWrap:'wrap'}}>
+              <a href={`${APP}/signup`} className="btn-h" style={{fontSize:13,padding:'10px 20px'}}>Try SERP-Pulse Free <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              <a href="/contact" className="btn-g" style={{fontSize:13,padding:'10px 20px'}}>Get in touch →</a>
+            </div>
+          </div>
+        </div>
+      </div></section>
+
+      {/* Timeline */}
+      <section className="feat-sec"><div className="w">
+        <h2 style={{fontFamily:'var(--hd)',fontSize:24,fontWeight:800,letterSpacing:-.8,marginBottom:32,textAlign:'center'}}>The journey so far.</h2>
+        <div className="timeline rv" style={{maxWidth:600,margin:'0 auto'}}>
+          {[
+            {year:'2020 — 2024',text:'6 years in SEO agencies, in-house teams, and consulting. Managed hundreds of client projects across industries. Felt the pain of scattered data and manual reporting daily.'},
+            {year:'Early 2025',text:'First prototype built. Connected Google Search Console via API. Basic query analysis and CSV export working.'},
+            {year:'Mid 2025',text:'GA4 integration added. AI traffic tracking module built — ChatGPT, Claude, Perplexity, Gemini. White-label reports shipped.'},
+            {year:'2026 — Now',text:'MCP Server with 16 tools launched. 500+ active users. 40M+ queries tracked. Full production-ready platform. Ready for monetisation.'},
+          ].map(item=>(
+            <div key={item.year} className="tl-item">
+              <div className="tl-dot"/>
+              <div className="tl-year">{item.year}</div>
+              <div className="tl-text">{item.text}</div>
+            </div>
+          ))}
+        </div>
+      </div></section>
+
+      <section className="cta-band dark-sec" style={{background:'var(--d)',position:'relative',overflow:'hidden'}}>
+        <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 50%,rgba(6,214,199,.07),transparent 60%)',pointerEvents:'none'}}/>
+        <div className="w" style={{position:'relative',zIndex:1}}>
+          <h2>Ready to try it<br/>yourself?</h2>
+          <p>Every feature is live. Start your 30-day free trial today.</p>
+          <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
+            <a href={`${APP}/signup`} className="btn-h">Start Free Trial — No Card Needed <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a href={APP} className="btn-g">View live app →</a>
+          </div>
+          <div style={{display:'flex',justifyContent:'center',gap:20,flexWrap:'wrap',marginTop:18}}>
+            <span className="fck">30-day free trial</span><span className="fck">No credit card</span><span className="fck">2-min setup</span><span className="fck">Cancel anytime</span>
+          </div>
+        </div>
+      </section>
+      <SiteFooter />
+    </>
+  )
+}
