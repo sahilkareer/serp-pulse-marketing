@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'SERP-Pulse integrates with Google Search Console and Google Analytics 4 via official APIs. More integrations coming soon.',
 }
 
-const APP = 'https://seopulse-rose.vercel.app'
+const APP = 'https://app.serp-pulse.com'
 
 export default function IntegrationsPage() {
   return (

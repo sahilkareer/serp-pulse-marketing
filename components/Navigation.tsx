@@ -14,9 +14,9 @@ export default function Navigation({ nav }: { nav?: any }) {
 
   const logoText = nav?.logoText || 'SERP-Pulse'
   const ctaText = nav?.ctaText || 'Start Free Trial →'
-  const ctaUrl = nav?.ctaUrl || '/signup'
+  const ctaUrl = nav?.ctaUrl || 'https://app.serp-pulse.com/signup'
   const loginText = nav?.loginText || 'Log in'
-  const loginUrl = nav?.loginUrl || '/login'
+  const loginUrl = nav?.loginUrl || 'https://app.serp-pulse.com/'
 
   return (
     <nav style={{

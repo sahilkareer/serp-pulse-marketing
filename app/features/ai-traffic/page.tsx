@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Track AI traffic from ChatGPT, Claude, Perplexity, Gemini and 16+ platforms. See which pages AI platforms cite and how much traffic they send.',
 }
 
-const APP = 'https://seopulse-rose.vercel.app'
+const APP = 'https://app.serp-pulse.com'
 
 export default function AiTrafficPage() {
   return (

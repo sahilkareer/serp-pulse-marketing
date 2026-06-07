@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Generate branded PDF reports for clients in under 60 seconds. GSC, GA4, AI Traffic, and Combined reports with your logo and shareable links.',
 }
 
-const APP = 'https://seopulse-rose.vercel.app'
+const APP = 'https://app.serp-pulse.com'
 
 export default function ReportsPage() {
   return (

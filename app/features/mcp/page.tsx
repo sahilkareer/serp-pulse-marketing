@@ -5,7 +5,7 @@ import SiteFooter from '@/components/SiteFooter'
 
 export default function McpPage() {
   const [activeDemo, setActiveDemo] = useState(0)
-  const APP = 'https://seopulse-rose.vercel.app'
+  const APP = 'https://app.serp-pulse.com'
 
   const demos = [
     {

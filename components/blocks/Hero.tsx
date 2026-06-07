@@ -9,7 +9,7 @@ const defaultTabs = [
     accentWord: 'finally unified.',
     subtext: 'SERP-Pulse connects Google Search Console and Google Analytics 4 into one dashboard — plus tracks traffic from AI platforms your competitors can\'t see.',
     primaryCtaText: 'Start Free — No Card Needed →',
-    primaryCtaUrl: '/signup',
+    primaryCtaUrl: 'https://app.serp-pulse.com/signup',
     secondaryCtaText: 'See how it works',
     secondaryCtaUrl: '#features',
     note: 'Free 14-day trial · 2-min setup · No credit card',
@@ -20,7 +20,7 @@ const defaultTabs = [
     accentWord: 'One glance.',
     subtext: 'Instantly see which projects are growing, declining, or stable. Monitor clicks, impressions, CTR, and position across every client — without opening a single spreadsheet.',
     primaryCtaText: 'See Your Growth Dashboard →',
-    primaryCtaUrl: '/signup',
+    primaryCtaUrl: 'https://app.serp-pulse.com/signup',
     secondaryCtaText: 'How growth monitoring works',
     secondaryCtaUrl: '#growth',
     note: 'Used by 580+ agencies managing thousands of projects',
@@ -31,7 +31,7 @@ const defaultTabs = [
     accentWord: 'can\'t see yet.',
     subtext: 'ChatGPT, Claude, Perplexity, and Gemini are referencing your content and sending visitors. SERP-Pulse is the only dashboard that tracks every AI citation — by platform, by page, by trend.',
     primaryCtaText: 'Discover Your AI Citations →',
-    primaryCtaUrl: '/signup',
+    primaryCtaUrl: 'https://app.serp-pulse.com/signup',
     secondaryCtaText: 'See platforms we track',
     secondaryCtaUrl: '#ai',
     note: 'Tracking ChatGPT · Claude · Perplexity · Gemini · Grok and more',
@@ -108,7 +108,7 @@ export default function Hero({ data }: { data?: any }) {
 
       {/* CTAs */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 14, position: 'relative', zIndex: 1 }}>
-        <Link href={current.primaryCtaUrl || '/signup'} style={{
+        <Link href={current.primaryCtaUrl || 'https://app.serp-pulse.com/signup'} style={{
           background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: 'white',
           fontFamily: "'Bricolage Grotesque',sans-serif", fontSize: 15, fontWeight: 700,
           padding: '13px 28px', borderRadius: 10, textDecoration: 'none',

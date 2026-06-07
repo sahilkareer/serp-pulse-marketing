@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: '9-widget GA4 dashboard. Sessions, users, engagement, conversions, geography — all unified with Google Search Console in one view.',
 }
 
-const APP = 'https://seopulse-rose.vercel.app'
+const APP = 'https://app.serp-pulse.com'
 
 export default function AnalyticsPage() {
   return (

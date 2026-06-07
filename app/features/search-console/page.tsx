@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Google Search Console intelligence — queries, pages, countries, devices, smart filters, CSV export. All in one dashboard.',
 }
 
-const APP = 'https://seopulse-rose.vercel.app'
+const APP = 'https://app.serp-pulse.com'
 
 export default function SearchConsolePage() {
   return (
