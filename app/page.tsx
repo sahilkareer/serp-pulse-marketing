@@ -7,7 +7,7 @@ export default function HomePage() {
   const [activeTab, setActiveTab] = useState('unified')
   const [pricingAnnual, setPricingAnnual] = useState(true)
 
-  const APP = 'https://seopulse-rose.vercel.app'
+  const APP = 'https://app.serp-pulse.com'
   const FOUNDER_IMG = 'https://media.licdn.com/dms/image/v2/D5603AQHU9JOiEY6kRA/profile-displayphoto-crop_800_800/B56ZkhZSDtHkAI-/0/1757201900647?e=1782345600&v=beta&t=qpVo3miyByRzkqHHlFL4liQJsT6uNObbH87VE8Kn0xs'
 
   return (
@@ -245,9 +245,9 @@ export default function HomePage() {
               {img:`https://www.gstatic.com/analytics-suite/header/suite/v2/ic_analytics.svg`,r:0,t:'GA4 Report',d:'Sessions, users, engagement',highlight:true},
               {img:`https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64`,r:4,t:'AI Traffic Report',d:'ChatGPT, Claude, Perplexity...'},
               {emoji:'📊',t:'Combined Report',d:'GSC + GA4 + AI in one PDF'},
-            ].map((item,i)=>(
+            ].map((item: any,i)=>(
               <div key={i} style={{border:item.highlight?'2px solid var(--tl)':'1.5px solid var(--bd)',borderRadius:'var(--r)',padding:14,textAlign:'center',background:item.highlight?'rgba(8,145,178,.02)':'transparent'}}>
-                <div style={{marginBottom:6}}>{(item as any).emoji?<span style={{fontSize:22}}>{(item as any).emoji}</span>:<img src={item.img} width="24" height="24" style={{borderRadius:item.r}} alt=""/>}</div>
+                <div style={{marginBottom:6}}>{item.emoji?<span style={{fontSize:22}}>{item.emoji}</span>:<img src={item.img} width="24" height="24" style={{borderRadius:item.r}} alt=""/>}</div>
                 <div style={{fontFamily:'var(--hd)',fontSize:12,fontWeight:700,color:'var(--ink)',marginBottom:2}}>{item.t}</div>
                 <div style={{fontSize:10,color:'var(--mt2)'}}>{item.d}</div>
               </div>
@@ -436,14 +436,14 @@ export default function HomePage() {
       </div></div>
       </section>
 
-      {/* FOUNDER */}
+      {/* FOUNDER — no inline gridTemplateColumns so CSS media queries work */}
       <section style={{padding:'96px 0',background:'var(--bg)'}}>
       <div className="w">
         <div style={{textAlign:'center',marginBottom:48}}>
           <div className="sl" style={{justifyContent:'center',display:'flex'}}>The Story</div>
           <h2 className="sh">Built by an SEO.<br/>Not just a developer.</h2>
         </div>
-        <div style={{display:'grid',gridTemplateColumns:'240px 1fr',gap:52,alignItems:'start',maxWidth:920,margin:'0 auto'}} className="founder-grid rv">
+        <div className="founder-grid rv" style={{maxWidth:920,margin:'0 auto'}}>
           {/* Founder photo */}
           <div style={{textAlign:'center'}}>
             <div style={{width:200,height:200,margin:'0 auto 16px',borderRadius:'50%',padding:3,background:'linear-gradient(135deg,#0891b2,#06d6c7)',boxShadow:'0 16px 48px rgba(8,145,178,.2)'}}>
