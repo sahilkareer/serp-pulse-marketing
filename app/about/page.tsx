@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'SERP-Pulse was built by Sahil Kareer after 6 years in SEO agencies. The story behind the tool.',
 }
 
-const APP = 'https://seopulse-rose.vercel.app'
+const APP = 'https://app.serp-pulse.com'
 const FOUNDER_IMG = 'https://media.licdn.com/dms/image/v2/D5603AQHU9JOiEY6kRA/profile-displayphoto-crop_800_800/B56ZkhZSDtHkAI-/0/1757201900647?e=1782345600&v=beta&t=qpVo3miyByRzkqHHlFL4liQJsT6uNObbH87VE8Kn0xs'
 
 export default function AboutPage() {
@@ -21,15 +21,15 @@ export default function AboutPage() {
         <p className="hero-sub">SERP-Pulse was born from <strong>6 years of SEO and agency experience</strong> — the frustration of scattered data, invisible AI traffic, and tools that don&apos;t talk to each other.</p>
       </div></section>
 
+      {/* Founder section — NO inline gridTemplateColumns so CSS media queries work */}
       <section className="feat-sec" style={{background:'var(--wh)'}}><div className="w">
-        <div style={{display:'grid',gridTemplateColumns:'280px 1fr',gap:56,alignItems:'start',maxWidth:960,margin:'0 auto'}} className="about-grid rv">
+        <div className="about-grid rv">
 
-          {/* Founder photo card */}
+          {/* Founder photo */}
           <div style={{textAlign:'center'}}>
             <div style={{
-              position:'relative',width:220,height:220,margin:'0 auto 20px',
-              borderRadius:'50%',
-              padding:3,
+              width:220,height:220,margin:'0 auto 20px',
+              borderRadius:'50%',padding:3,
               background:'linear-gradient(135deg,#0891b2,#06d6c7)',
               boxShadow:'0 20px 60px rgba(8,145,178,.25)',
             }}>
@@ -68,10 +68,13 @@ export default function AboutPage() {
         </div>
       </div></section>
 
-      {/* Timeline */}
-      <section className="feat-sec"><div className="w">
-        <h2 style={{fontFamily:'var(--hd)',fontSize:24,fontWeight:800,letterSpacing:-.8,marginBottom:32,textAlign:'center'}}>The journey so far.</h2>
-        <div className="timeline rv" style={{maxWidth:600,margin:'0 auto'}}>
+      {/* Timeline — uses CSS classes defined in globals.css */}
+      <section className="feat-sec" style={{background:'var(--bg)'}}><div className="w">
+        <div style={{textAlign:'center',marginBottom:40}}>
+          <div className="sl" style={{justifyContent:'center',display:'flex'}}>Journey</div>
+          <h2 style={{fontFamily:'var(--hd)',fontSize:28,fontWeight:800,letterSpacing:-.8}}>The journey so far.</h2>
+        </div>
+        <div className="timeline rv" style={{maxWidth:640,margin:'0 auto'}}>
           {[
             {year:'2020 — 2024',text:'6 years in SEO agencies, in-house teams, and consulting. Managed hundreds of client projects across industries. Felt the pain of scattered data and manual reporting daily.'},
             {year:'Early 2025',text:'First prototype built. Connected Google Search Console via API. Basic query analysis and CSV export working.'},
