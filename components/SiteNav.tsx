@@ -1,7 +1,28 @@
 'use client'
 import { useState, useEffect } from 'react'
 
-const APP = 'https://seopulse-rose.vercel.app'
+const APP = 'https://app.serp-pulse.com'
+
+const Logo = () => (
+  <svg viewBox="0 0 770 120" role="img" xmlns="http://www.w3.org/2000/svg" style={{height:40,width:'auto',display:'block'}}>
+    <title>SERP-Pulse</title>
+    <g transform="translate(4, 10)">
+      <text x="0"   y="78" fontSize="78" fontWeight="800" fill="#4285F4" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">S</text>
+      <text x="55"  y="78" fontSize="78" fontWeight="800" fill="#EA4335" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">E</text>
+      <text x="109" y="78" fontSize="78" fontWeight="800" fill="#FBBC05" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">R</text>
+      <text x="164" y="78" fontSize="78" fontWeight="800" fill="#34A853" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">P</text>
+      <line x1="222" y1="44" x2="229" y2="44" stroke="#93b4f5" strokeWidth="2.5" strokeLinecap="round"/>
+      <polyline points="229,44 233,44 237,30 241,58 245,36 249,44 256,44" fill="none" stroke="#1a73e8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="237" cy="30" r="4" fill="#EA4335"/>
+      <line x1="256" y1="44" x2="263" y2="44" stroke="#93b4f5" strokeWidth="2.5" strokeLinecap="round"/>
+      <text x="270" y="78" fontSize="78" fontWeight="800" fill="#1a73e8" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">P</text>
+      <text x="324" y="78" fontSize="78" fontWeight="800" fill="#1a73e8" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">u</text>
+      <text x="370" y="78" fontSize="78" fontWeight="800" fill="#1a73e8" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">l</text>
+      <text x="392" y="78" fontSize="78" fontWeight="800" fill="#1a73e8" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">s</text>
+      <text x="432" y="78" fontSize="78" fontWeight="800" fill="#1a73e8" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">e</text>
+    </g>
+  </svg>
+)
 
 export default function SiteNav() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -21,9 +42,7 @@ export default function SiteNav() {
   return (
     <>
       <nav style={{ boxShadow: scrolled ? '0 2px 16px rgba(0,0,0,.05)' : 'none' }}>
-        <a href="/" className="nl" style={{textDecoration:'none'}}>
-          <img src="/logo.svg" alt="SERP-Pulse" style={{height:28,width:'auto',display:'block',filter:'none'}} />
-        </a>
+        <a href="/" className="nl" style={{textDecoration:'none'}}><Logo /></a>
         <div className="nm">
           <div className="mmw">
             <button className="mmt">Features <svg width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>

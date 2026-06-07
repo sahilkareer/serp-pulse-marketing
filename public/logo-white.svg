@@ -1,18 +1,21 @@
 <svg width="100%" viewBox="0 0 770 120" role="img" xmlns="http://www.w3.org/2000/svg">
   <title>SERP-Pulse</title>
   <g transform="translate(4, 10)">
-    <text x="0" y="80" font-size="80" font-weight="800" fill="#ffffff" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">S</text>
-    <text x="56" y="80" font-size="80" font-weight="800" fill="#ffffff" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">E</text>
-    <text x="111" y="80" font-size="80" font-weight="800" fill="#ffffff" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">R</text>
-    <text x="168" y="80" font-size="80" font-weight="800" fill="#ffffff" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">P</text>
-    <line x1="226" y1="44" x2="233" y2="44" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round"/>
-    <polyline points="233,44 237,44 241,30 245,58 249,36 253,44 260,44" fill="none" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="241" cy="30" r="3.5" fill="#f87171"/>
-    <line x1="260" y1="44" x2="267" y2="44" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round"/>
-    <text x="274" y="80" font-size="80" font-weight="800" fill="#ffffff" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">P</text>
-    <text x="330" y="80" font-size="80" font-weight="800" fill="#ffffff" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">u</text>
-    <text x="380" y="80" font-size="80" font-weight="800" fill="#ffffff" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">l</text>
-    <text x="404" y="80" font-size="80" font-weight="800" fill="#ffffff" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">s</text>
-    <text x="448" y="80" font-size="80" font-weight="800" fill="#ffffff" font-family="'Google Sans', 'Product Sans', 'Segoe UI', Arial, sans-serif">e</text>
+    <!-- SERP in Google colours (bright enough for dark bg) -->
+    <text x="0"   y="78" font-size="78" font-weight="800" fill="#4285F4" font-family="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">S</text>
+    <text x="55"  y="78" font-size="78" font-weight="800" fill="#EA4335" font-family="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">E</text>
+    <text x="109" y="78" font-size="78" font-weight="800" fill="#FBBC05" font-family="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">R</text>
+    <text x="164" y="78" font-size="78" font-weight="800" fill="#34A853" font-family="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">P</text>
+    <!-- EKG separator -->
+    <line x1="222" y1="44" x2="229" y2="44" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round"/>
+    <polyline points="229,44 233,44 237,30 241,58 245,36 249,44 256,44" fill="none" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="237" cy="30" r="3.5" fill="#f87171"/>
+    <line x1="256" y1="44" x2="263" y2="44" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round"/>
+    <!-- Pulse in light blue (visible on dark) -->
+    <text x="270" y="78" font-size="78" font-weight="800" fill="#60a5fa" font-family="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">P</text>
+    <text x="324" y="78" font-size="78" font-weight="800" fill="#60a5fa" font-family="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">u</text>
+    <text x="370" y="78" font-size="78" font-weight="800" fill="#60a5fa" font-family="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">l</text>
+    <text x="392" y="78" font-size="78" font-weight="800" fill="#60a5fa" font-family="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">s</text>
+    <text x="432" y="78" font-size="78" font-weight="800" fill="#60a5fa" font-family="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">e</text>
   </g>
 </svg>

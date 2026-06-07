@@ -2,8 +2,26 @@ export default function SiteFooter() {
   return (
     <footer><div className="fi"><div className="fg">
       <div className="fb">
-        <a href="/" style={{display:'inline-block',textDecoration:'none',marginBottom:10}}>
-          <img src="/logo-white.svg" alt="SERP-Pulse" style={{height:22,width:'auto',display:'block',filter:'none'}}/>
+        <a href="/" style={{display:'inline-block',textDecoration:'none',marginBottom:12}}>
+          {/* Inline SVG = guaranteed transparent background, no white box */}
+          <svg viewBox="0 0 770 120" role="img" xmlns="http://www.w3.org/2000/svg" style={{height:36,width:'auto',display:'block'}}>
+            <title>SERP-Pulse</title>
+            <g transform="translate(4, 10)">
+              <text x="0"   y="78" fontSize="78" fontWeight="800" fill="#4285F4" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">S</text>
+              <text x="55"  y="78" fontSize="78" fontWeight="800" fill="#EA4335" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">E</text>
+              <text x="109" y="78" fontSize="78" fontWeight="800" fill="#FBBC05" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">R</text>
+              <text x="164" y="78" fontSize="78" fontWeight="800" fill="#34A853" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">P</text>
+              <line x1="222" y1="44" x2="229" y2="44" stroke="rgba(255,255,255,0.3)" strokeWidth="2" strokeLinecap="round"/>
+              <polyline points="229,44 233,44 237,30 241,58 245,36 249,44 256,44" fill="none" stroke="#60a5fa" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="237" cy="30" r="3.5" fill="#f87171"/>
+              <line x1="256" y1="44" x2="263" y2="44" stroke="rgba(255,255,255,0.3)" strokeWidth="2" strokeLinecap="round"/>
+              <text x="270" y="78" fontSize="78" fontWeight="800" fill="#60a5fa" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">P</text>
+              <text x="324" y="78" fontSize="78" fontWeight="800" fill="#60a5fa" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">u</text>
+              <text x="370" y="78" fontSize="78" fontWeight="800" fill="#60a5fa" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">l</text>
+              <text x="392" y="78" fontSize="78" fontWeight="800" fill="#60a5fa" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">s</text>
+              <text x="432" y="78" fontSize="78" fontWeight="800" fill="#60a5fa" fontFamily="'Google Sans','Product Sans','Segoe UI',Arial,sans-serif">e</text>
+            </g>
+          </svg>
         </a>
         <p>Unified SEO analytics for agencies and professionals. GSC + GA4 + AI Citations in one dashboard. Built by an SEO, for SEOs.</p>
       </div>
