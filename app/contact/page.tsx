@@ -19,7 +19,7 @@ export default function ContactPage() {
       </div></section>
 
       <section className="feat-sec" style={{background:'var(--wh)'}}><div className="w">
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:48,alignItems:'start',maxWidth:880,margin:'0 auto'}} className="about-grid rv">
+        <div className="about-grid rv">
 
           {/* Form */}
           <div>
