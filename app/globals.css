@@ -397,3 +397,143 @@ footer{background:var(--d2);border-top:1px solid rgba(255,255,255,.05);padding:4
 .tl-dot{position:absolute;left:0;top:4px;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--tl),var(--tl3));box-shadow:0 0 0 4px rgba(8,145,178,.1),0 0 0 7px rgba(8,145,178,.04)}
 .tl-year{font-family:var(--hd);font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--tl);margin-bottom:8px}
 .tl-text{font-size:15px;color:var(--mt);line-height:1.75;max-width:560px}
+
+/* ─────────────────────────────────────────────────────────────────
+   APPLE-STYLE ANIMATION SYSTEM
+   All additive — does not modify any existing rules above
+───────────────────────────────────────────────────────────────── */
+
+/* 1. Enhanced scroll-reveal — spring easing instead of linear */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(0.22,1,0.36,1),transform .7s cubic-bezier(0.22,1,0.36,1)}
+.rv.vi{opacity:1;transform:translateY(0)}
+
+/* 2. Stagger system — wrap parent in .stagger to sequence children */
+.stagger>.rv:nth-child(1){transition-delay:0ms}
+.stagger>.rv:nth-child(2){transition-delay:90ms}
+.stagger>.rv:nth-child(3){transition-delay:180ms}
+.stagger>.rv:nth-child(4){transition-delay:270ms}
+.stagger>.rv:nth-child(5){transition-delay:360ms}
+.stagger>.rv:nth-child(6){transition-delay:450ms}
+
+/* 3. Scale-reveal variant */
+.rv-scale{opacity:0;transform:scale(0.93) translateY(10px);transition:opacity .75s cubic-bezier(0.22,1,0.36,1),transform .75s cubic-bezier(0.22,1,0.36,1)}
+.rv-scale.vi{opacity:1;transform:scale(1) translateY(0)}
+
+/* 4. Blur-in reveal */
+.rv-blur{opacity:0;filter:blur(8px);transform:translateY(10px);transition:opacity .65s ease,filter .65s ease,transform .65s ease}
+.rv-blur.vi{opacity:1;filter:blur(0);transform:translateY(0)}
+
+/* 5. Slide from left */
+.rv-left{opacity:0;transform:translateX(-28px);transition:opacity .65s cubic-bezier(0.22,1,0.36,1),transform .65s cubic-bezier(0.22,1,0.36,1)}
+.rv-left.vi{opacity:1;transform:translateX(0)}
+
+/* 6. Animated gradient text on .ac accent spans */
+@keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.hero h1 .ac,.page-hero h1 .ac,.final h2 .ac,.sh .ac{
+  background:linear-gradient(120deg,var(--tl) 0%,var(--tl3) 30%,#10b981 60%,var(--tl2) 100%);
+  background-size:250% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:gradient-shift 5s ease infinite;
+}
+
+/* 7. Button shimmer sweep on hover */
+.btn-h,.btn-p,.btn-nav-cta{position:relative;overflow:hidden;isolation:isolate}
+.btn-h::after,.btn-p::after,.btn-nav-cta::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.18) 50%,transparent 65%);
+  transform:translateX(-150%) skewX(-15deg);
+  transition:transform .55s ease;
+  pointer-events:none;
+}
+.btn-h:hover::after,.btn-p:hover::after,.btn-nav-cta:hover::after{transform:translateX(150%) skewX(-15deg)}
+
+/* 8. Soft glow pulse on primary CTA */
+@keyframes cta-glow{0%,100%{box-shadow:0 0 0 0 rgba(8,145,178,0),0 4px 14px rgba(8,145,178,.15)}50%{box-shadow:0 0 0 6px rgba(8,145,178,.06),0 4px 14px rgba(8,145,178,.22)}}
+.btn-h{animation:cta-glow 3.5s ease infinite}
+.btn-h:hover{animation:none;box-shadow:0 10px 32px rgba(8,145,178,.35);transform:translateY(-2px)}
+
+/* 9. Mock UI cards — lift on hover */
+.dmock{transition:transform .45s cubic-bezier(0.22,1,0.36,1),box-shadow .45s ease}
+.dmock:hover{transform:translateY(-6px) scale(1.012);box-shadow:0 32px 80px rgba(0,0,0,.22),0 0 0 1px rgba(6,214,199,.08)}
+.lmock{transition:transform .45s cubic-bezier(0.22,1,0.36,1),box-shadow .45s ease}
+.lmock:hover{transform:translateY(-6px) scale(1.012);box-shadow:0 28px 64px rgba(0,0,0,.12)}
+
+/* 10. Pricing card hover — glowing border */
+.p-card{transition:transform .4s cubic-bezier(0.22,1,0.36,1),box-shadow .4s ease,border-color .3s ease}
+.p-card:hover{transform:translateY(-5px);box-shadow:0 0 0 1.5px var(--tl),0 20px 48px rgba(8,145,178,.12)}
+.p-card.pop:hover{transform:translateY(-5px);box-shadow:0 0 0 2px var(--tl),0 24px 56px rgba(8,145,178,.22)}
+
+/* 11. Testimonial card hover */
+.tc{transition:transform .4s cubic-bezier(0.22,1,0.36,1),box-shadow .4s ease,border-color .3s ease}
+.tc:hover{transform:translateY(-4px);border-color:var(--tl);box-shadow:0 0 0 1px var(--ts2),0 12px 32px rgba(8,145,178,.1)}
+
+/* 12. Feature section: icon bg subtle pulse */
+.mmii{transition:transform .2s ease,background .2s ease}
+.mmi:hover .mmii{transform:scale(1.1)}
+
+/* 13. Ecosystem card hover */
+.ec{transition:transform .4s cubic-bezier(0.22,1,0.36,1),box-shadow .4s ease,border-color .3s ease}
+.ec.live:hover{transform:translateY(-3px);border-color:rgba(8,145,178,.3);box-shadow:0 8px 24px rgba(8,145,178,.08)}
+
+/* 14. Hero badge — continuous subtle glow */
+@keyframes badge-pulse{0%,100%{box-shadow:0 0 0 0 rgba(8,145,178,0)}60%{box-shadow:0 0 0 5px rgba(8,145,178,.06)}}
+.hero-badge{animation:badge-pulse 3.5s ease infinite}
+
+/* 15. Live dot continuous breathe */
+@keyframes live-breathe{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+.ec-live-dot::before{animation:live-breathe 2.2s ease infinite}
+
+/* 16. Timeline dot glow */
+@keyframes tl-glow{0%,100%{box-shadow:0 0 0 4px rgba(8,145,178,.1),0 0 0 7px rgba(8,145,178,.04)}50%{box-shadow:0 0 0 7px rgba(8,145,178,.14),0 0 0 12px rgba(8,145,178,.05)}}
+.tl-dot{animation:tl-glow 3s ease infinite}
+
+/* 17. Hero product frame entrance — subtle float */
+@keyframes frame-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.pframe{animation:frame-float 6s ease-in-out infinite}
+
+/* 18. Section label line animation */
+.sl::before{transition:width .4s cubic-bezier(0.22,1,0.36,1)}
+.sl:hover::before{width:28px}
+
+/* 19. Smooth animated underline on text links */
+.feat-content a[href],.founder-content a[href]{
+  background-image:linear-gradient(currentColor,currentColor);
+  background-size:0% 1.5px;
+  background-repeat:no-repeat;
+  background-position:left bottom;
+  transition:background-size .3s ease,color .15s;
+}
+.feat-content a[href]:hover,.founder-content a[href]:hover{background-size:100% 1.5px}
+
+/* 20. Scroll-triggered count-up — class added by AnimationProvider */
+.count-anim{font-variant-numeric:tabular-nums;transition:color .3s ease}
+
+/* 21. Page entry animation — first section fades in on load */
+@keyframes page-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.page-hero>*,.page-hero .w>*{animation:page-enter .8s cubic-bezier(0.22,1,0.36,1) both}
+.page-hero .w>*:nth-child(2){animation-delay:.08s}
+.page-hero .w>*:nth-child(3){animation-delay:.16s}
+.page-hero .w>*:nth-child(4){animation-delay:.24s}
+.page-hero .w>*:nth-child(5){animation-delay:.32s}
+
+/* 22. Smooth nav border on scroll — already in JS; add CSS transition */
+nav{transition:box-shadow .3s ease,background .3s ease}
+
+/* 23. Trust bar number hover */
+.tr-n{transition:color .2s ease,transform .2s ease}
+.rv.vi .tr-n{transition:color .2s ease,transform .2s ease}
+
+/* 24. Footer link hover with translate */
+.fcol a{transition:color .15s ease,transform .15s ease;display:inline-block}
+.fcol a:hover{transform:translateX(3px)}
+
+/* 25. Comparison table row highlight */
+.cmp-tbl tbody tr{transition:background .15s ease}
+
+/* Feature page num tag */
+.feat-num{font-family:var(--hd);font-size:72px;font-weight:800;letter-spacing:-4px;color:var(--mt3);line-height:1;user-select:none}
+
