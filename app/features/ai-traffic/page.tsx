@@ -26,7 +26,7 @@ export default function AiTrafficPage() {
             ))}
           </div>
           <h1>AI Citation &amp; Traffic<br/><span className="ac">Tracking.</span></h1>
-          <p className="hero-sub">Right now, AI platforms like ChatGPT, Claude, Perplexity, and Gemini are <strong>citing your content and sending real visitors</strong> to your site. Standard analytics tools can&apos;t see this traffic at all. SERP-Pulse can.</p>
+          <p className="hero-sub">Right now, AI platforms like ChatGPT, Claude, Perplexity, and Gemini are <strong>citing your content and sending real visitors</strong> to your site. This traffic exists in your analytics — but it&apos;s buried under raw referral domains with no platform labels. SERP-Pulse identifies each source automatically and gives you a clear breakdown by platform, page, and trend.</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">Discover Your AI Traffic <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="#how-it-works" className="btn-g">How it works</a>
@@ -39,8 +39,8 @@ export default function AiTrafficPage() {
         <div className="w">
           <div style={{textAlign:'center',marginBottom:32}}>
             <div className="sl" style={{justifyContent:'center',display:'flex'}}>The Blind Spot</div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,30px)',fontWeight:800,letterSpacing:-1,maxWidth:640,margin:'0 auto'}}>Every other analytics tool shows AI traffic as &ldquo;direct&rdquo; or &ldquo;unknown.&rdquo;</h2>
-            <p style={{fontSize:15,color:'var(--mt)',maxWidth:560,margin:'12px auto 0',textAlign:'center'}}>When ChatGPT cites your blog post and a user clicks through, Google Analytics records it as &ldquo;direct&rdquo; traffic. You have no idea it came from an AI platform. SERP-Pulse identifies the source by analyzing referral patterns and attributes it to the correct AI platform automatically.</p>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,30px)',fontWeight:800,letterSpacing:-1,maxWidth:640,margin:'0 auto'}}>AI traffic is already in your analytics — just impossible to read.</h2>
+            <p style={{fontSize:15,color:'var(--mt)',maxWidth:560,margin:'12px auto 0',textAlign:'center'}}>When ChatGPT cites your blog post and a user clicks through, GA4 records it as referral traffic from <code style={{background:'var(--bg2)',padding:'1px 5px',borderRadius:3,fontSize:13}}>chat.openai.com</code>. You can find it if you know exactly where to look — but there&apos;s no AI label, no aggregated view, and no trend. SERP-Pulse reads those raw referral domains and automatically maps them to the correct AI platform, so you see a clear breakdown in seconds instead of hours.</p>
           </div>
         </div>
       </section>

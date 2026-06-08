@@ -385,6 +385,10 @@ footer{background:var(--d2);border-top:1px solid rgba(255,255,255,.05);padding:4
 @media(max-width:900px){.feat-grid,.feat-grid.rev{grid-template-columns:1fr}.feat-grid.rev{direction:ltr}.page-hero{padding:90px 0 48px}.feat-sec{padding:56px 0}}
 @media(max-width:600px){.page-hero{padding:80px 0 36px}.feat-sec{padding:44px 0}}
 
+/* ─── TWO-COLUMN EQUAL GRID (Contact, etc) ─── */
+.two-col-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;max-width:880px;margin:0 auto}
+@media(max-width:900px){.two-col-grid{grid-template-columns:1fr;gap:28px}}
+
 /* ─── ABOUT-GRID ─── */
 .about-grid{display:grid;grid-template-columns:260px 1fr;gap:56px;align-items:start;max-width:960px;margin:0 auto}
 
