@@ -17,6 +17,7 @@ const APP = 'https://app.serp-pulse.com'
 
 export default async function FreelancersPage() {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'use-cases-freelancers' }).catch(() => null)
+  const s = (n: number): any => d?.sections?.[n] || {}
   return (
     <>
       <SiteNav />

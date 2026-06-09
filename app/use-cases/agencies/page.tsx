@@ -17,6 +17,7 @@ const APP = 'https://app.serp-pulse.com'
 
 export default async function AgenciesPage() {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'use-cases-agencies' }).catch(() => null)
+  const s = (n: number): any => d?.sections?.[n] || {}
   return (
     <>
       <SiteNav />
@@ -47,8 +48,8 @@ export default async function AgenciesPage() {
       <section className="feat-sec" style={{background:'var(--wh)'}}>
         <div className="w">
           <div style={{textAlign:'center',marginBottom:36}}>
-            <div className="sl" style={{justifyContent:'center',display:'flex'}}>The Agency Problem</div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,30px)',fontWeight:800,letterSpacing:-1,maxWidth:640,margin:'0 auto'}}>Running a client SEO operation means juggling too many tools, logins, and spreadsheets.</h2>
+            <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(0).label || 'The Agency Problem'}</div>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,30px)',fontWeight:800,letterSpacing:-1,maxWidth:640,margin:'0 auto'}}>{s(0).heading || 'Running a client SEO operation means juggling too many tools, logins, and spreadsheets.'}</h2>
           </div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))',gap:16,maxWidth:860,margin:'0 auto'}}>
             {[
@@ -70,17 +71,17 @@ export default async function AgenciesPage() {
       <section className="feat-sec">
         <div className="w">
           <div style={{textAlign:'center',marginBottom:36}}>
-            <div className="sl" style={{justifyContent:'center',display:'flex'}}>Agency Features</div>
-            <h2 className="sh">Everything your agency needs.<br/>Nothing it doesn&apos;t.</h2>
+            <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(1).label || 'Agency Features'}</div>
+            <h2 className="sh">{s(1).heading ? s(1).heading.split('|').map((l:string,i:number)=><span key={i}>{i>0&&<br/>}{l}</span>) : <>Everything your agency needs.<br/>Nothing it doesn&apos;t.</>}</h2>
           </div>
           <div style={{display:'flex',flexDirection:'column',gap:48}}>
 
             {/* Unlimited projects */}
             <div className="feat-grid">
               <div className="feat-content">
-                <div className="sl">Portfolio Management</div>
-                <h2>All your clients.<br/>One dashboard.</h2>
-                <p>The Agency plan gives you unlimited GSC projects and unlimited reports. Add every client property, organise them by client, and get a birds-eye view of your entire portfolio health in seconds.</p>
+                <div className="sl">{s(2).label || 'Portfolio Management'}</div>
+                <h2>{s(2).heading ? s(2).heading.split('|').map((l:string,i:number)=><span key={i}>{i>0&&<br/>}{l}</span>) : <>All your clients.<br/>One dashboard.</>}</h2>
+                <p>{s(2).body || 'The Agency plan gives you unlimited GSC projects and unlimited reports. Add every client property, organise them by client, and get a birds-eye view of your entire portfolio health in seconds.'}</p>
                 <div className="checks">
                   <div className="check">Unlimited GSC + GA4 project connections</div>
                   <div className="check">Growth monitoring — see which clients are growing or declining at a glance</div>
@@ -132,9 +133,9 @@ export default async function AgenciesPage() {
                 </div>
               </div>
               <div className="feat-content">
-                <div className="sl">White-Label Reports</div>
-                <h2>Branded reports your<br/>clients will love.</h2>
-                <p>Generate professional PDF reports with your agency&apos;s logo and branding in under 60 seconds. Share via a public link — clients can view their report without logging into SERP-Pulse.</p>
+                <div className="sl">{s(3).label || 'White-Label Reports'}</div>
+                <h2>{s(3).heading ? s(3).heading.split('|').map((l:string,i:number)=><span key={i}>{i>0&&<br/>}{l}</span>) : <>Branded reports your<br/>clients will love.</>}</h2>
+                <p>{s(3).body || "Generate professional PDF reports with your agency's logo and branding in under 60 seconds. Share via a public link — clients can view their report without logging into SERP-Pulse."}</p>
                 <div className="checks">
                   <div className="check">Add your logo, brand colors, and custom messaging</div>
                   <div className="check">4 report types: GSC, GA4, AI Traffic, Combined</div>
@@ -148,9 +149,9 @@ export default async function AgenciesPage() {
             {/* AI traffic */}
             <div className="feat-grid">
               <div className="feat-content">
-                <div className="sl">AI Citations</div>
-                <h2>Show clients the traffic<br/>no other tool can see.</h2>
-                <p>As your clients&apos; content gets cited by ChatGPT, Claude, and Perplexity, SERP-Pulse tracks every referral visit. This is an insight your competitors can&apos;t provide — and a compelling reason for clients to stay.</p>
+                <div className="sl">{s(4).label || 'AI Citations'}</div>
+                <h2>{s(4).heading ? s(4).heading.split('|').map((l:string,i:number)=><span key={i}>{i>0&&<br/>}{l}</span>) : <>Show clients the traffic<br/>no other tool can see.</>}</h2>
+                <p>{s(4).body || "As your clients' content gets cited by ChatGPT, Claude, and Perplexity, SERP-Pulse tracks every referral visit. This is an insight your competitors can't provide — and a compelling reason for clients to stay."}</p>
                 <div className="checks">
                   <div className="check">16+ AI platforms tracked live — ChatGPT, Claude, Perplexity, Gemini, Grok</div>
                   <div className="check">Per-platform sessions, engagement, and growth trends</div>
@@ -182,9 +183,9 @@ export default async function AgenciesPage() {
       {/* PRICING */}
       <section style={{padding:'64px 0',background:'var(--bg)',borderTop:'1px solid var(--bd)'}}>
         <div className="w" style={{textAlign:'center'}}>
-          <div className="sl" style={{justifyContent:'center',display:'flex'}}>Pricing</div>
-          <h2 className="sh">One plan for every agency.</h2>
-          <p className="ss" style={{textAlign:'center',margin:'10px auto 32px'}}>Unlimited projects, unlimited reports, white-label branding. Starting at $159/month — a fraction of what agencies pay for tools with fewer features.</p>
+          <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(5).label || 'Pricing'}</div>
+          <h2 className="sh">{s(5).heading || 'One plan for every agency.'}</h2>
+          <p className="ss" style={{textAlign:'center',margin:'10px auto 32px'}}>{s(5).body || 'Unlimited projects, unlimited reports, white-label branding. Starting at $159/month — a fraction of what agencies pay for tools with fewer features.'}</p>
           <div style={{display:'inline-flex',flexDirection:'column',gap:0,border:'1.5px solid var(--bd)',borderRadius:14,overflow:'hidden',maxWidth:360,width:'100%',background:'var(--wh)'}}>
             <div style={{padding:28,borderBottom:'1px solid var(--bd)'}}>
               <div style={{fontSize:12,fontWeight:700,color:'var(--mt)',letterSpacing:1,textTransform:'uppercase',marginBottom:8}}>Agency Plan</div>

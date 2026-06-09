@@ -17,6 +17,7 @@ const APP = 'https://app.serp-pulse.com'
 
 export default async function AiTrafficPage() {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features-ai-traffic' }).catch(() => null)
+  const s = (n: number): any => d?.sections?.[n] || {}
   return (
     <>
       <SiteNav />
@@ -49,9 +50,9 @@ export default async function AiTrafficPage() {
       <section className="feat-sec" style={{background:'var(--wh)'}}>
         <div className="w">
           <div style={{textAlign:'center',marginBottom:32}}>
-            <div className="sl" style={{justifyContent:'center',display:'flex'}}>The Blind Spot</div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,30px)',fontWeight:800,letterSpacing:-1,maxWidth:640,margin:'0 auto'}}>AI traffic is already in your analytics — just impossible to read.</h2>
-            <p style={{fontSize:15,color:'var(--mt)',maxWidth:560,margin:'12px auto 0',textAlign:'center'}}>When ChatGPT cites your blog post and a user clicks through, GA4 records it as referral traffic from <code style={{background:'var(--bg2)',padding:'1px 5px',borderRadius:3,fontSize:13}}>chat.openai.com</code>. You can find it if you know exactly where to look — but there&apos;s no AI label, no aggregated view, and no trend. SERP-Pulse reads those raw referral domains and automatically maps them to the correct AI platform, so you see a clear breakdown in seconds instead of hours.</p>
+            <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(0).label || 'The Blind Spot'}</div>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,30px)',fontWeight:800,letterSpacing:-1,maxWidth:640,margin:'0 auto'}}>{s(0).heading || 'AI traffic is already in your analytics — just impossible to read.'}</h2>
+            <p style={{fontSize:15,color:'var(--mt)',maxWidth:560,margin:'12px auto 0',textAlign:'center'}}>{s(0).body || "When ChatGPT cites your blog post and a user clicks through, GA4 records it as referral traffic from chat.openai.com. You can find it if you know exactly where to look — but there's no AI label, no aggregated view, and no trend. SERP-Pulse reads those raw referral domains and automatically maps them to the correct AI platform, so you see a clear breakdown in seconds instead of hours."}</p>
           </div>
         </div>
       </section>
@@ -61,9 +62,9 @@ export default async function AiTrafficPage() {
         <div className="w">
           <div className="feat-grid">
             <div className="feat-content">
-              <div className="sl">16+ Platforms</div>
-              <h2>Every major AI platform.<br/>Every referral identified.</h2>
-              <p>SERP-Pulse tracks referral traffic from 16+ AI platforms. For each platform, you see sessions, users, engagement rate, average duration, and conversions. The growth trend shows which platforms are sending more traffic over time.</p>
+              <div className="sl">{s(1).label || '16+ Platforms'}</div>
+              <h2>{s(1).heading ? s(1).heading.split('|').map((l:string,i:number)=><span key={i}>{i>0&&<br/>}{l}</span>) : <>Every major AI platform.<br/>Every referral identified.</>}</h2>
+              <p>{s(1).body || 'SERP-Pulse tracks referral traffic from 16+ AI platforms. For each platform, you see sessions, users, engagement rate, average duration, and conversions. The growth trend shows which platforms are sending more traffic over time.'}</p>
               <div className="checks">
                 <div className="check"><strong>ChatGPT</strong> — by far the largest source of AI referral traffic today</div>
                 <div className="check"><strong>Claude</strong> — Anthropic&apos;s AI assistant, growing rapidly in usage</div>
@@ -136,9 +137,9 @@ export default async function AiTrafficPage() {
               </div>
             </div>
             <div className="feat-content">
-              <div className="sl">Per-Page Attribution</div>
-              <h2>Which pages do AI platforms cite the most?</h2>
-              <p>See exactly which pages on your site receive AI referral traffic. This tells you which content AI models consider authoritative and worth linking to — invaluable intelligence for your content strategy.</p>
+              <div className="sl">{s(2).label || 'Per-Page Attribution'}</div>
+              <h2>{s(2).heading ? s(2).heading.split('|').map((l:string,i:number)=><span key={i}>{i>0&&<br/>}{l}</span>) : <>Which pages do AI platforms cite the most?</>}</h2>
+              <p>{s(2).body || 'See exactly which pages on your site receive AI referral traffic. This tells you which content AI models consider authoritative and worth linking to — invaluable intelligence for your content strategy.'}</p>
               <p style={{fontSize:14,color:'var(--mt)',lineHeight:1.6}}><strong style={{color:'var(--ink)'}}>Actionable insight:</strong> If your &ldquo;SEO Guide&rdquo; gets 1,840 AI referral sessions per month but your &ldquo;Pricing&rdquo; page gets zero, AI models cite educational content. Write more guides. Structure them for citation. The traffic will follow.</p>
               <div className="checks">
                 <div className="check">See AI sessions, users, engagement rate per page</div>

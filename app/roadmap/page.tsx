@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
-import { client, ROADMAP_QUERY } from '@/sanity/lib/client'
+import { client, ROADMAP_QUERY, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
 
 export const revalidate = 60
 
@@ -42,7 +42,10 @@ const STATUS_STYLE: Record<string, { color: string; bg: string }> = {
 }
 
 export default async function RoadmapPage() {
-  const data: any = await client.fetch(ROADMAP_QUERY).catch(() => null)
+  const [data, page]: any[] = await Promise.all([
+    client.fetch(ROADMAP_QUERY).catch(() => null),
+    client.fetch(STANDARD_PAGE_QUERY, { slug: 'roadmap' }).catch(() => null),
+  ])
   const upcoming = data?.upcoming?.length ? data.upcoming : DEFAULT_UPCOMING
   const shipped  = data?.shipped?.length  ? data.shipped  : DEFAULT_SHIPPED
   return (
@@ -51,9 +54,9 @@ export default async function RoadmapPage() {
 
       <section style={{padding:'80px 0 48px',background:'var(--bg)',borderBottom:'1px solid var(--bd)'}}>
         <div className="w" style={{textAlign:'center'}}>
-          <div className="sl" style={{justifyContent:'center',display:'flex'}}>Product</div>
-          <h1 className="sh">What we&apos;re building.</h1>
-          <p className="ss" style={{textAlign:'center',margin:'10px auto 0'}}>Here&apos;s what&apos;s shipped, what&apos;s coming next, and what we&apos;re exploring. Updated as we build.</p>
+          <div className="sl" style={{justifyContent:'center',display:'flex'}}>{page?.heroLabel || 'Product'}</div>
+          <h1 className="sh">{page?.heroHeadline || 'What we\'re building.'}</h1>
+          <p className="ss" style={{textAlign:'center',margin:'10px auto 0'}}>{page?.heroSubtext || 'Here\'s what\'s shipped, what\'s coming next, and what we\'re exploring. Updated as we build.'}</p>
         </div>
       </section>
 

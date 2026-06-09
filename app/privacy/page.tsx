@@ -2,6 +2,24 @@ import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
 import { client, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
+import { PortableText } from '@portabletext/react'
+
+const ptComponents = {
+  block: {
+    h2: ({ children }: any) => <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>{children}</h2>,
+    normal: ({ children }: any) => <p style={{fontSize:15,color:'var(--mt2)',lineHeight:1.75}}>{children}</p>,
+  },
+  marks: {
+    strong: ({ children }: any) => <strong>{children}</strong>,
+    link: ({ children, value }: any) => <a href={value?.href} style={{color:'var(--tl)'}}>{children}</a>,
+  },
+  list: {
+    bullet: ({ children }: any) => <ul style={{paddingLeft:20,display:'flex',flexDirection:'column' as const,gap:8,marginBottom:12}}>{children}</ul>,
+  },
+  listItem: {
+    bullet: ({ children }: any) => <li style={{fontSize:15,color:'var(--mt2)',lineHeight:1.7}}>{children}</li>,
+  },
+}
 
 export const revalidate = 60
 
@@ -30,6 +48,11 @@ export default async function PrivacyPage() {
 
       <section style={{padding:'48px 0 96px',background:'var(--wh)'}}>
         <div className="w" style={{maxWidth:760}}>
+          {d?.content?.length ? (
+            <div style={{display:'flex',flexDirection:'column',gap:32}}>
+              <PortableText value={d.content} components={ptComponents} />
+            </div>
+          ) : (
           <div style={{display:'flex',flexDirection:'column',gap:36}}>
 
             <div>
@@ -143,6 +166,7 @@ export default async function PrivacyPage() {
             </div>
 
           </div>
+          )}
         </div>
       </section>
 

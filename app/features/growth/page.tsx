@@ -17,6 +17,7 @@ const APP = 'https://app.serp-pulse.com'
 
 export default async function GrowthPage() {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features-growth' }).catch(() => null)
+  const s = (n: number): any => d?.sections?.[n] || {}
   return (
     <>
       <SiteNav />
@@ -51,9 +52,9 @@ export default async function GrowthPage() {
       <section className="feat-sec" style={{background:'var(--wh)'}}>
         <div className="w">
           <div style={{textAlign:'center',marginBottom:32}}>
-            <div className="sl" style={{justifyContent:'center',display:'flex'}}>The Problem</div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,30px)',fontWeight:800,letterSpacing:-1,maxWidth:640,margin:'0 auto'}}>Managing 10+ client projects means opening 10+ Search Console tabs.</h2>
-            <p style={{fontSize:15,color:'var(--mt)',maxWidth:560,margin:'12px auto 0',textAlign:'center'}}>Every week you check each property, note if traffic is up or down, and update your client spreadsheet. It takes hours. Growth Monitoring collapses this into a single view where every project&apos;s health is visible instantly.</p>
+            <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(0).label || 'The Problem'}</div>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,30px)',fontWeight:800,letterSpacing:-1,maxWidth:640,margin:'0 auto'}}>{s(0).heading || 'Managing 10+ client projects means opening 10+ Search Console tabs.'}</h2>
+            <p style={{fontSize:15,color:'var(--mt)',maxWidth:560,margin:'12px auto 0',textAlign:'center'}}>{s(0).body || "Every week you check each property, note if traffic is up or down, and update your client spreadsheet. It takes hours. Growth Monitoring collapses this into a single view where every project's health is visible instantly."}</p>
           </div>
         </div>
       </section>
@@ -63,9 +64,9 @@ export default async function GrowthPage() {
         <div className="w">
           <div className="feat-grid">
             <div className="feat-content">
-              <div className="sl">Smart Mode</div>
-              <h2>One health score.<br/>Every metric considered.</h2>
-              <p>Smart Mode calculates a combined health score using Clicks, Impressions, CTR, and Position together. Instead of checking four numbers per project, you get one status.</p>
+              <div className="sl">{s(1).label || 'Smart Mode'}</div>
+              <h2>{s(1).heading ? s(1).heading.split('|').map((l:string,i:number)=><span key={i}>{i>0&&<br/>}{l}</span>) : <>One health score.<br/>Every metric considered.</>}</h2>
+              <p>{s(1).body || 'Smart Mode calculates a combined health score using Clicks, Impressions, CTR, and Position together. Instead of checking four numbers per project, you get one status.'}</p>
               <div className="checks">
                 <div className="check"><strong style={{color:'#10b981'}}>Growing</strong> — clicks and impressions trending up over the selected period</div>
                 <div className="check"><strong style={{color:'var(--tl3)'}}>Stable</strong> — consistent performance, no major movement either way</div>
@@ -152,9 +153,9 @@ export default async function GrowthPage() {
               </div>
             </div>
             <div className="feat-content">
-              <div className="sl">Export & Reporting</div>
-              <h2>One click to export<br/>your entire portfolio.</h2>
-              <p>Every project row shows a mini sparkline trend for the selected period — understand momentum without clicking into every project. When you need the raw numbers, export everything to CSV in one click.</p>
+              <div className="sl">{s(2).label || 'Export & Reporting'}</div>
+              <h2>{s(2).heading ? s(2).heading.split('|').map((l:string,i:number)=><span key={i}>{i>0&&<br/>}{l}</span>) : <>One click to export<br/>your entire portfolio.</>}</h2>
+              <p>{s(2).body || 'Every project row shows a mini sparkline trend for the selected period — understand momentum without clicking into every project. When you need the raw numbers, export everything to CSV in one click.'}</p>
               <div className="checks">
                 <div className="check">Per-project sparkline trend charts — 7, 28, 90 day views</div>
                 <div className="check">CSV export — all projects, all metrics in one file</div>
@@ -169,9 +170,9 @@ export default async function GrowthPage() {
       {/* KPI MODES */}
       <section className="feat-sec">
         <div className="w" style={{textAlign:'center'}}>
-          <div className="sl" style={{justifyContent:'center',display:'flex'}}>KPI Switching</div>
-          <h2 className="sh">Five ways to view<br/>your portfolio.</h2>
-          <p className="ss" style={{margin:'12px auto 0',textAlign:'center'}}>Switch between Smart Mode, Clicks, Impressions, CTR, or Position in one click. Every project re-classifies and re-sorts instantly — no page reload.</p>
+          <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(3).label || 'KPI Switching'}</div>
+          <h2 className="sh">{s(3).heading ? s(3).heading.split('|').map((l:string,i:number)=><span key={i}>{i>0&&<br/>}{l}</span>) : <>Five ways to view<br/>your portfolio.</>}</h2>
+          <p className="ss" style={{margin:'12px auto 0',textAlign:'center'}}>{s(3).body || 'Switch between Smart Mode, Clicks, Impressions, CTR, or Position in one click. Every project re-classifies and re-sorts instantly — no page reload.'}</p>
           <div style={{display:'flex',gap:10,justifyContent:'center',flexWrap:'wrap',marginTop:28}}>
             {([
               {label:'Smart (Combined)',color:'var(--tl3)',desc:'Weighted health score across all metrics'},
@@ -193,8 +194,8 @@ export default async function GrowthPage() {
       <section className="feat-sec" style={{background:'var(--d)'}}>
         <div className="w">
           <div style={{textAlign:'center',marginBottom:36}}>
-            <div className="sl" style={{justifyContent:'center',display:'flex'}}>Use Cases</div>
-            <h2 className="sh" style={{color:'var(--dt)'}}>Built for anyone managing<br/>more than one project.</h2>
+            <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(4).label || 'Use Cases'}</div>
+            <h2 className="sh" style={{color:'var(--dt)'}}>{s(4).heading ? s(4).heading.split('|').map((l:string,i:number)=><span key={i}>{i>0&&<br/>}{l}</span>) : <>Built for anyone managing<br/>more than one project.</>}</h2>
           </div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(240px,1fr))',gap:20}}>
             {[

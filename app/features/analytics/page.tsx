@@ -17,6 +17,7 @@ const APP = 'https://app.serp-pulse.com'
 
 export default async function AnalyticsPage() {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features-analytics' }).catch(() => null)
+  const s = (n: number): any => d?.sections?.[n] || {}
   return (
     <>
       <SiteNav />
@@ -45,9 +46,9 @@ export default async function AnalyticsPage() {
       <section className="feat-sec" style={{background:'var(--wh)'}}>
         <div className="w">
           <div style={{textAlign:'center',marginBottom:32}}>
-            <div className="sl" style={{justifyContent:'center',display:'flex'}}>The Problem</div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,30px)',fontWeight:800,letterSpacing:-1,maxWidth:600,margin:'0 auto'}}>Search Console tells you how people find you. Analytics tells you what they do next.</h2>
-            <p style={{fontSize:15,color:'var(--mt)',maxWidth:520,margin:'12px auto 0',textAlign:'center'}}>Most tools force you to choose one or the other. SERP-Pulse gives you both — on the same timeline, in the same interface, with the same date range and comparison mode.</p>
+            <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(0).label || 'The Problem'}</div>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,30px)',fontWeight:800,letterSpacing:-1,maxWidth:600,margin:'0 auto'}}>{s(0).heading || 'Search Console tells you how people find you. Analytics tells you what they do next.'}</h2>
+            <p style={{fontSize:15,color:'var(--mt)',maxWidth:520,margin:'12px auto 0',textAlign:'center'}}>{s(0).body || 'Most tools force you to choose one or the other. SERP-Pulse gives you both — on the same timeline, in the same interface, with the same date range and comparison mode.'}</p>
           </div>
         </div>
       </section>
@@ -57,9 +58,9 @@ export default async function AnalyticsPage() {
         <div className="w">
           <div className="feat-grid">
             <div className="feat-content">
-              <div className="sl">5 Key Metrics</div>
-              <h2>Sessions. Users. Engagement. Duration. Events.</h2>
-              <p>The moment you connect a GA4 property, 5 key metrics appear alongside your GSC data. Each shows the current period value plus a comparison delta — so you always know whether things are improving or declining.</p>
+              <div className="sl">{s(1).label || '5 Key Metrics'}</div>
+              <h2>{s(1).heading || 'Sessions. Users. Engagement. Duration. Events.'}</h2>
+              <p>{s(1).body || 'The moment you connect a GA4 property, 5 key metrics appear alongside your GSC data. Each shows the current period value plus a comparison delta — so you always know whether things are improving or declining.'}</p>
               <div className="checks">
                 <div className="check"><strong>Sessions</strong> — total visits to your site in the selected period</div>
                 <div className="check"><strong>Users</strong> — unique visitors. Lower than sessions when users return multiple times</div>
@@ -124,9 +125,9 @@ export default async function AnalyticsPage() {
               </div>
             </div>
             <div className="feat-content">
-              <div className="sl">Unified View</div>
-              <h2>See whether search visibility translates to real engagement.</h2>
-              <p>SERP-Pulse puts GSC metrics and GA4 metrics on the <strong style={{color:'var(--ink)'}}>same chart with the same date range</strong>. Toggle any metric on or off. Solid lines = current period. Dashed lines = comparison period.</p>
+              <div className="sl">{s(2).label || 'Unified View'}</div>
+              <h2>{s(2).heading || 'See whether search visibility translates to real engagement.'}</h2>
+              <p>{s(2).body ? s(2).body : <>SERP-Pulse puts GSC metrics and GA4 metrics on the <strong style={{color:'var(--ink)'}}>same chart with the same date range</strong>. Toggle any metric on or off. Solid lines = current period. Dashed lines = comparison period.</>}</p>
               <p style={{fontSize:14,color:'var(--mt)',lineHeight:1.6}}><strong style={{color:'var(--ink)'}}>The result:</strong> In one glance, you can see that impressions went up 15%, clicks went up 12%, but sessions only went up 3% — which means your search traffic isn&apos;t fully converting to site visits. That insight usually takes 30 minutes of spreadsheet work.</p>
             </div>
           </div>
@@ -137,8 +138,8 @@ export default async function AnalyticsPage() {
       <section className="feat-sec">
         <div className="w">
           <div style={{textAlign:'center',marginBottom:28}}>
-            <div className="sl" style={{justifyContent:'center',display:'flex'}}>All 9 Widgets</div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3vw,28px)',fontWeight:800,letterSpacing:-.8}}>Every widget available in the GA4 dashboard.</h2>
+            <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(3).label || 'All 9 Widgets'}</div>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3vw,28px)',fontWeight:800,letterSpacing:-.8}}>{s(3).heading || 'Every widget available in the GA4 dashboard.'}</h2>
           </div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}} className="how-grid">
             {[

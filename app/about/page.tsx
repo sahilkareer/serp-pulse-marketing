@@ -23,6 +23,18 @@ export default async function AboutPage() {
     'I also noticed the growing blind spot around AI-generated traffic. As ChatGPT, Claude, Perplexity, and Gemini started sending real visitors to websites, the data existed in GA4 — but it was buried under individual referral domains with no easy way to aggregate it, visualise trends, or understand which pages were being cited.',
     "The goal isn't to replace your existing tools. It's to make your decision-making faster, easier, and genuinely more actionable.",
   ]
+
+  // Timeline: sections[1..] mapped as { year: label, text: body }
+  const DEFAULT_TIMELINE = [
+    { year: '2020 — 2024', text: '6 years in SEO agencies, in-house teams, and consulting. Managed hundreds of client projects across industries. Felt the pain of scattered data and manual reporting daily.' },
+    { year: 'Early 2025',   text: 'First prototype built. Connected Google Search Console via API. Basic query analysis and CSV export working.' },
+    { year: 'Mid 2025',     text: 'GA4 integration added. AI traffic tracking module built — ChatGPT, Claude, Perplexity, Gemini. White-label reports shipped.' },
+    { year: '2026 — Now',   text: 'MCP Server with 16 tools launched. 500+ active users. 40M+ queries tracked. Full production-ready platform. Ready for monetisation.' },
+  ]
+  const timeline = d?.sections?.length > 1
+    ? d.sections.slice(1).map((s: any) => ({ year: s.label || s.heading || '', text: s.body || '' }))
+    : DEFAULT_TIMELINE
+
   return (
     <>
       <SiteNav />
@@ -85,12 +97,7 @@ export default async function AboutPage() {
           <h2 className="about-timeline-h2">The journey so far.</h2>
         </div>
         <div className="timeline rv" style={{maxWidth:640,margin:'0 auto'}}>
-          {[
-            {year:'2020 — 2024',text:'6 years in SEO agencies, in-house teams, and consulting. Managed hundreds of client projects across industries. Felt the pain of scattered data and manual reporting daily.'},
-            {year:'Early 2025',text:'First prototype built. Connected Google Search Console via API. Basic query analysis and CSV export working.'},
-            {year:'Mid 2025',text:'GA4 integration added. AI traffic tracking module built — ChatGPT, Claude, Perplexity, Gemini. White-label reports shipped.'},
-            {year:'2026 — Now',text:'MCP Server with 16 tools launched. 500+ active users. 40M+ queries tracked. Full production-ready platform. Ready for monetisation.'},
-          ].map(item=>(
+          {timeline.map((item: any)=>(
             <div key={item.year} className="tl-item">
               <div className="tl-dot"/>
               <div className="tl-year">{item.year}</div>

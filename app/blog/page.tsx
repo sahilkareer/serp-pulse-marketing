@@ -36,6 +36,7 @@ const UPCOMING_POSTS = [
 ]
 
 export default async function BlogPage() {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'blog' }).catch(() => null)
   const posts: any[] = await client.fetch(BLOG_INDEX_QUERY).catch(() => []) || []
   const hasPosts = posts.length > 0
 
@@ -46,9 +47,9 @@ export default async function BlogPage() {
       {/* HERO */}
       <section style={{ padding: '80px 0 48px', background: 'var(--bg)', borderBottom: '1px solid var(--bd)' }}>
         <div className="w" style={{ textAlign: 'center' }}>
-          <div className="sl" style={{ justifyContent: 'center', display: 'flex' }}>Resources</div>
-          <h1 className="sh">The SERP-Pulse Blog</h1>
-          <p className="ss" style={{ textAlign: 'center', margin: '10px auto 0' }}>SEO strategies, AI traffic insights, and analytics guides — written by a practitioner, for practitioners.</p>
+          <div className="sl" style={{ justifyContent: 'center', display: 'flex' }}>{d?.heroLabel || 'Resources'}</div>
+          <h1 className="sh">{d?.heroHeadline || 'The SERP-Pulse Blog'}</h1>
+          <p className="ss" style={{ textAlign: 'center', margin: '10px auto 0' }}>{d?.heroSubtext || 'SEO strategies, AI traffic insights, and analytics guides — written by a practitioner, for practitioners.'}</p>
         </div>
       </section>
 

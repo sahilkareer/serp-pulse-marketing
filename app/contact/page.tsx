@@ -15,6 +15,24 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ContactPage() {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'contact' }).catch(() => null)
+
+  // Section headings
+  const formHeading  = d?.sections?.[0]?.heading || 'Send us a message'
+  const infoHeading  = d?.sections?.[1]?.heading || 'Other ways to reach us'
+
+  // Contact info cards — driven by sections[2..] or defaults
+  const contactCards = d?.sections?.length > 2
+    ? d.sections.slice(2).map((s: any) => ({
+        t: s.label || '',
+        body: s.body || '',
+        sub: s.checks?.[0] || null,
+      }))
+    : [
+        { t: 'Email',         body: 'sahilkareer1998@gmail.com',                            sub: null },
+        { t: 'Response time', body: 'We typically respond within 24 hours on business days.', sub: null },
+        { t: 'Built by',      body: 'Sahil Kareer — Founder & Developer',                    sub: '6+ years in SEO, Analytics & Agency Operations' },
+      ]
+
   return (
     <>
       <SiteNav />
@@ -26,7 +44,7 @@ export default async function ContactPage() {
             <span key={i}>{i > 0 && <br/>}{i === a.length - 1 ? <span className="ac">{l}</span> : l}</span>
           )) : <>Get in <span className="ac">touch.</span></>}
         </h1>
-        <p className="hero-sub">{d?.heroSubtext || 'Have a question about SERP-Pulse, want to discuss a partnership, or need support? We\'d love to hear from you.'}</p>
+        <p className="hero-sub">{d?.heroSubtext || "Have a question about SERP-Pulse, want to discuss a partnership, or need support? We'd love to hear from you."}</p>
       </div></section>
 
       <section className="feat-sec" style={{background:'var(--wh)'}}><div className="w">
@@ -34,7 +52,7 @@ export default async function ContactPage() {
 
           {/* Form */}
           <div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:22,fontWeight:700,letterSpacing:-.5,marginBottom:20}}>Send us a message</h2>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:22,fontWeight:700,letterSpacing:-.5,marginBottom:20}}>{formHeading}</h2>
             <div style={{marginBottom:16}}>
               <label style={{display:'block',fontSize:13,fontWeight:600,color:'var(--ink)',marginBottom:6}}>Name</label>
               <input type="text" placeholder="Your name" style={{width:'100%',padding:'10px 14px',border:'1.5px solid var(--bd)',borderRadius:8,fontSize:14,color:'var(--ink)',background:'var(--wh)',outline:'none'}}/>
@@ -64,17 +82,13 @@ export default async function ContactPage() {
 
           {/* Contact info */}
           <div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:22,fontWeight:700,letterSpacing:-.5,marginBottom:20}}>Other ways to reach us</h2>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:22,fontWeight:700,letterSpacing:-.5,marginBottom:20}}>{infoHeading}</h2>
             <div style={{display:'flex',flexDirection:'column',gap:14}}>
-              {[
-                {t:'Email',body:'sahilkareer1998@gmail.com',sub:null},
-                {t:'Response time',body:'We typically respond within 24 hours on business days.',sub:null},
-                {t:'Built by',body:'Sahil Kareer — Founder & Developer',sub:'6+ years in SEO, Analytics & Agency Operations'},
-              ].map(card=>(
+              {contactCards.map((card: any) => (
                 <div key={card.t} className="about-card">
                   <div style={{fontFamily:'var(--hd)',fontSize:14,fontWeight:700,marginBottom:4}}>{card.t}</div>
                   <p style={{fontSize:14,color:'var(--mt)'}}>{card.body}</p>
-                  {card.sub&&<p style={{fontSize:13,color:'var(--mt2)',marginTop:3}}>{card.sub}</p>}
+                  {card.sub && <p style={{fontSize:13,color:'var(--mt2)',marginTop:3}}>{card.sub}</p>}
                 </div>
               ))}
               <div style={{padding:'16px 0'}}>

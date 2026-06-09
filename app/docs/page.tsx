@@ -51,6 +51,20 @@ const SECTIONS = [
 
 export default async function DocsPage() {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'docs' }).catch(() => null)
+
+  // Merge Sanity sections with hardcoded defaults (keeps icons from code)
+  const displaySections = d?.sections?.length
+    ? d.sections.map((s: any, i: number) => ({
+        icon:  SECTIONS[i]?.icon  || '📄',
+        title: s.heading           || SECTIONS[i]?.title || '',
+        desc:  s.body              || SECTIONS[i]?.desc  || '',
+        items: s.checks?.length    ? s.checks : (SECTIONS[i]?.items || []),
+      }))
+    : SECTIONS
+
+  const coverageHeading = d?.sections?.[0] ? 'What will be covered.' : 'What will be covered.'
+  const coverageSubtext = d?.ctaSubtext || 'Here\'s a preview of what the full documentation will include.'
+
   return (
     <>
       <SiteNav />
@@ -90,13 +104,13 @@ export default async function DocsPage() {
             <p style={{fontSize:14,color:'var(--mt)',maxWidth:480,margin:'8px auto 0',textAlign:'center'}}>Here&apos;s a preview of what the full documentation will include.</p>
           </div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:20}}>
-            {SECTIONS.map(sec=>(
+            {displaySections.map((sec: any)=>(
               <div key={sec.title} style={{border:'1.5px solid var(--bd)',borderRadius:12,padding:24,background:'var(--wh)'}}>
                 <div style={{fontSize:26,marginBottom:10}}>{sec.icon}</div>
                 <h3 style={{fontFamily:'var(--hd)',fontSize:15,fontWeight:700,marginBottom:6}}>{sec.title}</h3>
                 <p style={{fontSize:13,color:'var(--mt2)',lineHeight:1.6,marginBottom:14}}>{sec.desc}</p>
                 <ul style={{paddingLeft:0,listStyle:'none',display:'flex',flexDirection:'column',gap:5}}>
-                  {sec.items.map(item=>(
+                  {sec.items.map((item: string)=>(
                     <li key={item} style={{fontSize:12,color:'var(--mt)',display:'flex',alignItems:'center',gap:6}}>
                       <span style={{color:'var(--bd2)'}}>–</span>{item}
                     </li>

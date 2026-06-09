@@ -17,6 +17,7 @@ const APP = 'https://app.serp-pulse.com'
 
 export default async function ReportsPage() {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features-reports' }).catch(() => null)
+  const s = (n: number): any => d?.sections?.[n] || {}
   return (
     <>
       <SiteNav />
@@ -42,9 +43,9 @@ export default async function ReportsPage() {
         <div className="w">
           <div className="feat-grid">
             <div className="feat-content">
-              <div className="sl">4 Report Types</div>
-              <h2>Every report your<br/>clients need.</h2>
-              <p>Choose from GSC Report (queries, pages, positions), GA4 Report (sessions, sources, engagement), AI Traffic Report (platform breakdown, citations), or Combined Report (everything in one PDF).</p>
+              <div className="sl">{s(0).label || '4 Report Types'}</div>
+              <h2>{s(0).heading ? s(0).heading.split('|').map((l:string,i:number)=><span key={i}>{i>0&&<br/>}{l}</span>) : <>Every report your<br/>clients need.</>}</h2>
+              <p>{s(0).body || 'Choose from GSC Report (queries, pages, positions), GA4 Report (sessions, sources, engagement), AI Traffic Report (platform breakdown, citations), or Combined Report (everything in one PDF).'}</p>
               <div className="checks">
                 <div className="check"><strong>GSC Report</strong> — queries, pages, CTR opportunities, world map</div>
                 <div className="check"><strong>GA4 Report</strong> — sessions, sources, geography, events, engagement</div>
@@ -94,8 +95,8 @@ export default async function ReportsPage() {
       <section className="feat-sec" style={{background:'var(--wh)'}}>
         <div className="w">
           <div style={{textAlign:'center',marginBottom:36}}>
-            <div className="sl" style={{justifyContent:'center',display:'flex'}}>How It Works</div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,30px)',fontWeight:800,letterSpacing:-1,maxWidth:600,margin:'0 auto'}}>From data to branded PDF in under 60 seconds.</h2>
+            <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(1).label || 'How It Works'}</div>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,30px)',fontWeight:800,letterSpacing:-1,maxWidth:600,margin:'0 auto'}}>{s(1).heading || 'From data to branded PDF in under 60 seconds.'}</h2>
           </div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:20}} className="how-grid">
             {[
@@ -117,8 +118,8 @@ export default async function ReportsPage() {
       <section className="feat-sec">
         <div className="w">
           <div style={{textAlign:'center',marginBottom:32}}>
-            <div className="sl" style={{justifyContent:'center',display:'flex'}}>Built for Agencies</div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,30px)',fontWeight:800,letterSpacing:-1,maxWidth:600,margin:'0 auto'}}>Client reporting that used to take hours now takes minutes.</h2>
+            <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(2).label || 'Built for Agencies'}</div>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,30px)',fontWeight:800,letterSpacing:-1,maxWidth:600,margin:'0 auto'}}>{s(2).heading || 'Client reporting that used to take hours now takes minutes.'}</h2>
           </div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16}} className="how-grid">
             {[
