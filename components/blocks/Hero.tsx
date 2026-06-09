@@ -20,7 +20,7 @@ const defaultTabs = [
     accentWord: 'One glance.',
     subtext: 'Instantly see which projects are growing, declining, or stable across your entire portfolio. Switch between Clicks, Impressions, CTR, or Position — every project re-classifies in seconds.',
     primaryCtaText: 'See Growth Dashboard →',
-    primaryCtaUrl: 'https://app.serp-pulse.com/signup',
+    primaryCtaUrl: 'https://app.serp-pulse.com/signup?ref=homepage',
     secondaryCtaText: 'How it works',
     secondaryCtaUrl: '#growth',
     note: 'Used by SEO professionals managing tens to hundreds of projects',
@@ -31,7 +31,7 @@ const defaultTabs = [
     accentWord: 'you can\'t see yet.',
     subtext: 'ChatGPT, Claude, Perplexity, and Gemini are referencing your content and sending real visitors — right now. SERP-Pulse surfaces every AI citation by platform, by landing page, by engagement trend.',
     primaryCtaText: 'Discover Your AI Traffic →',
-    primaryCtaUrl: 'https://app.serp-pulse.com/signup',
+    primaryCtaUrl: 'https://app.serp-pulse.com/signup?ref=homepage',
     secondaryCtaText: '16+ AI platforms tracked',
     secondaryCtaUrl: '#ai',
     note: 'Tracking ChatGPT · Claude · Perplexity · Gemini · Grok · Copilot · and 10+ more',
@@ -108,7 +108,7 @@ export default function Hero({ data }: { data?: any }) {
 
       {/* CTAs */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 14, position: 'relative', zIndex: 1 }}>
-        <Link href={current.primaryCtaUrl || 'https://app.serp-pulse.com/signup'} style={{
+        <Link href={current.primaryCtaUrl || 'https://app.serp-pulse.com/signup?ref=homepage'} style={{
           background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: 'white',
           fontFamily: "'Bricolage Grotesque',sans-serif", fontSize: 15, fontWeight: 700,
           padding: '13px 28px', borderRadius: 10, textDecoration: 'none',

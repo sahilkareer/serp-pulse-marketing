@@ -167,7 +167,7 @@ export default async function FeaturesPage() {
           </h1>
           <p className="hero-sub">{d?.heroSubtext || 'Six deeply integrated features built around how SEO professionals actually work. Not a feature checklist — a complete analytics system.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
-            <a href={`${APP}/signup`} className="btn-h">Try Every Feature Free <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a href={`${APP}/signup?ref=features`} className="btn-h">Try Every Feature Free <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="/pricing" className="btn-g">See pricing</a>
           </div>
           <p style={{fontSize:12,color:'var(--dm2)',marginTop:12}}>30-day free trial · No credit card · All 6 features included</p>
@@ -216,7 +216,7 @@ export default async function FeaturesPage() {
                     flexDirection:'column',
                     gap:10,
                   }}>
-                    {f.bullets.map(b=>(
+                    {f.bullets.map((b: string)=>(
                       <div key={b} style={{display:'flex',alignItems:'flex-start',gap:8,fontSize:13,color:'var(--ink3)',lineHeight:1.55}}>
                         <span style={{color:f.color,fontWeight:700,flexShrink:0,marginTop:1}}>✓</span>
                         {b}
@@ -283,7 +283,7 @@ export default async function FeaturesPage() {
           </h2>
           <p>{d?.ctaSubtext || 'Try every feature free for 30 days. No credit card required.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
-            <a href={`${APP}/signup`} className="btn-h">Start Free Trial — No Card Needed <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a href={`${APP}/signup?ref=features`} className="btn-h">Start Free Trial — No Card Needed <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="/pricing" className="btn-g">View pricing →</a>
           </div>
           <div style={{display:'flex',justifyContent:'center',gap:20,flexWrap:'wrap',marginTop:16}}>
