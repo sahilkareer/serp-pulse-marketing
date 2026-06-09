@@ -17,6 +17,7 @@ const APP = 'https://app.serp-pulse.com'
 
 export default async function SearchConsolePage() {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features-search-console' }).catch(() => null)
+  const s = (n: number): any => d?.sections?.[n] || {}
   return (
     <>
       <SiteNav />
@@ -45,8 +46,8 @@ export default async function SearchConsolePage() {
       <section className="feat-sec" style={{background:'var(--wh)'}}>
         <div className="w">
           <div style={{textAlign:'center',marginBottom:36}}>
-            <div className="sl" style={{justifyContent:'center',display:'flex'}}>The Problem</div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(24px,3.5vw,32px)',fontWeight:800,letterSpacing:-1,maxWidth:600,margin:'0 auto'}}>Google Search Console is powerful. But using it efficiently is exhausting.</h2>
+            <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(0).label || 'The Problem'}</div>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(24px,3.5vw,32px)',fontWeight:800,letterSpacing:-1,maxWidth:600,margin:'0 auto'}}>{s(0).heading || 'Google Search Console is powerful. But using it efficiently is exhausting.'}</h2>
           </div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16}} className="how-grid">
             {[
@@ -69,9 +70,9 @@ export default async function SearchConsolePage() {
         <div className="w">
           <div className="feat-grid">
             <div className="feat-content">
-              <div className="sl">Core Data</div>
-              <h2>4 GSC tabs. Every dimension covered.</h2>
-              <p>Queries, Pages, Countries, and Devices — each with full sorting, search, and export. The real power is <strong style={{color:'var(--ink)'}}>cross-tab filtering</strong>: click any row in one tab to instantly filter all the others.</p>
+              <div className="sl">{s(1).label || 'Core Data'}</div>
+              <h2>{s(1).heading || '4 GSC tabs. Every dimension covered.'}</h2>
+              <p>{s(1).body || 'Queries, Pages, Countries, and Devices — each with full sorting, search, and export. The real power is cross-tab filtering: click any row in one tab to instantly filter all the others.'}</p>
               <p style={{fontSize:14,color:'var(--mt)',lineHeight:1.6}}><strong style={{color:'var(--ink)'}}>Here&apos;s what that means:</strong> You click a keyword like &ldquo;seo dashboard tool&rdquo; in the Queries tab. Instantly, the Pages tab shows only the pages ranking for that keyword. One click — four answers.</p>
               <div className="checks">
                 <div className="check"><strong>Queries</strong> — impressions, clicks, CTR, position for every keyword. Visual impression bars.</div>
@@ -145,9 +146,9 @@ export default async function SearchConsolePage() {
               </div>
             </div>
             <div className="feat-content">
-              <div className="sl">Smart Filtering</div>
-              <h2>11 preset filters that surface real opportunities.</h2>
-              <p>SERP-Pulse has two layers of intelligent filtering — <strong style={{color:'var(--ink)'}}>Search Intent &amp; Query Type</strong> and <strong style={{color:'var(--ink)'}}>Position Range in Google</strong> — that surface exactly the keywords where action leads to results.</p>
+              <div className="sl">{s(2).label || 'Smart Filtering'}</div>
+              <h2>{s(2).heading || '11 preset filters that surface real opportunities.'}</h2>
+              <p>{s(2).body || 'SERP-Pulse has two layers of intelligent filtering — Search Intent & Query Type and Position Range in Google — that surface exactly the keywords where action leads to results.'}</p>
               <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,margin:'12px 0'}} className="how-grid">
                 {[
                   {t:'Sweet Spot',d:'High impressions but low CTR. You\'re being seen, but users aren\'t clicking. Fix the meta title or description — get immediate traffic.'},
@@ -171,9 +172,9 @@ export default async function SearchConsolePage() {
         <div className="w">
           <div className="feat-grid">
             <div className="feat-content">
-              <div className="sl">Time Intelligence</div>
-              <h2>9 date ranges. 5 comparison modes. Custom periods.</h2>
-              <p>Choose from 7 days, 14 days, 28 days, 3 months, 6 months, 12 months, 16 months, Last Month, or any custom date range. Then layer on a comparison to see exactly how your performance has changed.</p>
+              <div className="sl">{s(3).label || 'Time Intelligence'}</div>
+              <h2>{s(3).heading || '9 date ranges. 5 comparison modes. Custom periods.'}</h2>
+              <p>{s(3).body || 'Choose from 7 days, 14 days, 28 days, 3 months, 6 months, 12 months, 16 months, Last Month, or any custom date range. Then layer on a comparison to see exactly how your performance has changed.'}</p>
               <div className="checks">
                 <div className="check"><strong>Previous period</strong> — compare against the same number of days immediately before</div>
                 <div className="check"><strong>Same dates, previous month</strong> — May 1–28 vs April 1–28</div>
@@ -226,9 +227,9 @@ export default async function SearchConsolePage() {
               </div>
             </div>
             <div className="feat-content">
-              <div className="sl">Technical SEO</div>
-              <h2>Coverage, URL Inspect &amp; Robots.txt — all built in.</h2>
-              <p>SERP-Pulse includes full coverage analysis, live URL inspection, and robots.txt rule analysis — so you can diagnose indexing issues without leaving the dashboard.</p>
+              <div className="sl">{s(4).label || 'Technical SEO'}</div>
+              <h2>{s(4).heading || 'Coverage, URL Inspect & Robots.txt — all built in.'}</h2>
+              <p>{s(4).body || 'SERP-Pulse includes full coverage analysis, live URL inspection, and robots.txt rule analysis — so you can diagnose indexing issues without leaving the dashboard.'}</p>
               <div className="checks">
                 <div className="check"><strong>Coverage tab</strong> — parses all sitemaps recursively, cross-references with GSC to show which URLs are indexed</div>
                 <div className="check"><strong>URL Inspect</strong> — live Google index status via the GSC URL Inspection API. Real-time indexing status</div>
@@ -244,8 +245,8 @@ export default async function SearchConsolePage() {
       <section className="feat-sec">
         <div className="w">
           <div style={{textAlign:'center',marginBottom:32}}>
-            <div className="sl" style={{justifyContent:'center',display:'flex'}}>Who Benefits</div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3vw,28px)',fontWeight:800,letterSpacing:-.8}}>Three ways SEOs use Search Console in SERP-Pulse.</h2>
+            <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(5).label || 'Who Benefits'}</div>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3vw,28px)',fontWeight:800,letterSpacing:-.8}}>{s(5).heading || 'Three ways SEOs use Search Console in SERP-Pulse.'}</h2>
           </div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16}} className="how-grid">
             {[
@@ -268,9 +269,9 @@ export default async function SearchConsolePage() {
         <div className="w">
           <div className="feat-grid">
             <div className="feat-content">
-              <div className="sl">Cross-Data Filtering</div>
-              <h2>Global filter bar — filter everything at once.</h2>
-              <p>Apply a country, device, URL, query, or source/medium filter — and <strong style={{color:'var(--ink)'}}>every table, chart, and metric updates simultaneously</strong>. Both GSC and GA4 data respond to the same filters.</p>
+              <div className="sl">{s(6).label || 'Cross-Data Filtering'}</div>
+              <h2>{s(6).heading || 'Global filter bar — filter everything at once.'}</h2>
+              <p>{s(6).body || 'Apply a country, device, URL, query, or source/medium filter — and every table, chart, and metric updates simultaneously. Both GSC and GA4 data respond to the same filters.'}</p>
               <div className="checks">
                 <div className="check"><strong>Country filter</strong> — searchable dropdown with flag emoji, filters both GSC and GA4</div>
                 <div className="check"><strong>Device filter</strong> — desktop, mobile, or tablet — applies to both datasets</div>

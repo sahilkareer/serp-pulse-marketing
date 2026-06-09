@@ -45,6 +45,7 @@ const tools = [
 
 export default async function McpPage() {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features-mcp' }).catch(() => null)
+  const s = (n: number): any => d?.sections?.[n] || {}
 
   return (
     <>
@@ -80,9 +81,9 @@ export default async function McpPage() {
       <section className="feat-sec" style={{background:'var(--wh)'}} id="tools">
         <div className="w">
           <div style={{textAlign:'center',marginBottom:48}}>
-            <div className="sl" style={{justifyContent:'center',display:'flex'}}>16 MCP Tools</div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(24px,4vw,36px)',fontWeight:800,letterSpacing:-1.5,marginBottom:8}}>Every data source. Every metric.</h2>
-            <p style={{fontSize:15,color:'var(--mt)',maxWidth:500,margin:'0 auto'}}>Each tool is purpose-built to answer a specific category of SEO question with live data from your properties.</p>
+            <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(0).label || '16 MCP Tools'}</div>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(24px,4vw,36px)',fontWeight:800,letterSpacing:-1.5,marginBottom:8}}>{s(0).heading || 'Every data source. Every metric.'}</h2>
+            <p style={{fontSize:15,color:'var(--mt)',maxWidth:500,margin:'0 auto'}}>{s(0).body || 'Each tool is purpose-built to answer a specific category of SEO question with live data from your properties.'}</p>
           </div>
           <div style={{display:'flex',flexDirection:'column',gap:36}}>
             {tools.map(group=>(
@@ -113,9 +114,9 @@ export default async function McpPage() {
       <section className="feat-sec" style={{background:'var(--bg)'}}>
         <div className="w">
           <div style={{textAlign:'center',marginBottom:40}}>
-            <div className="sl" style={{justifyContent:'center',display:'flex'}}>Setup</div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,32px)',fontWeight:800,letterSpacing:-1,marginBottom:8}}>Connected in under 2 minutes.</h2>
-            <p style={{fontSize:15,color:'var(--mt)',maxWidth:480,margin:'0 auto'}}>No technical setup. Copy your MCP URL from the dashboard and paste it into your AI client.</p>
+            <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(1).label || 'Setup'}</div>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,32px)',fontWeight:800,letterSpacing:-1,marginBottom:8}}>{s(1).heading || 'Connected in under 2 minutes.'}</h2>
+            <p style={{fontSize:15,color:'var(--mt)',maxWidth:480,margin:'0 auto'}}>{s(1).body || 'No technical setup. Copy your MCP URL from the dashboard and paste it into your AI client.'}</p>
           </div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:20,maxWidth:860,margin:'0 auto 40px'}} className="how-grid">
             {[
@@ -155,8 +156,8 @@ export default async function McpPage() {
       <section className="feat-sec" style={{background:'var(--wh)'}}>
         <div className="w">
           <div style={{textAlign:'center',marginBottom:36}}>
-            <div className="sl" style={{justifyContent:'center',display:'flex'}}>What You Can Ask</div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,32px)',fontWeight:800,letterSpacing:-1}}>Real questions. Real answers.</h2>
+            <div className="sl" style={{justifyContent:'center',display:'flex'}}>{s(2).label || 'What You Can Ask'}</div>
+            <h2 style={{fontFamily:'var(--hd)',fontSize:'clamp(22px,3.5vw,32px)',fontWeight:800,letterSpacing:-1}}>{s(2).heading || 'Real questions. Real answers.'}</h2>
           </div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:10,maxWidth:800,margin:'0 auto'}} className="how-grid">
             {[
