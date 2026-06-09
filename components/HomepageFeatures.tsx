@@ -31,7 +31,7 @@ export default function HomepageFeatures() {
               <div style={{ width: 26, height: 26, background: 'var(--d3)', border: '1px solid var(--db)', borderRadius: 5, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, fontWeight: 700, color: 'var(--tl3)' }}>+11</div>
             </div>
             <div style={{ display: 'flex', gap: 10, marginTop: 12, flexWrap: 'wrap' }}>
-              <a href={`${APP}/signup`} className="btn-h">See your AI traffic <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
+              <a href={`${APP}/signup?ref=homepage`} className="btn-h">See your AI traffic <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
               <a href="/features/ai-traffic" style={{ fontSize: 13, color: 'var(--tl3)', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>Full feature details →</a>
             </div>
           </div>
@@ -261,7 +261,7 @@ export default function HomepageFeatures() {
               <div className="check">Long-lived API tokens — no reconnecting every week</div>
             </div>
             <div style={{ display: 'flex', gap: 10, marginTop: 8, flexWrap: 'wrap' }}>
-              <a href={`${APP}/signup`} className="btn-h" style={{ fontSize: 13, padding: '10px 18px' }}>Try MCP Server <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
+              <a href={`${APP}/signup?ref=homepage`} className="btn-h" style={{ fontSize: 13, padding: '10px 18px' }}>Try MCP Server <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
               <a href="/features/mcp" style={{ fontSize: 13, color: 'var(--tl)', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>MCP Server details →</a>
             </div>
           </div>

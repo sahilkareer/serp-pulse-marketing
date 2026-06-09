@@ -238,7 +238,7 @@ export function Pricing({ data }: { data?: any }) {
                   </li>
                 ))}
               </ul>
-              <Link href={plan.ctaUrl || '/signup'} style={{ display: 'block', textAlign: 'center', padding: '11px 20px', borderRadius: 10, fontWeight: 600, fontSize: 14, textDecoration: 'none', background: plan.popular ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : 'transparent', color: plan.popular ? 'white' : '#0891b2', border: plan.popular ? 'none' : '1.5px solid #0891b2', transition: 'all 0.15s' }}>{plan.ctaText}</Link>
+              <Link href={(() => { const u = plan.ctaUrl || 'https://app.serp-pulse.com/signup?ref=pricing'; return (u.includes('/signup') && !u.includes('?ref=')) ? u + '?ref=pricing' : u; })()} style={{ display: 'block', textAlign: 'center', padding: '11px 20px', borderRadius: 10, fontWeight: 600, fontSize: 14, textDecoration: 'none', background: plan.popular ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : 'transparent', color: plan.popular ? 'white' : '#0891b2', border: plan.popular ? 'none' : '1.5px solid #0891b2', transition: 'all 0.15s' }}>{plan.ctaText}</Link>
             </div>
           ))}
         </div>
@@ -297,7 +297,7 @@ export function FinalCta({ data }: { data?: any }) {
   const accentWord = data?.accentWord || 'knowing.'
   const subtext = data?.subtext || 'Connect your first property in under 2 minutes. No credit card. No commitment.'
   const ctaText = data?.ctaText || 'Start Free Trial — No Card Needed'
-  const ctaUrl = data?.ctaUrl || '/signup'
+  const ctaUrl = (() => { const u = data?.ctaUrl || 'https://app.serp-pulse.com/signup?ref=homepage'; return (u.includes('/signup') && !u.includes('?ref=')) ? u + '?ref=homepage' : u; })()
   const badges = data?.badges || ['14-day trial', 'No credit card', '2-min setup', 'Cancel anytime']
 
   const renderHeadline = () => {
