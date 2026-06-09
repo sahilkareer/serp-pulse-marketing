@@ -27,13 +27,8 @@ export default function AboutPage() {
 
           {/* Founder photo */}
           <div style={{textAlign:'center'}}>
-            <div style={{
-              width:220,height:220,margin:'0 auto 20px',
-              borderRadius:'50%',padding:3,
-              background:'linear-gradient(135deg,#0891b2,#06d6c7)',
-              boxShadow:'0 20px 60px rgba(8,145,178,.25)',
-            }}>
-              <div style={{width:'100%',height:'100%',borderRadius:'50%',overflow:'hidden',background:'var(--bg2)'}}>
+            <div className="about-photo-wrap">
+              <div className="about-photo-inner">
                 <img
                   src={FOUNDER_IMG}
                   alt="Sahil Kareer — Founder, SERP-Pulse"
@@ -55,14 +50,14 @@ export default function AboutPage() {
 
           {/* Story */}
           <div>
-            <h2 style={{fontFamily:'var(--hd)',fontSize:28,fontWeight:800,letterSpacing:-1,marginBottom:16}}>The story behind SERP-Pulse.</h2>
-            <p style={{fontSize:15,color:'var(--mt)',lineHeight:1.75,marginBottom:14}}>Working across agencies, in-house teams, and as an independent consultant, I watched SEO professionals waste hours every week switching between Google Search Console, Google Analytics 4, and spreadsheets just to answer basic questions about their projects.</p>
-            <p style={{fontSize:15,color:'var(--mt)',lineHeight:1.75,marginBottom:14}}>I also noticed the growing blind spot around AI-generated traffic. As ChatGPT, Claude, Perplexity, and Gemini started sending real visitors to websites, the data existed in GA4 — but it was buried under individual referral domains, with no easy way to aggregate it, visualise trends, or understand which pages were being cited and why.</p>
-            <p style={{fontSize:15,color:'var(--mt)',lineHeight:1.75,marginBottom:14}}>SERP-Pulse was built to solve both. One dashboard where marketers, agencies, and business owners can see what&apos;s happening across every project — including AI referral traffic surfaced clearly by platform, page, and trend, in a way that takes seconds instead of hours to find.</p>
-            <p style={{fontSize:15,color:'var(--ink)',lineHeight:1.75,fontWeight:500,marginBottom:24}}>The goal isn&apos;t to replace your existing tools. It&apos;s to make your decision-making faster, easier, and genuinely more actionable.</p>
-            <div style={{display:'flex',gap:12,flexWrap:'wrap'}}>
-              <a href={`${APP}/signup`} className="btn-h" style={{fontSize:13,padding:'10px 20px'}}>Try SERP-Pulse Free <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-              <a href="/contact" className="btn-g" style={{fontSize:13,padding:'10px 20px'}}>Get in touch →</a>
+            <h2 className="about-story-h2">The story behind SERP-Pulse.</h2>
+            <p className="about-story-p">Working across agencies, in-house teams, and as an independent consultant, I watched SEO professionals waste hours every week switching between Google Search Console, Google Analytics 4, and spreadsheets just to answer basic questions about their projects.</p>
+            <p className="about-story-p">I also noticed the growing blind spot around AI-generated traffic. As ChatGPT, Claude, Perplexity, and Gemini started sending real visitors to websites, the data existed in GA4 — but it was buried under individual referral domains, with no easy way to aggregate it, visualise trends, or understand which pages were being cited and why.</p>
+            <p className="about-story-p">SERP-Pulse was built to solve both. One dashboard where marketers, agencies, and business owners can see what&apos;s happening across every project — including AI referral traffic surfaced clearly by platform, page, and trend, in a way that takes seconds instead of hours to find.</p>
+            <p className="about-story-p" style={{color:'var(--ink)',fontWeight:500,marginBottom:24}}>The goal isn&apos;t to replace your existing tools. It&apos;s to make your decision-making faster, easier, and genuinely more actionable.</p>
+            <div className="about-btn-group">
+              <a href={`${APP}/signup`} className="btn-h about-btn">Try SERP-Pulse Free <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              <a href="/contact" className="btn-g about-btn">Get in touch →</a>
             </div>
           </div>
         </div>
@@ -72,7 +67,7 @@ export default function AboutPage() {
       <section className="feat-sec" style={{background:'var(--bg)'}}><div className="w">
         <div style={{textAlign:'center',marginBottom:40}}>
           <div className="sl" style={{justifyContent:'center',display:'flex'}}>Journey</div>
-          <h2 style={{fontFamily:'var(--hd)',fontSize:28,fontWeight:800,letterSpacing:-.8}}>The journey so far.</h2>
+          <h2 className="about-timeline-h2">The journey so far.</h2>
         </div>
         <div className="timeline rv" style={{maxWidth:640,margin:'0 auto'}}>
           {[

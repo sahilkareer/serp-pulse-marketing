@@ -385,12 +385,66 @@ footer{background:var(--d2);border-top:1px solid rgba(255,255,255,.05);padding:4
 @media(max-width:900px){.feat-grid,.feat-grid.rev{grid-template-columns:1fr}.feat-grid.rev{direction:ltr}.page-hero{padding:90px 0 48px}.feat-sec{padding:56px 0}}
 @media(max-width:600px){.page-hero{padding:80px 0 36px}.feat-sec{padding:44px 0}}
 
+/* ─── ABOUT PAGE ─── */
+.about-grid{display:grid;grid-template-columns:260px 1fr;gap:56px;align-items:start;max-width:960px;margin:0 auto}
+.about-photo-wrap{
+  width:220px;height:220px;margin:0 auto 20px;
+  border-radius:50%;padding:3px;
+  background:linear-gradient(135deg,#0891b2,#06d6c7);
+  box-shadow:0 20px 60px rgba(8,145,178,.25);
+  flex-shrink:0;
+}
+.about-photo-inner{
+  width:100%;height:100%;
+  border-radius:50%;overflow:hidden;
+  background:var(--bg2);
+}
+.about-story-h2{
+  font-family:var(--hd);font-size:28px;font-weight:800;
+  letter-spacing:-1px;line-height:1.15;margin-bottom:16px;color:var(--ink);
+}
+.about-timeline-h2{
+  font-family:var(--hd);font-size:28px;font-weight:800;
+  letter-spacing:-.8px;line-height:1.15;color:var(--ink);
+}
+.about-story-p{
+  font-size:15px;color:var(--mt);line-height:1.75;margin-bottom:14px;
+}
+.about-btn-group{
+  display:flex;gap:12px;flex-wrap:wrap;margin-top:4px;
+}
+.about-btn{
+  font-size:13px !important;padding:10px 20px !important;
+}
+
+/* About page — tablet */
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr;gap:32px;text-align:center}
+  .about-grid>div:last-child{text-align:left}
+  .about-story-h2{font-size:24px}
+  .about-timeline-h2{font-size:24px}
+}
+
+/* About page — mobile */
+@media(max-width:600px){
+  .about-photo-wrap{width:160px;height:160px;margin-bottom:16px}
+  .about-story-h2{font-size:20px;letter-spacing:-.5px;margin-bottom:12px}
+  .about-timeline-h2{font-size:20px;letter-spacing:-.5px}
+  .about-story-p{font-size:14px;line-height:1.7;margin-bottom:12px}
+  .about-btn-group{flex-direction:column;gap:10px}
+  .about-btn{width:100% !important;justify-content:center !important;text-align:center !important;padding:12px 20px !important}
+  .tl-text{font-size:14px}
+  .tl-year{font-size:11px}
+}
+
+/* About page — small mobile */
+@media(max-width:400px){
+  .about-photo-wrap{width:130px;height:130px}
+}
+
 /* ─── TWO-COLUMN EQUAL GRID (Contact, etc) ─── */
 .two-col-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;max-width:880px;margin:0 auto}
 @media(max-width:900px){.two-col-grid{grid-template-columns:1fr;gap:28px}}
-
-/* ─── ABOUT-GRID ─── */
-.about-grid{display:grid;grid-template-columns:260px 1fr;gap:56px;align-items:start;max-width:960px;margin:0 auto}
 
 /* ─── TIMELINE ─── */
 .timeline{position:relative}
