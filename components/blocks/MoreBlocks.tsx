@@ -142,8 +142,9 @@ export function FounderStory({ data }: { data?: any }) {
   const label = data?.label || 'The Story'
   const headline = data?.headline || 'Built by an SEO.'
   const paragraphs = data?.paragraphs || [
-    'Working across agencies, in-house teams, and as a consultant, I saw how much time SEO professionals waste switching between Google Search Console, Google Analytics, spreadsheets, and reporting tools. The data was always there — but the insights were buried.',
-    'SERP-Pulse was built to fix that. One dashboard where marketers, agencies, and business owners can see what\'s happening across every project — including the AI traffic that other tools completely miss.',
+    'Working across agencies, in-house teams, and as an independent consultant, I watched SEO professionals waste hours every week switching between Google Search Console, Google Analytics 4, and spreadsheets just to answer basic questions about their projects.',
+    'I also noticed the growing blind spot around AI-generated traffic. As ChatGPT, Claude, Perplexity, and Gemini started sending real visitors to websites, the data existed in GA4 — but it was buried under individual referral domains with no easy way to aggregate it, visualise trends, or understand which pages were being cited.',
+    'The goal isn\'t to replace your existing tools. It\'s to make your decision-making faster, easier, and genuinely more actionable.',
   ]
   const name = data?.name || 'Sahil Kareer'
   const role = data?.role || 'Founder & Developer, SERP-Pulse'
@@ -185,15 +186,15 @@ export function FounderStory({ data }: { data?: any }) {
 }
 
 const defaultPlans = [
-  { name: 'Starter', monthlyPrice: 0, annualPrice: 0, description: 'Solo bloggers testing the waters.', popular: false, ctaText: 'Get Started Free', ctaUrl: '/signup', features: [{ text: '1 GSC property', included: true },{ text: '1 GA4 property', included: true },{ text: '30-day history', included: true },{ text: 'Basic dashboard', included: true },{ text: 'AI traffic tracking', included: false },{ text: 'White-label reports', included: false }] },
-  { name: 'Professional', monthlyPrice: 29, annualPrice: 20, description: 'Full power for SEO pros.', popular: true, popularLabel: 'Most Popular', ctaText: 'Start Free Trial →', ctaUrl: '/signup', features: [{ text: '10 GSC properties', included: true },{ text: '10 GA4 properties', included: true },{ text: '12-month history', included: true },{ text: 'All 9 GA4 widgets', included: true },{ text: 'AI traffic tracking', included: true },{ text: 'White-label reports', included: true }] },
-  { name: 'Agency', monthlyPrice: 79, annualPrice: 55, description: 'Unlimited for agencies.', popular: false, ctaText: 'Start Free Trial →', ctaUrl: '/signup', features: [{ text: 'Unlimited properties', included: true },{ text: 'Unlimited GA4', included: true },{ text: '24-month history', included: true },{ text: 'All features', included: true },{ text: 'Full white-label', included: true },{ text: 'Priority support', included: true }] },
+  { name: 'Freelancer', monthlyPrice: 20, annualPrice: 19, description: 'For solo SEOs and personal projects.', popular: false, ctaText: 'Start 30-Day Free Trial', ctaUrl: 'https://app.serp-pulse.com/signup', features: [{ text: '1 GSC project', included: true },{ text: '1 Report', included: true },{ text: 'GSC + GA4 analytics', included: true },{ text: 'AI citation tracking (16+ platforms)', included: true },{ text: 'MCP Server access', included: true },{ text: 'CSV exports', included: true },{ text: 'White-label branding', included: false }] },
+  { name: 'Pro', monthlyPrice: 49, annualPrice: 46, description: 'For SEO professionals managing multiple clients.', popular: true, popularLabel: 'Most Popular', ctaText: 'Start 30-Day Free Trial →', ctaUrl: 'https://app.serp-pulse.com/signup', features: [{ text: '10 GSC projects', included: true },{ text: '10 Reports', included: true },{ text: 'Everything in Freelancer', included: true },{ text: 'Global filters across all data', included: true },{ text: 'Alerts & notifications', included: true },{ text: 'Priority support', included: true },{ text: 'All GA4 widgets', included: true }] },
+  { name: 'Agency', monthlyPrice: 159, annualPrice: 150, description: 'Unlimited scale for agencies and teams.', popular: false, ctaText: 'Start 30-Day Free Trial →', ctaUrl: 'https://app.serp-pulse.com/signup', features: [{ text: 'Unlimited projects', included: true },{ text: 'Unlimited reports', included: true },{ text: 'Everything in Pro', included: true },{ text: 'White-label branding', included: true },{ text: 'Team access & collaboration', included: true },{ text: 'API access', included: true },{ text: 'Beta features early access', included: true }] },
 ]
 
 export function Pricing({ data }: { data?: any }) {
   const label = data?.label || 'Pricing'
-  const headline = data?.headline || 'Simple, transparent.'
-  const annualDiscount = data?.annualDiscount || 'Save 30%'
+  const headline = data?.headline || 'Simple. Transparent.\nEverything included.'
+  const annualDiscount = data?.annualDiscount || 'Save 6%'
   const plans = data?.plans?.length ? data.plans : defaultPlans
   const [annual, setAnnual] = React.useState(true)
 

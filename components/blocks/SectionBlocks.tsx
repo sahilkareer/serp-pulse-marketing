@@ -3,10 +3,11 @@ export function TrustBar({ data }: { data?: any }) {
   const stats = data?.stats || [
     { number: '500+', label: 'Active users' },
     { number: '40M+', label: 'Queries tracked' },
-    { number: '4.9/5', label: 'Satisfaction' },
+    { number: '16+', label: 'AI platforms tracked' },
+    { number: '4.9/5', label: 'Beta satisfaction' },
   ]
   const badges = data?.badges || [
-    { icon: 'shield', text: 'Read-only · SOC 2' },
+    { icon: 'shield', text: 'Read-only Google OAuth' },
     { icon: 'lock', text: 'Powered by Google APIs' },
   ]
 
