@@ -1,15 +1,22 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
+import { client, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
 
-export const metadata: Metadata = {
-  title: 'White-Label Reports — SERP-Pulse',
-  description: 'Generate branded PDF reports for clients in under 60 seconds. GSC, GA4, AI Traffic, and Combined reports with your logo and shareable links.',
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features-reports' }).catch(() => null)
+  return {
+    title: d?.seoTitle || 'White-Label Reports — SERP-Pulse',
+    description: d?.seoDesc || 'Generate branded PDF reports for clients in under 60 seconds.',
+  }
 }
 
 const APP = 'https://app.serp-pulse.com'
 
-export default function ReportsPage() {
+export default async function ReportsPage() {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features-reports' }).catch(() => null)
   return (
     <>
       <SiteNav />

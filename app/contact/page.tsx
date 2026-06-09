@@ -1,13 +1,20 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
+import { client, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
 
-export const metadata: Metadata = {
-  title: 'Contact — SERP-Pulse',
-  description: 'Get in touch with the SERP-Pulse team for questions, support, or partnerships.',
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'contact' }).catch(() => null)
+  return {
+    title: d?.seoTitle || 'Contact — SERP-Pulse',
+    description: d?.seoDesc || 'Get in touch with the SERP-Pulse team for questions, support, or partnerships.',
+  }
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'contact' }).catch(() => null)
   return (
     <>
       <SiteNav />

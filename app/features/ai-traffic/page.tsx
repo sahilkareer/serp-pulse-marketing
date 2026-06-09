@@ -1,15 +1,22 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
+import { client, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
 
-export const metadata: Metadata = {
-  title: 'AI Citation & Traffic Tracking — SERP-Pulse',
-  description: 'Track AI traffic from ChatGPT, Claude, Perplexity, Gemini and 16+ platforms. See which pages AI platforms cite and how much traffic they send.',
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features-ai-traffic' }).catch(() => null)
+  return {
+    title: d?.seoTitle || 'AI Citation & Traffic Tracking — SERP-Pulse',
+    description: d?.seoDesc || 'Track AI traffic from ChatGPT, Claude, Perplexity, Gemini and 16+ platforms.',
+  }
 }
 
 const APP = 'https://app.serp-pulse.com'
 
-export default function AiTrafficPage() {
+export default async function AiTrafficPage() {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features-ai-traffic' }).catch(() => null)
   return (
     <>
       <SiteNav />

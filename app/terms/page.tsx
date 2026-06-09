@@ -1,16 +1,21 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
+import { client, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
 
-export const metadata: Metadata = {
-  title: 'Terms of Service — SERP-Pulse',
-  description: 'SERP-Pulse Terms of Service. Your rights and responsibilities when using our platform.',
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'terms' }).catch(() => null)
+  return {
+    title: d?.seoTitle || 'Terms of Service — SERP-Pulse',
+    description: d?.seoDesc || 'SERP-Pulse Terms of Service. Your rights and responsibilities when using our platform.',
+  }
 }
 
-export default function TermsPage() {
-  const updated = 'June 8, 2026'
-  const APP = 'https://app.serp-pulse.com'
-
+export default async function TermsPage() {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'terms' }).catch(() => null)
+  const updated = d?.sections?.[0]?.label || 'June 8, 2026'
   return (
     <>
       <SiteNav />

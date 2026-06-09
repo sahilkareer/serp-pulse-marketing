@@ -16,12 +16,13 @@ export const metadata: Metadata = {
 export const revalidate = 60
 
 export default async function HomePage() {
-  // Fetch content from Sanity — gracefully falls back to component defaults if document doesn't exist yet
-  // Revalidation is controlled by `export const revalidate = 60` above
-  const page = await client.fetch(HOME_QUERY).catch(() => null)
+  // Fetch content from Sanity — typed as any so strict TS doesn't complain about unknown properties
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const page: any = await client.fetch(HOME_QUERY).catch(() => null)
 
   // Helper: find a block by _type from the pageBuilder array
-  const block = (type: string) =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const block = (type: string): any =>
     Array.isArray(page?.pageBuilder)
       ? page.pageBuilder.find((b: any) => b._type === type) ?? undefined
       : undefined

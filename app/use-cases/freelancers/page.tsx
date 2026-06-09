@@ -1,15 +1,22 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
+import { client, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
 
-export const metadata: Metadata = {
-  title: 'SERP-Pulse for Freelancers — Track All Your Client Projects in One Place',
-  description: 'SERP-Pulse helps freelance SEOs manage multiple client projects, generate reports, and track AI traffic — all without juggling multiple tools.',
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'use-cases-freelancers' }).catch(() => null)
+  return {
+    title: d?.seoTitle || 'SERP-Pulse for Freelancers',
+    description: d?.seoDesc || 'SERP-Pulse helps freelance SEOs manage multiple client projects, generate reports, and track AI traffic.',
+  }
 }
 
 const APP = 'https://app.serp-pulse.com'
 
-export default function FreelancersPage() {
+export default async function FreelancersPage() {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'use-cases-freelancers' }).catch(() => null)
   return (
     <>
       <SiteNav />

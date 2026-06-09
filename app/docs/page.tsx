@@ -1,10 +1,17 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
+import { client, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
+import { PortableText } from '@portabletext/react'
 
-export const metadata: Metadata = {
-  title: 'Documentation — SERP-Pulse',
-  description: 'SERP-Pulse documentation. Getting started guides, feature references, MCP server setup, and API documentation.',
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'docs' }).catch(() => null)
+  return {
+    title: d?.seoTitle || 'Documentation — SERP-Pulse',
+    description: d?.seoDesc || 'SERP-Pulse documentation. Getting started guides, feature references, MCP server setup, and API documentation.',
+  }
 }
 
 const APP = 'https://app.serp-pulse.com'
@@ -42,7 +49,8 @@ const SECTIONS = [
   },
 ]
 
-export default function DocsPage() {
+export default async function DocsPage() {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'docs' }).catch(() => null)
   return (
     <>
       <SiteNav />

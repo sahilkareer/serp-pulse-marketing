@@ -1,15 +1,22 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
+import { client, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
 
-export const metadata: Metadata = {
-  title: 'SERP-Pulse for In-House SEO Teams — One Dashboard for Every Property',
-  description: 'SERP-Pulse helps in-house SEO teams track multiple brand properties, monitor AI traffic, and report to stakeholders — all from one unified dashboard.',
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'use-cases-in-house' }).catch(() => null)
+  return {
+    title: d?.seoTitle || 'SERP-Pulse for In-House SEO Teams',
+    description: d?.seoDesc || 'SERP-Pulse helps in-house SEO teams track multiple brand properties, monitor AI traffic, and report to stakeholders.',
+  }
 }
 
 const APP = 'https://app.serp-pulse.com'
 
-export default function InHousePage() {
+export default async function InHousePage() {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'use-cases-in-house' }).catch(() => null)
   return (
     <>
       <SiteNav />

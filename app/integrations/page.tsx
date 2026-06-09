@@ -1,15 +1,22 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
+import { client, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
 
-export const metadata: Metadata = {
-  title: 'Integrations — SERP-Pulse',
-  description: 'SERP-Pulse integrates with Google Search Console and Google Analytics 4 via official APIs. More integrations coming soon.',
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'integrations' }).catch(() => null)
+  return {
+    title: d?.seoTitle || 'Integrations — SERP-Pulse',
+    description: d?.seoDesc || 'SERP-Pulse integrates with Google Search Console and Google Analytics 4 via official APIs.',
+  }
 }
 
 const APP = 'https://app.serp-pulse.com'
 
-export default function IntegrationsPage() {
+export default async function IntegrationsPage() {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'integrations' }).catch(() => null)
   return (
     <>
       <SiteNav />

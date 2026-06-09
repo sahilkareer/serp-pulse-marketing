@@ -1,16 +1,28 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
+import { client, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
 
-export const metadata: Metadata = {
-  title: 'About — SERP-Pulse',
-  description: 'SERP-Pulse was built by Sahil Kareer after 6 years in SEO agencies. The story behind the tool.',
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'about' }).catch(() => null)
+  return {
+    title: d?.seoTitle || 'About — SERP-Pulse',
+    description: d?.seoDesc || 'SERP-Pulse was built by Sahil Kareer after 6 years in SEO agencies. The story behind the tool.',
+  }
 }
 
 const APP = 'https://app.serp-pulse.com'
 const FOUNDER_IMG = 'https://media.licdn.com/dms/image/v2/D5603AQHU9JOiEY6kRA/profile-displayphoto-crop_800_800/B56ZkhZSDtHkAI-/0/1757201900647?e=1782345600&v=beta&t=qpVo3miyByRzkqHHlFL4liQJsT6uNObbH87VE8Kn0xs'
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'about' }).catch(() => null)
+  const paragraphs: string[] = d?.sections?.[0]?.checks?.length ? d.sections[0].checks : [
+    'Working across agencies, in-house teams, and as an independent consultant, I watched SEO professionals waste hours every week switching between Google Search Console, Google Analytics 4, and spreadsheets just to answer basic questions about their projects.',
+    'I also noticed the growing blind spot around AI-generated traffic. As ChatGPT, Claude, Perplexity, and Gemini started sending real visitors to websites, the data existed in GA4 — but it was buried under individual referral domains with no easy way to aggregate it, visualise trends, or understand which pages were being cited.',
+    "The goal isn't to replace your existing tools. It's to make your decision-making faster, easier, and genuinely more actionable.",
+  ]
   return (
     <>
       <SiteNav />
@@ -51,10 +63,9 @@ export default function AboutPage() {
           {/* Story */}
           <div>
             <h2 className="about-story-h2">The story behind SERP-Pulse.</h2>
-            <p className="about-story-p">Working across agencies, in-house teams, and as an independent consultant, I watched SEO professionals waste hours every week switching between Google Search Console, Google Analytics 4, and spreadsheets just to answer basic questions about their projects.</p>
-            <p className="about-story-p">I also noticed the growing blind spot around AI-generated traffic. As ChatGPT, Claude, Perplexity, and Gemini started sending real visitors to websites, the data existed in GA4 — but it was buried under individual referral domains, with no easy way to aggregate it, visualise trends, or understand which pages were being cited and why.</p>
-            <p className="about-story-p">SERP-Pulse was built to solve both. One dashboard where marketers, agencies, and business owners can see what&apos;s happening across every project — including AI referral traffic surfaced clearly by platform, page, and trend, in a way that takes seconds instead of hours to find.</p>
-            <p className="about-story-p" style={{color:'var(--ink)',fontWeight:500,marginBottom:24}}>The goal isn&apos;t to replace your existing tools. It&apos;s to make your decision-making faster, easier, and genuinely more actionable.</p>
+            {paragraphs.map((p, i) => (
+              <p key={i} className="about-story-p" style={i === paragraphs.length - 1 ? {color:'var(--ink)',fontWeight:500,marginBottom:24} : {}}>{p}</p>
+            ))}
             <div className="about-btn-group">
               <a href={`${APP}/signup`} className="btn-h about-btn">Try SERP-Pulse Free <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
               <a href="/contact" className="btn-g about-btn">Get in touch →</a>

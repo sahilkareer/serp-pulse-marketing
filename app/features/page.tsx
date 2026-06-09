@@ -1,10 +1,16 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
+import { client, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
 
-export const metadata: Metadata = {
-  title: 'Features — SERP-Pulse',
-  description: 'Every feature inside SERP-Pulse. GSC + GA4 analytics, AI citation tracking, white-label reports, smart filters, MCP server, and portfolio growth monitoring.',
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features' }).catch(() => null)
+  return {
+    title: d?.seoTitle || 'Features — SERP-Pulse',
+    description: d?.seoDesc || 'Every feature inside SERP-Pulse. GSC + GA4 analytics, AI citation tracking, white-label reports, smart filters, MCP server, and portfolio growth monitoring.',
+  }
 }
 
 const APP = 'https://app.serp-pulse.com'
@@ -123,7 +129,8 @@ const FEATURES = [
   },
 ]
 
-export default function FeaturesPage() {
+export default async function FeaturesPage() {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features' }).catch(() => null)
   return (
     <>
       <SiteNav />

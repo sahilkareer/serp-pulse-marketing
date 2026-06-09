@@ -1,15 +1,22 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
+import { client, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
 
-export const metadata: Metadata = {
-  title: 'GA4 Analytics Dashboard — SERP-Pulse',
-  description: '9-widget GA4 dashboard. Sessions, users, engagement, conversions, geography — all unified with Google Search Console in one view.',
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features-analytics' }).catch(() => null)
+  return {
+    title: d?.seoTitle || 'GA4 Analytics Dashboard — SERP-Pulse',
+    description: d?.seoDesc || '9-widget GA4 dashboard unified with Google Search Console.',
+  }
 }
 
 const APP = 'https://app.serp-pulse.com'
 
-export default function AnalyticsPage() {
+export default async function AnalyticsPage() {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features-analytics' }).catch(() => null)
   return (
     <>
       <SiteNav />

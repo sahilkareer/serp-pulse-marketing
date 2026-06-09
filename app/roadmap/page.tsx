@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
+import { client, ROADMAP_QUERY } from '@/sanity/lib/client'
+
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'Roadmap — SERP-Pulse',
@@ -9,7 +12,7 @@ export const metadata: Metadata = {
 
 const APP = 'https://app.serp-pulse.com'
 
-const SHIPPED = [
+const DEFAULT_SHIPPED = [
   { label: 'Unified GSC + GA4 dashboard', note: 'Live' },
   { label: 'AI citation tracking — 16+ platforms', note: 'Live' },
   { label: 'White-label PDF reports (4 types)', note: 'Live' },
@@ -22,52 +25,26 @@ const SHIPPED = [
   { label: 'Shareable report public links', note: 'Live' },
 ]
 
-const UPCOMING = [
-  {
-    status: 'In Progress',
-    statusColor: '#f59e0b',
-    statusBg: 'rgba(245,158,11,.08)',
-    title: 'GEO / AEO Tracking',
-    desc: 'Monitor brand mentions and citations across AI platforms. See when ChatGPT, Perplexity, or Claude references your brand in responses — with context, sentiment, and trend data.',
-  },
-  {
-    status: 'Next Up',
-    statusColor: 'var(--tl)',
-    statusBg: 'var(--ts)',
-    title: 'Alerts & Notifications',
-    desc: 'Get notified by email when a project drops significantly in clicks, impressions, or position. Set custom thresholds per project.',
-  },
-  {
-    status: 'Planned',
-    statusColor: '#8b5cf6',
-    statusBg: 'rgba(139,92,246,.08)',
-    title: 'Long-lived MCP API Tokens',
-    desc: 'Replace the current 7-day JWT tokens with permanent API tokens so your MCP server connection never expires unexpectedly.',
-  },
-  {
-    status: 'Planned',
-    statusColor: '#8b5cf6',
-    statusBg: 'rgba(139,92,246,.08)',
-    title: 'Blog — SERP-Pulse.com/blog',
-    desc: 'SEO and AI traffic guides written by a practitioner. Practical content for agencies, freelancers, and in-house teams.',
-  },
-  {
-    status: 'Exploring',
-    statusColor: 'var(--mt)',
-    statusBg: 'var(--bg2)',
-    title: 'Keyword Position Tracking',
-    desc: 'Daily rank tracking for target keywords across your projects — with history, movement alerts, and competitor comparison.',
-  },
-  {
-    status: 'Exploring',
-    statusColor: 'var(--mt)',
-    statusBg: 'var(--bg2)',
-    title: 'Chrome Extension',
-    desc: 'Overlay GSC and GA4 data directly on any webpage you visit. Impressions, clicks, and AI traffic — right on the page.',
-  },
+const DEFAULT_UPCOMING = [
+  { status: 'In Progress', title: 'GEO / AEO Tracking', desc: 'Monitor brand mentions and citations across AI platforms. See when ChatGPT, Perplexity, or Claude references your brand in responses — with context, sentiment, and trend data.' },
+  { status: 'Next Up',     title: 'Alerts & Notifications', desc: 'Get notified by email when a project drops significantly in clicks, impressions, or position. Set custom thresholds per project.' },
+  { status: 'Planned',    title: 'Long-lived MCP API Tokens', desc: 'Replace the current 7-day JWT tokens with permanent API tokens so your MCP server connection never expires unexpectedly.' },
+  { status: 'Planned',    title: 'Blog — SERP-Pulse.com/blog', desc: 'SEO and AI traffic guides written by a practitioner. Practical content for agencies, freelancers, and in-house teams.' },
+  { status: 'Exploring',  title: 'Keyword Position Tracking', desc: 'Daily rank tracking for target keywords across your projects — with history, movement alerts, and competitor comparison.' },
+  { status: 'Exploring',  title: 'Chrome Extension', desc: 'Overlay GSC and GA4 data directly on any webpage you visit. Impressions, clicks, and AI traffic — right on the page.' },
 ]
 
-export default function RoadmapPage() {
+const STATUS_STYLE: Record<string, { color: string; bg: string }> = {
+  'In Progress': { color: '#f59e0b',    bg: 'rgba(245,158,11,.08)'    },
+  'Next Up':     { color: 'var(--tl)',  bg: 'var(--ts)'               },
+  'Planned':     { color: '#8b5cf6',   bg: 'rgba(139,92,246,.08)'    },
+  'Exploring':   { color: 'var(--mt)', bg: 'var(--bg2)'               },
+}
+
+export default async function RoadmapPage() {
+  const data: any = await client.fetch(ROADMAP_QUERY).catch(() => null)
+  const upcoming = data?.upcoming?.length ? data.upcoming : DEFAULT_UPCOMING
+  const shipped  = data?.shipped?.length  ? data.shipped  : DEFAULT_SHIPPED
   return (
     <>
       <SiteNav />
@@ -86,17 +63,20 @@ export default function RoadmapPage() {
           <div className="sl">Coming Next</div>
           <h2 className="sh" style={{marginBottom:32}}>On the roadmap.</h2>
           <div style={{display:'flex',flexDirection:'column',gap:16}}>
-            {UPCOMING.map(item=>(
-              <div key={item.title} style={{border:'1.5px solid var(--bd)',borderRadius:12,padding:22,background:'var(--bg)'}}>
+            {upcoming.map((item: any, i: number)=>{
+              const s = STATUS_STYLE[item.status] || STATUS_STYLE['Exploring']
+              return (
+              <div key={i} style={{border:'1.5px solid var(--bd)',borderRadius:12,padding:22,background:'var(--bg)'}}>
                 <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',gap:12,flexWrap:'wrap'}}>
                   <div style={{flex:1}}>
                     <h3 style={{fontFamily:'var(--hd)',fontSize:16,fontWeight:700,letterSpacing:-.3,marginBottom:6}}>{item.title}</h3>
                     <p style={{fontSize:14,color:'var(--mt2)',lineHeight:1.65,margin:0}}>{item.desc}</p>
                   </div>
-                  <span style={{fontSize:11,fontWeight:700,color:item.statusColor,background:item.statusBg,padding:'4px 12px',borderRadius:6,whiteSpace:'nowrap',flexShrink:0}}>{item.status}</span>
+                  <span style={{fontSize:11,fontWeight:700,color:s.color,background:s.bg,padding:'4px 12px',borderRadius:6,whiteSpace:'nowrap' as const,flexShrink:0}}>{item.status}</span>
                 </div>
               </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
@@ -107,8 +87,8 @@ export default function RoadmapPage() {
           <div className="sl">Already Shipped</div>
           <h2 className="sh" style={{marginBottom:32}}>Live in production.</h2>
           <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))',gap:10}}>
-            {SHIPPED.map(item=>(
-              <div key={item.label} style={{display:'flex',alignItems:'center',gap:10,padding:'10px 14px',background:'var(--wh)',borderRadius:8,border:'1px solid var(--bd)'}}>
+            {shipped.map((item: any, i: number)=>(
+              <div key={i} style={{display:'flex',alignItems:'center',gap:10,padding:'10px 14px',background:'var(--wh)',borderRadius:8,border:'1px solid var(--bd)'}}>
                 <span style={{color:'var(--gn)',fontWeight:700,fontSize:14,flexShrink:0}}>✓</span>
                 <span style={{fontSize:13,color:'var(--ink3)'}}>{item.label}</span>
                 <span style={{marginLeft:'auto',fontSize:10,fontWeight:600,color:'var(--gn)',background:'var(--gns)',padding:'2px 8px',borderRadius:4,flexShrink:0}}>{item.note}</span>

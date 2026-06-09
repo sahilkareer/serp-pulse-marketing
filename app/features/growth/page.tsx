@@ -1,15 +1,22 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
+import { client, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
 
-export const metadata: Metadata = {
-  title: 'Growth Monitoring — SERP-Pulse',
-  description: 'Monitor all your SEO projects at a glance. See which sites are growing, declining, or stable across clicks, impressions, CTR, and position — without opening a single spreadsheet.',
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features-growth' }).catch(() => null)
+  return {
+    title: d?.seoTitle || 'Growth Monitoring — SERP-Pulse',
+    description: d?.seoDesc || 'Monitor all your SEO projects at a glance. See which sites are growing, declining, or stable.',
+  }
 }
 
 const APP = 'https://app.serp-pulse.com'
 
-export default function GrowthPage() {
+export default async function GrowthPage() {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features-growth' }).catch(() => null)
   return (
     <>
       <SiteNav />

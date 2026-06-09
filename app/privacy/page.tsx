@@ -1,15 +1,21 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
+import { client, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy — SERP-Pulse',
-  description: 'SERP-Pulse Privacy Policy. How we collect, use, and protect your data.',
+export const revalidate = 60
+
+export async function generateMetadata(): Promise<Metadata> {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'privacy' }).catch(() => null)
+  return {
+    title: d?.seoTitle || 'Privacy Policy — SERP-Pulse',
+    description: d?.seoDesc || 'SERP-Pulse Privacy Policy. How we collect, use, and protect your data.',
+  }
 }
 
-export default function PrivacyPage() {
-  const updated = 'June 8, 2026'
-
+export default async function PrivacyPage() {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'privacy' }).catch(() => null)
+  const updated = d?.sections?.[0]?.label || 'June 8, 2026'
   return (
     <>
       <SiteNav />
