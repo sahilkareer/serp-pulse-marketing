@@ -131,6 +131,25 @@ const FEATURES = [
 
 export default async function FeaturesPage() {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'features' }).catch(() => null)
+
+  // Merge Sanity section data (sections[0–5]) with hardcoded defaults.
+  // Icons, numbers, colours and hrefs stay hardcoded — they are design/product-bound.
+  // label → badge, heading → title, body → desc, checks → bullets
+  const displayFeatures = FEATURES.map((f, i) => {
+    const sec = d?.sections?.[i] || {}
+    return {
+      ...f,
+      badge:   sec.label                   || f.badge,
+      title:   sec.heading                 || f.title,
+      desc:    sec.body                    || f.desc,
+      bullets: sec.checks?.length ? sec.checks : f.bullets,
+    }
+  })
+
+  // Comparison section (sections[6])
+  const compareLabel   = d?.sections?.[6]?.label   || 'vs Competitors'
+  const compareHeading = d?.sections?.[6]?.heading || 'Built for what other tools miss.'
+
   return (
     <>
       <SiteNav />
@@ -159,7 +178,7 @@ export default async function FeaturesPage() {
       <section style={{padding:'80px 0',background:'var(--wh)'}}>
         <div className="w">
           <div style={{display:'flex',flexDirection:'column',gap:0}}>
-            {FEATURES.map((f, i) => (
+            {displayFeatures.map((f, i) => (
               <div key={f.number} className="rv" style={{
                 display:'grid',
                 gridTemplateColumns:'80px 1fr 1fr',
@@ -214,8 +233,8 @@ export default async function FeaturesPage() {
       {/* COMPARE */}
       <section style={{padding:'80px 0',background:'var(--bg)',borderTop:'1px solid var(--bd)'}}>
         <div className="w" style={{textAlign:'center',marginBottom:40}}>
-          <div className="sl" style={{justifyContent:'center',display:'flex'}}>vs Competitors</div>
-          <h2 className="sh">Built for what other tools miss.</h2>
+          <div className="sl" style={{justifyContent:'center',display:'flex'}}>{compareLabel}</div>
+          <h2 className="sh">{compareHeading}</h2>
         </div>
         <div className="w">
           <div className="cmp-tbl-wrap">
