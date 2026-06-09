@@ -1,4 +1,5 @@
 'use client'
+import React from 'react'
 import Link from 'next/link'
 
 const defaultPlatforms = [
@@ -245,9 +246,6 @@ export function Pricing({ data }: { data?: any }) {
     </section>
   )
 }
-
-// Need React for useState in Pricing
-import React from 'react'
 
 export function Integrations({ data }: { data?: any }) {
   const label = data?.label || 'Ecosystem'

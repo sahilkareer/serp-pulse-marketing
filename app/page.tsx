@@ -17,9 +17,8 @@ export const revalidate = 60
 
 export default async function HomePage() {
   // Fetch content from Sanity — gracefully falls back to component defaults if document doesn't exist yet
-  const page = await client
-    .fetch(HOME_QUERY, {}, { next: { revalidate: 60 } })
-    .catch(() => null)
+  // Revalidation is controlled by `export const revalidate = 60` above
+  const page = await client.fetch(HOME_QUERY).catch(() => null)
 
   // Helper: find a block by _type from the pageBuilder array
   const block = (type: string) =>
