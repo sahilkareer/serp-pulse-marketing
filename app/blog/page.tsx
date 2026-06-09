@@ -1,13 +1,16 @@
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
-import { client, BLOG_INDEX_QUERY } from '@/sanity/lib/client'
+import { client, BLOG_INDEX_QUERY, STANDARD_PAGE_QUERY } from '@/sanity/lib/client'
 
 export const revalidate = 60
 
-export const metadata: Metadata = {
-  title: 'Blog — SERP-Pulse',
-  description: 'SEO guides, AI traffic insights, and data-driven strategies from the SERP-Pulse team.',
+export async function generateMetadata(): Promise<Metadata> {
+  const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'blog' }).catch(() => null)
+  return {
+    title: d?.seoTitle || 'Blog — SERP-Pulse',
+    description: d?.seoDesc || 'SEO guides, AI traffic insights, and data-driven strategies from the SERP-Pulse team.',
+  }
 }
 
 const APP = 'https://app.serp-pulse.com'
