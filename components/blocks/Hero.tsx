@@ -108,7 +108,7 @@ export default function Hero({ data }: { data?: any }) {
 
       {/* CTAs */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 14, position: 'relative', zIndex: 1 }}>
-        <Link href={current.primaryCtaUrl || 'https://app.serp-pulse.com/signup?ref=homepage'} style={{
+        <Link href={(() => { const u = current.primaryCtaUrl || 'https://app.serp-pulse.com/signup?ref=homepage'; return (u.includes('/signup') && !u.includes('?ref=')) ? u + '?ref=homepage' : u; })()} style={{
           background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: 'white',
           fontFamily: "'Bricolage Grotesque',sans-serif", fontSize: 15, fontWeight: 700,
           padding: '13px 28px', borderRadius: 10, textDecoration: 'none',
