@@ -115,7 +115,7 @@ export default function SiteNav() {
 
         <div className="nr">
           <a href={`${APP}/login`} className="btn-nav-ghost" id="nav-login">Log in</a>
-          <a href={`${APP}/signup`} className="btn-nav-cta" id="nav-cta">Start Free Trial <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href={`${APP}/signup?ref=nav`} className="btn-nav-cta" id="nav-cta">Start Free Trial <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           {/* Hamburger */}
           <button
             id="ham"
@@ -219,7 +219,7 @@ export default function SiteNav() {
             Log in
           </a>
           <a
-            href={`${APP}/signup`}
+            href={`${APP}/signup?ref=nav`}
             onClick={() => setMobileOpen(false)}
             style={{
               flex: 1, textAlign: 'center', padding: '13px',

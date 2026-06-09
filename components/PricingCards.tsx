@@ -61,7 +61,7 @@ export default function PricingCards({ plans, comparison, annualDiscount }: {
                 </li>
               ))}
             </ul>
-            <a href={`${APP}/signup`} style={{display:'block',textAlign:'center',padding:'12px',borderRadius:9,fontSize:13,fontWeight:600,textDecoration:'none',transition:'all .15s',fontFamily:'var(--hd)',...(plan.ctaStyle==='filled'?{background:'var(--ink)',color:'white',border:'1.5px solid var(--ink)'}:{border:'1.5px solid var(--bd2)',color:'var(--mt)'})}}>{plan.cta}</a>
+            <a href={`${APP}/signup?ref=pricing`} style={{display:'block',textAlign:'center',padding:'12px',borderRadius:9,fontSize:13,fontWeight:600,textDecoration:'none',transition:'all .15s',fontFamily:'var(--hd)',...(plan.ctaStyle==='filled'?{background:'var(--ink)',color:'white',border:'1.5px solid var(--ink)'}:{border:'1.5px solid var(--bd2)',color:'var(--mt)'})}}>{plan.cta}</a>
           </div>
         ))}
       </div>

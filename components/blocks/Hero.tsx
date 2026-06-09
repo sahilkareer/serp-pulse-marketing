@@ -9,7 +9,7 @@ const defaultTabs = [
     accentWord: 'finally unified.',
     subtext: 'SERP-Pulse connects Google Search Console and Google Analytics 4 into one dashboard — and surfaces AI platform traffic that\'s scattered across raw analytics into clear, actionable insights.',
     primaryCtaText: 'Start Free — No Card Needed →',
-    primaryCtaUrl: 'https://app.serp-pulse.com/signup',
+    primaryCtaUrl: 'https://app.serp-pulse.com/signup?ref=homepage',
     secondaryCtaText: 'See all features',
     secondaryCtaUrl: '#features',
     note: 'Free 14-day trial · 2-minute setup · No credit card',
