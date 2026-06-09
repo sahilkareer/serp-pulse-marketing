@@ -53,7 +53,8 @@ export default async function TermsPage() {
               <PortableText value={d.content} components={ptComponents} />
             </div>
           ) : (
-          <div style={{display:'flex',flexDirection:'column',gap:36}}>
+            <>
+            <div style={{display:'flex',flexDirection:'column',gap:36}}>
 
             <div>
               <p style={{fontSize:15,color:'var(--mt2)',lineHeight:1.75}}>By accessing or using SERP-Pulse (&ldquo;the Service&rdquo;), you agree to be bound by these Terms of Service. If you do not agree, do not use the Service. SERP-Pulse is operated by Sahil Kareer.</p>
@@ -161,6 +162,7 @@ export default async function TermsPage() {
           <div style={{marginTop:48,padding:24,background:'var(--bg)',borderRadius:12,border:'1px solid var(--bd)'}}>
             <p style={{fontSize:14,color:'var(--mt)',lineHeight:1.7,margin:0}}>By using SERP-Pulse, you acknowledge that you have read, understood, and agree to these Terms of Service and our <a href="/privacy" style={{color:'var(--tl)'}}>Privacy Policy</a>.</p>
           </div>
+            </>
           )}
         </div>
       </section>
