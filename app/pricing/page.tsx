@@ -68,7 +68,7 @@ export default async function PricingPage() {
         <div style={{position:'absolute',top:-200,left:'50%',transform:'translateX(-50%)',width:'min(800px, 100vw)',height:500,background:'radial-gradient(ellipse,rgba(8,145,178,.04),transparent 65%)',pointerEvents:'none'}}/>
         <div style={{position:'relative',zIndex:1,maxWidth:640,margin:'0 auto'}}>
           <div className="sl" style={{justifyContent:'center',display:'flex',marginBottom:16}}>Pricing</div>
-          <h1 style={{fontFamily:'var(--hd)',fontSize:'clamp(36px,6vw,60px)',fontWeight:800,letterSpacing:-2.5,lineHeight:1.06,marginBottom:14,color:'var(--ink)',whiteSpace:'pre-line'}}>
+          <h1 style={{fontFamily:'var(--hd)',fontSize:'clamp(36px,6vw,60px)',fontWeight:800,letterSpacing:-2.5,lineHeight:1.06,marginBottom:14,color:'var(--ink)'}}>
             {headline.split('|').map((line: string, i: number) => <span key={i}>{i > 0 && <br/>}{line}</span>)}
           </h1>
           <p style={{fontSize:17,color:'var(--mt)',lineHeight:1.65,marginBottom:32,maxWidth:500,margin:'0 auto 32px'}}>{subtext}</p>

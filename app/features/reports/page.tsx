@@ -27,8 +27,12 @@ export default async function ReportsPage() {
           <div className="breadcrumb">
             <a href="/">Home</a><span>→</span><a href="/features">Features</a><span>→</span><span style={{color:'var(--tl3)'}}>Reports</span>
           </div>
-          <h1>White-Label Reports.<br/><span className="ac">4 types. One click.</span></h1>
-          <p className="hero-sub">Generate branded PDF reports for your clients in under 60 seconds. <strong>GSC, GA4, AI Traffic, and Combined</strong> — each with your logo, your colors, and a shareable public link.</p>
+          <h1>
+            {d?.heroHeadline ? d.heroHeadline.split('|').map((l: string, i: number, a: string[]) => (
+              <span key={i}>{i > 0 && <br/>}{i === a.length - 1 ? <span className="ac">{l}</span> : l}</span>
+            )) : <>White-Label Reports.<br/><span className="ac">4 types. One click.</span></>}
+          </h1>
+          <p className="hero-sub">{d?.heroSubtext || 'Generate branded PDF reports for your clients in under 60 seconds. GSC, GA4, AI Traffic, and Combined — each with your logo, your colors, and a shareable public link.'}</p>
           <a href={`${APP}/signup`} className="btn-h">Start Free Trial <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </section>
@@ -136,8 +140,12 @@ export default async function ReportsPage() {
       <section className="cta-band dark-sec" style={{background:'var(--d)',position:'relative',overflow:'hidden'}}>
         <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 50%,rgba(6,214,199,.07),transparent 60%)',pointerEvents:'none'}}/>
         <div className="w" style={{position:'relative',zIndex:1}}>
-          <h2>Stop spending hours<br/>on client reports.</h2>
-          <p>One click. Branded PDF. Shareable link. Done.</p>
+          <h2>
+            {d?.ctaHeadline ? d.ctaHeadline.split('|').map((l: string, i: number) => (
+              <span key={i}>{i > 0 && <br/>}{l}</span>
+            )) : <>Stop spending hours<br/>on client reports.</>}
+          </h2>
+          <p>{d?.ctaSubtext || 'One click. Branded PDF. Shareable link. Done.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">Start Free Trial — No Card Needed <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href={APP} className="btn-g">View live app →</a>

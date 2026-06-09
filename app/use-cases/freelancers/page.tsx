@@ -29,8 +29,12 @@ export default async function FreelancersPage() {
           <div style={{marginBottom:14,display:'inline-flex',alignItems:'center',gap:6,fontSize:12,fontWeight:600,color:'var(--tl3)',background:'rgba(6,214,199,.08)',border:'1px solid rgba(6,214,199,.15)',padding:'5px 12px',borderRadius:20}}>
             🧑‍💻 Built for freelancers
           </div>
-          <h1>Every client project.<br/>All in one view.<br/><span className="ac">Finally.</span></h1>
-          <p className="hero-sub">Stop switching between 8 Search Console tabs. SERP-Pulse gives freelance SEOs a single dashboard for all their client projects — with the analytics depth of tools that cost 5× more.</p>
+          <h1>
+            {d?.heroHeadline ? d.heroHeadline.split('|').map((l: string, i: number, a: string[]) => (
+              <span key={i}>{i > 0 && <br/>}{i === a.length - 1 ? <span className="ac">{l}</span> : l}</span>
+            )) : <>Every client project.<br/>All in one view.<br/><span className="ac">Finally.</span></>}
+          </h1>
+          <p className="hero-sub">{d?.heroSubtext || 'Stop switching between 8 Search Console tabs. SERP-Pulse gives freelance SEOs a single dashboard for all their client projects — with the analytics depth of tools that cost 5× more.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">Start Free Trial <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="/pricing" className="btn-g">See pricing — from $20/mo</a>
@@ -97,8 +101,12 @@ export default async function FreelancersPage() {
       <section className="cta-band dark-sec" style={{background:'var(--d)',position:'relative',overflow:'hidden'}}>
         <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 50%,rgba(6,214,199,.07),transparent 60%)',pointerEvents:'none'}}/>
         <div className="w" style={{position:'relative',zIndex:1}}>
-          <h2>The SEO dashboard<br/>built for how freelancers work.</h2>
-          <p>All your client projects. Proper analytics. Professional reports. From $20/month.</p>
+          <h2>
+            {d?.ctaHeadline ? d.ctaHeadline.split('|').map((l: string, i: number) => (
+              <span key={i}>{i > 0 && <br/>}{l}</span>
+            )) : <>The SEO dashboard<br/>built for how freelancers work.</>}
+          </h2>
+          <p>{d?.ctaSubtext || 'All your client projects. Proper analytics. Professional reports. From $20/month.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">Start Free Trial — No Card Needed <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>

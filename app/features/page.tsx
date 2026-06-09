@@ -141,8 +141,12 @@ export default async function FeaturesPage() {
           <div className="breadcrumb">
             <a href="/">Home</a><span>→</span><span style={{color:'var(--tl3)'}}>Features</span>
           </div>
-          <h1>Everything you need.<br/><span className="ac">Nothing you don&apos;t.</span></h1>
-          <p className="hero-sub">Six deeply integrated features built around how SEO professionals actually work. Not a feature checklist — a complete analytics system.</p>
+          <h1>
+            {d?.heroHeadline ? d.heroHeadline.split('|').map((l: string, i: number, a: string[]) => (
+              <span key={i}>{i > 0 && <br/>}{i === a.length - 1 ? <span className="ac">{l}</span> : l}</span>
+            )) : <>Everything you need.<br/><span className="ac">Nothing you don&apos;t.</span></>}
+          </h1>
+          <p className="hero-sub">{d?.heroSubtext || 'Six deeply integrated features built around how SEO professionals actually work. Not a feature checklist — a complete analytics system.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">Try Every Feature Free <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="/pricing" className="btn-g">See pricing</a>
@@ -253,8 +257,12 @@ export default async function FeaturesPage() {
       <section className="cta-band dark-sec" style={{background:'var(--d)',position:'relative',overflow:'hidden'}}>
         <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 50%,rgba(6,214,199,.07),transparent 60%)',pointerEvents:'none'}}/>
         <div className="w" style={{position:'relative',zIndex:1}}>
-          <h2>Six features.<br/>One dashboard.</h2>
-          <p>Try every feature free for 30 days. No credit card required.</p>
+          <h2>
+            {d?.ctaHeadline ? d.ctaHeadline.split('|').map((l: string, i: number) => (
+              <span key={i}>{i > 0 && <br/>}{l}</span>
+            )) : <>Six features.<br/>One dashboard.</>}
+          </h2>
+          <p>{d?.ctaSubtext || 'Try every feature free for 30 days. No credit card required.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">Start Free Trial — No Card Needed <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="/pricing" className="btn-g">View pricing →</a>

@@ -23,9 +23,13 @@ export default async function IntegrationsPage() {
 
       <section className="page-hero dark-sec"><div className="w">
         <div className="breadcrumb"><a href="/">Home</a><span>→</span><span style={{color:'var(--tl3)'}}>Integrations</span></div>
-        <h1>Connects to<br/><span className="ac">your ecosystem.</span></h1>
-        <p className="hero-sub">SERP-Pulse integrates directly with <strong>Google Search Console</strong> and <strong>Google Analytics 4</strong> via official APIs. More integrations shipping regularly.</p>
-        <a href={`${APP}/signup`} className="btn-h">Start Free Trial <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <h1>
+          {d?.heroHeadline ? d.heroHeadline.split('|').map((l: string, i: number, a: string[]) => (
+            <span key={i}>{i > 0 && <br/>}{i === a.length - 1 ? <span className="ac">{l}</span> : l}</span>
+          )) : <>Connects to<br/><span className="ac">your ecosystem.</span></>}
+        </h1>
+        <p className="hero-sub">{d?.heroSubtext || 'SERP-Pulse integrates directly with Google Search Console and Google Analytics 4 via official APIs. More integrations shipping regularly.'}</p>
+        <a href={d?.heroPrimaryUrl || `${APP}/signup`} className="btn-h">{d?.heroPrimaryText || 'Start Free Trial'} <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div></section>
 
       {/* Live integrations */}
@@ -80,8 +84,12 @@ export default async function IntegrationsPage() {
       <section className="cta-band dark-sec" style={{background:'var(--d)',position:'relative',overflow:'hidden'}}>
         <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 50%,rgba(6,214,199,.07),transparent 60%)',pointerEvents:'none'}}/>
         <div className="w" style={{position:'relative',zIndex:1}}>
-          <h2>Ready to connect<br/>your ecosystem?</h2>
-          <p>One Google login connects both GSC and GA4 in seconds.</p>
+          <h2>
+            {d?.ctaHeadline ? d.ctaHeadline.split('|').map((l: string, i: number) => (
+              <span key={i}>{i > 0 && <br/>}{l}</span>
+            )) : <>Ready to connect<br/>your ecosystem?</>}
+          </h2>
+          <p>{d?.ctaSubtext || 'One Google login connects both GSC and GA4 in seconds.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">Start Free Trial — No Card Needed <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href={APP} className="btn-g">View live app →</a>

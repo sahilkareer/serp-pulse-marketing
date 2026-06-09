@@ -29,8 +29,12 @@ export default async function InHousePage() {
           <div style={{marginBottom:14,display:'inline-flex',alignItems:'center',gap:6,fontSize:12,fontWeight:600,color:'var(--tl3)',background:'rgba(6,214,199,.08)',border:'1px solid rgba(6,214,199,.15)',padding:'5px 12px',borderRadius:20}}>
             📦 Built for in-house teams
           </div>
-          <h1>All your brand properties.<br/>One unified view.<br/><span className="ac">Zero switching.</span></h1>
-          <p className="hero-sub">Managing SEO across multiple product lines, regions, or microsites shouldn&apos;t mean logging into ten different Search Console accounts. SERP-Pulse unifies everything — and adds the AI traffic intelligence your leadership is starting to ask about.</p>
+          <h1>
+            {d?.heroHeadline ? d.heroHeadline.split('|').map((l: string, i: number, a: string[]) => (
+              <span key={i}>{i > 0 && <br/>}{i === a.length - 1 ? <span className="ac">{l}</span> : l}</span>
+            )) : <>All your brand properties.<br/>One unified view.<br/><span className="ac">Zero switching.</span></>}
+          </h1>
+          <p className="hero-sub">{d?.heroSubtext || "Managing SEO across multiple product lines, regions, or microsites shouldn't mean logging into ten different Search Console accounts. SERP-Pulse unifies everything — and adds the AI traffic intelligence your leadership is starting to ask about."}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">Start Free Trial <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="/pricing" className="btn-g">View pricing</a>
@@ -120,8 +124,12 @@ export default async function InHousePage() {
       <section className="cta-band dark-sec" style={{background:'var(--d)',position:'relative',overflow:'hidden'}}>
         <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 50%,rgba(6,214,199,.07),transparent 60%)',pointerEvents:'none'}}/>
         <div className="w" style={{position:'relative',zIndex:1}}>
-          <h2>The SEO platform<br/>your whole team will actually use.</h2>
-          <p>Unified. Fast. No training required. 2-minute setup.</p>
+          <h2>
+            {d?.ctaHeadline ? d.ctaHeadline.split('|').map((l: string, i: number) => (
+              <span key={i}>{i > 0 && <br/>}{l}</span>
+            )) : <>The SEO platform<br/>your whole team will actually use.</>}
+          </h2>
+          <p>{d?.ctaSubtext || 'Unified. Fast. No training required. 2-minute setup.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">Start Free Trial — No Card Needed <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="/pricing" className="btn-g">Compare plans →</a>

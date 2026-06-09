@@ -57,9 +57,9 @@ export default async function DocsPage() {
 
       <section style={{padding:'80px 0 48px',background:'var(--bg)',borderBottom:'1px solid var(--bd)'}}>
         <div className="w" style={{textAlign:'center'}}>
-          <div className="sl" style={{justifyContent:'center',display:'flex'}}>Documentation</div>
-          <h1 className="sh">SERP-Pulse Docs</h1>
-          <p className="ss" style={{textAlign:'center',margin:'10px auto 0'}}>Everything you need to get the most out of SERP-Pulse — from first setup to advanced MCP usage.</p>
+          <div className="sl" style={{justifyContent:'center',display:'flex'}}>{d?.heroLabel || 'Documentation'}</div>
+          <h1 className="sh">{d?.heroHeadline || 'SERP-Pulse Docs'}</h1>
+          <p className="ss" style={{textAlign:'center',margin:'10px auto 0'}}>{d?.heroSubtext || 'Everything you need to get the most out of SERP-Pulse — from first setup to advanced MCP usage.'}</p>
         </div>
       </section>
 

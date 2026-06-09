@@ -34,8 +34,12 @@ export default async function GrowthPage() {
               </svg>
             </div>
           </div>
-          <h1>100 projects.<br/><span className="ac">One glance.</span></h1>
-          <p className="hero-sub">See which of your SEO projects are growing, declining, stable, or mixed — across your entire portfolio. Switch KPIs in one click. No spreadsheets, no tab-switching.</p>
+          <h1>
+            {d?.heroHeadline ? d.heroHeadline.split('|').map((l: string, i: number, a: string[]) => (
+              <span key={i}>{i > 0 && <br/>}{i === a.length - 1 ? <span className="ac">{l}</span> : l}</span>
+            )) : <>100 projects.<br/><span className="ac">One glance.</span></>}
+          </h1>
+          <p className="hero-sub">{d?.heroSubtext || 'See which of your SEO projects are growing, declining, stable, or mixed — across your entire portfolio. Switch KPIs in one click. No spreadsheets, no tab-switching.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">See Your Portfolio Health <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="#how-it-works" className="btn-g">How it works</a>
@@ -213,8 +217,12 @@ export default async function GrowthPage() {
       <section className="cta-band dark-sec" style={{background:'var(--d)',position:'relative',overflow:'hidden'}}>
         <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 50%,rgba(6,214,199,.07),transparent 60%)',pointerEvents:'none'}}/>
         <div className="w" style={{position:'relative',zIndex:1}}>
-          <h2>Your whole portfolio.<br/>One dashboard.</h2>
-          <p>Connect in 30 seconds. Every project visible from day one.</p>
+          <h2>
+            {d?.ctaHeadline ? d.ctaHeadline.split('|').map((l: string, i: number) => (
+              <span key={i}>{i > 0 && <br/>}{l}</span>
+            )) : <>Your whole portfolio.<br/>One dashboard.</>}
+          </h2>
+          <p>{d?.ctaSubtext || 'Connect in 30 seconds. Every project visible from day one.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">Start Free Trial — No Card Needed <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href={APP} className="btn-g">View live app →</a>

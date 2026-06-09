@@ -32,10 +32,14 @@ export default async function AiTrafficPage() {
               <img key={d} src={`https://www.google.com/s2/favicons?domain=${d}&sz=64`} width="32" height="32" style={{borderRadius:6}} alt=""/>
             ))}
           </div>
-          <h1>AI Citation &amp; Traffic<br/><span className="ac">Tracking.</span></h1>
-          <p className="hero-sub">Right now, AI platforms like ChatGPT, Claude, Perplexity, and Gemini are <strong>citing your content and sending real visitors</strong> to your site. This traffic exists in your analytics — but it&apos;s buried under raw referral domains with no platform labels. SERP-Pulse identifies each source automatically and gives you a clear breakdown by platform, page, and trend.</p>
+          <h1>
+            {d?.heroHeadline ? d.heroHeadline.split('|').map((l: string, i: number, a: string[]) => (
+              <span key={i}>{i > 0 && <br/>}{i === a.length - 1 ? <span className="ac">{l}</span> : l}</span>
+            )) : <>AI Citation &amp; Traffic<br/><span className="ac">Tracking.</span></>}
+          </h1>
+          <p className="hero-sub">{d?.heroSubtext || 'Right now, AI platforms like ChatGPT, Claude, Perplexity, and Gemini are citing your content and sending real visitors to your site. This traffic exists in your analytics — but it\'s buried under raw referral domains with no platform labels. SERP-Pulse identifies each source automatically.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
-            <a href={`${APP}/signup`} className="btn-h">Discover Your AI Traffic <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a href={d?.heroPrimaryUrl || `${APP}/signup`} className="btn-h">{d?.heroPrimaryText || 'Discover Your AI Traffic'} <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="#how-it-works" className="btn-g">How it works</a>
           </div>
         </div>
@@ -151,8 +155,12 @@ export default async function AiTrafficPage() {
       <section className="cta-band dark-sec" style={{background:'var(--d)',position:'relative',overflow:'hidden'}}>
         <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 50%,rgba(6,214,199,.07),transparent 60%)',pointerEvents:'none'}}/>
         <div className="w" style={{position:'relative',zIndex:1}}>
-          <h2>See the traffic<br/>nobody else shows you.</h2>
-          <p>Connect in 30 seconds. Every AI platform tracked from day one.</p>
+          <h2>
+            {d?.ctaHeadline ? d.ctaHeadline.split('|').map((l: string, i: number) => (
+              <span key={i}>{i > 0 && <br/>}{l}</span>
+            )) : <>See the traffic<br/>nobody else shows you.</>}
+          </h2>
+          <p>{d?.ctaSubtext || 'Connect in 30 seconds. Every AI platform tracked from day one.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">Start Free Trial — No Card Needed <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href={APP} className="btn-g">View live app →</a>

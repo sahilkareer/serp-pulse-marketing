@@ -29,8 +29,12 @@ export default async function AboutPage() {
 
       <section className="page-hero dark-sec"><div className="w">
         <div className="breadcrumb"><a href="/">Home</a><span>→</span><span style={{color:'var(--tl3)'}}>About</span></div>
-        <h1>Built by an SEO.<br/><span className="ac">For SEOs.</span></h1>
-        <p className="hero-sub">SERP-Pulse was born from <strong>6 years of SEO and agency experience</strong> — the frustration of scattered data, invisible AI traffic, and tools that don&apos;t talk to each other.</p>
+        <h1>
+          {d?.heroHeadline ? d.heroHeadline.split('|').map((l: string, i: number, a: string[]) => (
+            <span key={i}>{i > 0 && <br/>}{i === a.length - 1 ? <span className="ac">{l}</span> : l}</span>
+          )) : <>Built by an SEO.<br/><span className="ac">For SEOs.</span></>}
+        </h1>
+        <p className="hero-sub">{d?.heroSubtext || 'SERP-Pulse was born from 6 years of SEO and agency experience — the frustration of scattered data, invisible AI traffic, and tools that don\'t talk to each other.'}</p>
       </div></section>
 
       {/* Founder section — NO inline gridTemplateColumns so CSS media queries work */}
@@ -62,7 +66,7 @@ export default async function AboutPage() {
 
           {/* Story */}
           <div>
-            <h2 className="about-story-h2">The story behind SERP-Pulse.</h2>
+            <h2 className="about-story-h2">{d?.sections?.[0]?.heading || 'The story behind SERP-Pulse.'}</h2>
             {paragraphs.map((p, i) => (
               <p key={i} className="about-story-p" style={i === paragraphs.length - 1 ? {color:'var(--ink)',fontWeight:500,marginBottom:24} : {}}>{p}</p>
             ))}
@@ -100,7 +104,7 @@ export default async function AboutPage() {
         <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 50%,rgba(6,214,199,.07),transparent 60%)',pointerEvents:'none'}}/>
         <div className="w" style={{position:'relative',zIndex:1}}>
           <h2>Ready to try it<br/>yourself?</h2>
-          <p>Every feature is live. Start your 30-day free trial today.</p>
+          <p>{d?.ctaSubtext || 'Every feature is live. Start your 30-day free trial today.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">Start Free Trial — No Card Needed <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href={APP} className="btn-g">View live app →</a>

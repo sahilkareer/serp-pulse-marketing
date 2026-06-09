@@ -21,8 +21,12 @@ export default async function ContactPage() {
 
       <section className="page-hero dark-sec"><div className="w">
         <div className="breadcrumb"><a href="/">Home</a><span>→</span><span style={{color:'var(--tl3)'}}>Contact</span></div>
-        <h1>Get in <span className="ac">touch.</span></h1>
-        <p className="hero-sub">Have a question about SERP-Pulse, want to discuss a partnership, or need support? We&apos;d love to hear from you.</p>
+        <h1>
+          {d?.heroHeadline ? d.heroHeadline.split('|').map((l: string, i: number, a: string[]) => (
+            <span key={i}>{i > 0 && <br/>}{i === a.length - 1 ? <span className="ac">{l}</span> : l}</span>
+          )) : <>Get in <span className="ac">touch.</span></>}
+        </h1>
+        <p className="hero-sub">{d?.heroSubtext || 'Have a question about SERP-Pulse, want to discuss a partnership, or need support? We\'d love to hear from you.'}</p>
       </div></section>
 
       <section className="feat-sec" style={{background:'var(--wh)'}}><div className="w">

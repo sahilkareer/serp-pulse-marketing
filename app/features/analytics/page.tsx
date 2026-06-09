@@ -28,8 +28,12 @@ export default async function AnalyticsPage() {
             <a href="/">Home</a><span>→</span><a href="/features">Features</a><span>→</span><span style={{color:'var(--tl3)'}}>GA4 Analytics</span>
           </div>
           <div style={{marginBottom:16}}><img src="https://www.gstatic.com/analytics-suite/header/suite/v2/ic_analytics.svg" width="40" height="40" alt="GA4"/></div>
-          <h1>9-Widget GA4<br/><span className="ac">Dashboard.</span></h1>
-          <p className="hero-sub">Most SEO tools either skip Google Analytics entirely or give you one or two surface-level metrics. SERP-Pulse delivers a <strong>proper GA4 integration</strong> with 9 modular widgets, comparison deltas, custom date ranges, and overlaid GSC + GA4 charts.</p>
+          <h1>
+            {d?.heroHeadline ? d.heroHeadline.split('|').map((l: string, i: number, a: string[]) => (
+              <span key={i}>{i > 0 && <br/>}{i === a.length - 1 ? <span className="ac">{l}</span> : l}</span>
+            )) : <>9-Widget GA4<br/><span className="ac">Dashboard.</span></>}
+          </h1>
+          <p className="hero-sub">{d?.heroSubtext || 'Most SEO tools either skip Google Analytics entirely or give you one or two surface-level metrics. SERP-Pulse delivers a proper GA4 integration with 9 modular widgets, comparison deltas, custom date ranges, and overlaid GSC + GA4 charts.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">Start Free Trial <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="#widgets" className="btn-g">See all 9 widgets</a>
@@ -161,8 +165,12 @@ export default async function AnalyticsPage() {
       <section className="cta-band dark-sec" style={{background:'var(--d)',position:'relative',overflow:'hidden'}}>
         <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 50%,rgba(6,214,199,.07),transparent 60%)',pointerEvents:'none'}}/>
         <div className="w" style={{position:'relative',zIndex:1}}>
-          <h2>Your GA4 data,<br/>properly integrated.</h2>
-          <p>Connect your GA4 property in seconds. 9 widgets. All live.</p>
+          <h2>
+            {d?.ctaHeadline ? d.ctaHeadline.split('|').map((l: string, i: number) => (
+              <span key={i}>{i > 0 && <br/>}{l}</span>
+            )) : <>Your GA4 data,<br/>properly integrated.</>}
+          </h2>
+          <p>{d?.ctaSubtext || 'Connect your GA4 property in seconds. 9 widgets. All live.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup`} className="btn-h">Start Free Trial — No Card Needed <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href={APP} className="btn-g">View live app →</a>
