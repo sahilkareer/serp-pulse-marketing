@@ -66,6 +66,10 @@ export default defineConfig({
                     // Legal
                     S.listItem().title('Privacy Policy').child(S.documentList().filter('_type == "standardPage" && slug.current == "privacy"').title('Privacy')),
                     S.listItem().title('Terms of Service').child(S.documentList().filter('_type == "standardPage" && slug.current == "terms"').title('Terms')),
+                    S.divider(),
+                    // Blog & Roadmap pages (hero/SEO fields)
+                    S.listItem().title('Blog Page').child(S.documentList().filter('_type == "standardPage" && slug.current == "blog"').title('Blog Page')),
+                    S.listItem().title('Roadmap Page').child(S.documentList().filter('_type == "standardPage" && slug.current == "roadmap"').title('Roadmap Page')),
                     // All
                     S.divider(),
                     S.listItem().title('All marketing pages').child(S.documentTypeList('standardPage').title('All Pages')),
