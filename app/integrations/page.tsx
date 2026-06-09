@@ -17,6 +17,7 @@ const APP = 'https://app.serp-pulse.com'
 
 export default async function IntegrationsPage() {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'integrations' }).catch(() => null)
+  const s = (n: number): any => d?.sections?.[n] || {}
   return (
     <>
       <SiteNav />
@@ -35,7 +36,7 @@ export default async function IntegrationsPage() {
       {/* Live integrations */}
       <section className="feat-sec" style={{background:'var(--wh)'}}><div className="w">
         <div style={{textAlign:'center',marginBottom:40}}>
-          <h2 style={{fontFamily:'var(--hd)',fontSize:28,fontWeight:800,letterSpacing:-1}}>Live Integrations</h2>
+          <h2 style={{fontFamily:'var(--hd)',fontSize:28,fontWeight:800,letterSpacing:-1}}>{s(0).heading || 'Live Integrations'}</h2>
         </div>
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:20,maxWidth:720,margin:'0 auto'}} className="how-grid">
           {[
@@ -57,8 +58,8 @@ export default async function IntegrationsPage() {
 
         {/* Coming soon */}
         <div style={{textAlign:'center',marginTop:56,marginBottom:20}}>
-          <h2 style={{fontFamily:'var(--hd)',fontSize:22,fontWeight:700,letterSpacing:-.5,marginBottom:8,color:'var(--mt)'}}>Coming Soon</h2>
-          <p style={{fontSize:14,color:'var(--mt2)'}}>More integrations are on the roadmap.</p>
+          <h2 style={{fontFamily:'var(--hd)',fontSize:22,fontWeight:700,letterSpacing:-.5,marginBottom:8,color:'var(--mt)'}}>{s(1).heading || 'Coming Soon'}</h2>
+          <p style={{fontSize:14,color:'var(--mt2)'}}>{s(1).body || 'More integrations are on the roadmap.'}</p>
         </div>
         <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:14,maxWidth:600,margin:'0 auto'}} className="how-grid">
           {[
