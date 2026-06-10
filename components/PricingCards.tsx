@@ -34,7 +34,7 @@ export default function PricingCards({ plans, comparison, annualDiscount }: {
         <span style={{fontSize:14,color:annual?'var(--ink)':'var(--mt)',fontWeight:500}}>Annual</span>
         <span style={{fontSize:11,fontWeight:700,padding:'3px 10px',borderRadius:20,background:'var(--gns)',color:'var(--gn)'}}>{annualDiscount}</span>
       </div>
-      <p style={{textAlign:'center',fontSize:12,color:'var(--gn)',fontWeight:600,background:'var(--gns)',padding:'5px 16px',borderRadius:8,display:'inline-block',marginBottom:32}}>30-day free trial on all plans · No credit card required</p>
+      <p style={{textAlign:'center',fontSize:12,color:'var(--gn)',fontWeight:600,background:'var(--gns)',padding:'5px 16px',borderRadius:8,display:'inline-block',marginBottom:32}}>90-day free trial on all plans · No credit card required</p>
 
       {/* Cards */}
       <div style={{maxWidth:1000,margin:'0 auto',display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16,alignItems:'start'}} className="how-grid">
