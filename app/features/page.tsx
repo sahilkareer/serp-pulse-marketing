@@ -127,6 +127,60 @@ const FEATURES = [
     bg: 'rgba(139,92,246,.04)',
     border: 'rgba(139,92,246,.12)',
   },
+  {
+    number: '07',
+    badge: 'Market Intelligence',
+    badgeClass: 'tag-gn',
+    icon: (
+      <svg width="24" height="24" fill="none" stroke="#f59e0b" strokeWidth="2" viewBox="0 0 24 24">
+        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>
+      </svg>
+    ),
+    title: 'SEO Weather',
+    desc: 'Are your rankings dropping because of something you did — or because the entire market is shifting? SEO Weather tracks volatility across all connected websites and tells you whether disruption is isolated or industry-wide.',
+    bullets: ['Daily volatility score (1–10) from multi-signal formula','Industry breakdown — see which sectors are affected','Score spike alerts with on/off toggle','12 months of historical trend data','Branded vs non-branded visibility tracking'],
+    href: '/features/seo-weather',
+    cta: 'SEO Weather details →',
+    color: '#f59e0b',
+    bg: 'rgba(245,158,11,.04)',
+    border: 'rgba(245,158,11,.12)',
+  },
+  {
+    number: '08',
+    badge: 'Keyword Intelligence',
+    badgeClass: 'tag-tl',
+    icon: (
+      <svg width="24" height="24" fill="none" stroke="#38bdf8" strokeWidth="2" viewBox="0 0 24 24">
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>
+      </svg>
+    ),
+    title: 'Branded vs Non-Branded Analysis',
+    desc: 'Understand how much of your traffic comes from people who already know your brand versus people discovering you through organic search. Define your brand terms inline and get instant classification across all your queries.',
+    bullets: ['User-defined brand terms — managed directly in project page','Click and impression share split','Top branded and non-branded keyword tables','Collapsible UI — expand when needed, collapse when not','Auto-classification using your GSC query data'],
+    href: '/features/branded-keywords',
+    cta: 'Branded Keywords details →',
+    color: '#38bdf8',
+    bg: 'rgba(56,189,248,.04)',
+    border: 'rgba(56,189,248,.12)',
+  },
+  {
+    number: '09',
+    badge: 'Page Analytics',
+    badgeClass: 'tag-gn',
+    icon: (
+      <svg width="24" height="24" fill="none" stroke="#34d399" strokeWidth="2" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>
+      </svg>
+    ),
+    title: 'Page-Level Behavior Analysis',
+    desc: 'Go beyond session-level data. See exactly what happens on any specific page — engagement rate, bounce rate, average time on page, and every GA4 event that fires. Available via API and the MCP natural language interface.',
+    bullets: ['Per-page engagement rate, bounce rate, session duration','Full event breakdown per page (scroll, click, form_submit)','Available via API endpoint and MCP tool #12','Natural language queries: "How is /pricing performing?"','Helps identify conversion drop-off points'],
+    href: '/features/page-behavior',
+    cta: 'Page Behavior details →',
+    color: '#34d399',
+    bg: 'rgba(52,211,153,.04)',
+    border: 'rgba(52,211,153,.12)',
+  },
 ]
 
 export default async function FeaturesPage() {
@@ -165,12 +219,12 @@ export default async function FeaturesPage() {
               <span key={i}>{i > 0 && <br/>}{i === a.length - 1 ? <span className="ac">{l}</span> : l}</span>
             )) : <>Everything you need.<br/><span className="ac">Nothing you don&apos;t.</span></>}
           </h1>
-          <p className="hero-sub">{d?.heroSubtext || 'Six deeply integrated features built around how SEO professionals actually work. Not a feature checklist — a complete analytics system.'}</p>
+          <p className="hero-sub">{d?.heroSubtext || 'Nine deeply integrated features built around how SEO professionals actually work. Not a feature checklist — a complete analytics system.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup?ref=features`} className="btn-h">Try Every Feature Free <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="/pricing" className="btn-g">See pricing</a>
           </div>
-          <p style={{fontSize:12,color:'var(--dm2)',marginTop:12}}>30-day free trial · No credit card · All 6 features included</p>
+          <p style={{fontSize:12,color:'var(--dm2)',marginTop:12}}>30-day free trial · No credit card · All 9 features included</p>
         </div>
       </section>
 
@@ -252,6 +306,8 @@ export default async function FeaturesPage() {
                 {[
                   ['GSC + GA4 unified in one view',true,false,false,false],
                   ['AI traffic tracking (ChatGPT, Claude, etc.)',true,false,false,false],
+                  ['SEO Weather — market volatility tracking',true,false,false,false],
+                  ['Branded vs Non-Branded keyword analysis',true,false,false,false],
                   ['Smart filters (Sweet Spot, Quick Wins)','Built-in',false,false,false],
                   ['MCP Server (talk to your data)',true,false,false,false],
                   ['White-label PDF reports',true,'Limited',true,true],
@@ -279,7 +335,7 @@ export default async function FeaturesPage() {
           <h2>
             {d?.ctaHeadline ? d.ctaHeadline.split('|').map((l: string, i: number) => (
               <span key={i}>{i > 0 && <br/>}{l}</span>
-            )) : <>Six features.<br/>One dashboard.</>}
+            )) : <>Nine features.<br/>One dashboard.</>}
           </h2>
           <p>{d?.ctaSubtext || 'Try every feature free for 30 days. No credit card required.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>

@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const APP = 'https://app.serp-pulse.com'
-const FOUNDER_IMG = 'https://media.licdn.com/dms/image/v2/D5603AQHU9JOiEY6kRA/profile-displayphoto-crop_800_800/B56ZkhZSDtHkAI-/0/1757201900647?e=1782345600&v=beta&t=qpVo3miyByRzkqHHlFL4liQJsT6uNObbH87VE8Kn0xs'
+const FOUNDER_IMG = 'https://media.licdn.com/dms/image/v2/D5603AQEAbMsBFS381Q/profile-displayphoto-scale_400_400/B56Z6zpLLVIQAk-/0/1781130378927?e=1782950400&v=beta&t=MatIuULOKP-_E7w-LwltKHBqsR6mrKyveb4CQ02y4wc'
 
 export default async function AboutPage() {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'about' }).catch(() => null)
@@ -29,7 +29,8 @@ export default async function AboutPage() {
     { year: '2020 — 2024', text: '6 years in SEO agencies, in-house teams, and consulting. Managed hundreds of client projects across industries. Felt the pain of scattered data and manual reporting daily.' },
     { year: 'Early 2025',   text: 'First prototype built. Connected Google Search Console via API. Basic query analysis and CSV export working.' },
     { year: 'Mid 2025',     text: 'GA4 integration added. AI traffic tracking module built — ChatGPT, Claude, Perplexity, Gemini. White-label reports shipped.' },
-    { year: '2026 — Now',   text: 'MCP Server with 16 tools launched. 500+ active users. 40M+ queries tracked. Full production-ready platform. Ready for monetisation.' },
+    { year: 'Late 2025',    text: 'SEO Weather launched — market-wide volatility tracking with multi-signal formula. Branded vs Non-Branded keyword analysis. Industry segmentation. Admin payment dashboard.' },
+    { year: '2026 — Now',   text: 'MCP Server with 17 tools launched. Razorpay payment integration live. Score spike alerts. Page-level GA4 behavior analysis. 500+ active users. 40M+ queries tracked. Production-ready and monetised.' },
   ]
   const timeline = d?.sections?.length > 1
     ? d.sections.slice(1).map((s: any) => ({ year: s.label || s.heading || '', text: s.body || '' }))
