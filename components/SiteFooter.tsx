@@ -38,6 +38,9 @@ export default function SiteFooter() {
             <li><a href="/features/reports">White-Label Reports</a></li>
             <li><a href="/features/mcp">MCP Server</a></li>
             <li><a href="/features/growth">Growth Monitor</a></li>
+            <li><a href="/features/seo-weather">SEO Weather</a></li>
+            <li><a href="/features/branded-keywords">Branded Keywords</a></li>
+            <li><a href="/features/page-behavior">Page Behavior</a></li>
           </ul></div>
 
           <div className="fcol"><h4>Solutions</h4><ul>
