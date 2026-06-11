@@ -88,15 +88,15 @@ export function Testimonials({ data }: { data?: any }) {
   const label = data?.label || 'Trusted By'
   const headline = data?.headline || 'Built for professionals.'
   const stats = data?.stats || [
-    { number: '500+', label: 'Active users' },
-    { number: '4', label: 'Agencies' },
-    { number: '40M+', label: 'Queries tracked' },
-    { number: '4.9/5', label: 'Satisfaction' },
+    { number: '500+', label: 'Signups' },
+    { number: '16+', label: 'AI platforms tracked' },
+    { number: '40M+', label: 'Queries analysed' },
+    { number: '17', label: 'MCP tools' },
   ]
   const items = data?.items || [
-    { text: 'We discovered that ChatGPT was citing our blog content and sending real traffic. No other tool showed us that. This changed how we think about content strategy.', authorInitials: 'SK', authorName: 'Sarah K.', authorRole: 'SEO Director, Digital Agency' },
-    { text: 'Client reporting used to take hours. Now it takes minutes. The growth monitoring view alone saves us significant time across our portfolio.', authorInitials: 'MT', authorName: 'Marcus T.', authorRole: 'Freelance SEO Consultant' },
-    { text: 'One dashboard instead of multiple tabs. The advanced filters like "Sweet Spot" and "Quick Wins" helped us find opportunities we were completely missing.', authorInitials: 'PM', authorName: 'Priya M.', authorRole: 'Head of SEO, SaaS Company' },
+    { text: 'We discovered that ChatGPT was citing our blog content and sending real traffic. No other tool showed us that. This changed how we think about content strategy.', authorInitials: 'SK', authorName: 'Sarah K.', authorRole: 'SEO Director · Early Access' },
+    { text: 'Client reporting used to take hours. Now it takes minutes. The growth monitoring view alone saves us significant time across our portfolio.', authorInitials: 'MT', authorName: 'Marcus T.', authorRole: 'Freelance SEO · Early Access' },
+    { text: 'One dashboard instead of multiple tabs. The advanced filters like Sweet Spot and Quick Wins helped us find opportunities we were completely missing.', authorInitials: 'PM', authorName: 'Priya M.', authorRole: 'Head of SEO · Early Access' },
   ]
 
   return (
