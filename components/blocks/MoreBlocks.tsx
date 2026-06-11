@@ -164,8 +164,7 @@ export function FounderStory({ data }: { data?: any }) {
         </div>
         <div style={{ maxWidth: 800, margin: '0 auto', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 20, padding: '40px', display: 'grid', gridTemplateColumns: '200px 1fr', gap: 40, alignItems: 'start' }}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ width: 140, height: 140, borderRadius: 16, background: 'linear-gradient(135deg,#0891b2,#06d6c7)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Bricolage Grotesque',sans-serif", fontSize: 40, fontWeight: 800, color: 'white', margin: '0 auto 12px' }}>{initials}</div>
-            <div style={{ fontSize: 11, color: '#94a3b8' }}>Founder Photo</div>
+            <div style={{ width: 140, height: 140, borderRadius: 16, background: 'linear-gradient(135deg,#0891b2,#06d6c7)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Bricolage Grotesque',sans-serif", fontSize: 40, fontWeight: 800, color: 'white', margin: '0 auto 12px', boxShadow: '0 8px 24px rgba(8,145,178,0.25)' }}>{initials}</div>
           </div>
           <div>
             {paragraphs.map((p: string, i: number) => (
