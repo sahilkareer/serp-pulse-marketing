@@ -32,8 +32,11 @@ const MOBILE_GROUPS = [
       { href: '/features/analytics', label: 'GA4 Analytics', sub: '9 widgets, geography, funnel' },
       { href: '/features/ai-traffic', label: 'AI Citations', sub: 'ChatGPT · Claude · Perplexity · Gemini' },
       { href: '/features/reports', label: 'White-Label Reports', sub: '4 types · PDF · Public link' },
-      { href: '/features/mcp', label: 'MCP Server', sub: '16 tools · Talk to your SEO data' },
+      { href: '/features/mcp', label: 'MCP Server', sub: '17 tools · Talk to your SEO data' },
       { href: '/features/growth', label: 'Growth Monitor', sub: 'Portfolio health at a glance' },
+      { href: '/features/seo-weather', label: 'SEO Weather', sub: 'Market volatility tracking' },
+      { href: '/features/branded-keywords', label: 'Branded Keywords', sub: 'Branded vs non-branded split' },
+      { href: '/features/page-behavior', label: 'Page Behavior', sub: 'Per-page GA4 engagement' },
     ],
   },
   {
@@ -94,15 +97,17 @@ export default function SiteNav() {
                 <a href="/features/search-console" className="mmi"><div className="mmii g"><img src="https://www.google.com/s2/favicons?domain=search.google.com&sz=32" width="18" height="18" style={{borderRadius:3}} alt=""/></div><div><h6>Search Console</h6><p>Queries, pages, CTR, positions</p></div></a>
                 <a href="/features/analytics" className="mmi"><div className="mmii a"><img src="https://www.gstatic.com/analytics-suite/header/suite/v2/ic_analytics.svg" width="18" height="18" alt=""/></div><div><h6>GA4 Analytics</h6><p>9 widgets, geography, funnel</p></div></a>
                 <a href="/features/growth" className="mmi"><div className="mmii g" style={{background:'var(--gns)'}}><svg width="14" height="14" fill="none" stroke="#10b981" strokeWidth="2" viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div><div><h6>Growth Monitoring</h6><p>Portfolio health at a glance</p></div></a>
+                <a href="/features/seo-weather" className="mmi"><div className="mmii s" style={{background:'rgba(245,158,11,.08)'}}><svg width="14" height="14" fill="none" stroke="#f59e0b" strokeWidth="2" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div><h6>SEO Weather</h6><p>Market volatility tracking</p></div></a>
               </div>
               <div className="mmc"><h5>AI &amp; Reports</h5>
                 <a href="/features/ai-traffic" className="mmi"><div className="mmii ai"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64" width="18" height="18" style={{borderRadius:3}} alt=""/></div><div><h6>AI Citations</h6><p>ChatGPT · Claude · Perplexity · Gemini</p></div></a>
                 <a href="/features/reports" className="mmi"><div className="mmii r"><svg width="13" height="13" fill="none" stroke="#0891b2" strokeWidth="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div><div><h6>White-Label Reports</h6><p>4 types · PDF · Public link</p></div></a>
-                <a href="/features/mcp" className="mmi"><div className="mmii m"><svg width="13" height="13" fill="none" stroke="#8b5cf6" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div><h6>MCP Server</h6><p>16 tools · Talk to your SEO data</p></div></a>
+                <a href="/features/mcp" className="mmi"><div className="mmii m"><svg width="13" height="13" fill="none" stroke="#8b5cf6" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div><h6>MCP Server</h6><p>17 tools · Talk to your SEO data</p></div></a>
               </div>
-              <div className="mmc"><h5>Coming Soon</h5>
-                <a href="/roadmap" className="mmi"><div className="mmii s"><svg width="13" height="13" fill="none" stroke="#f59e0b" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg></div><div><h6>Rank Tracking</h6><p>Daily position monitoring</p></div></a>
-                <a href="/roadmap" className="mmi"><div className="mmii s"><svg width="13" height="13" fill="none" stroke="#f59e0b" strokeWidth="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div><div><h6>Alerts &amp; Monitoring</h6><p>Custom notification rules</p></div></a>
+              <div className="mmc"><h5>Keyword Intelligence</h5>
+                <a href="/features/branded-keywords" className="mmi"><div className="mmii g" style={{background:'rgba(56,189,248,.08)'}}><svg width="14" height="14" fill="none" stroke="#38bdf8" strokeWidth="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div><div><h6>Branded Keywords</h6><p>Branded vs non-branded split</p></div></a>
+                <a href="/features/page-behavior" className="mmi"><div className="mmii g" style={{background:'rgba(52,211,153,.08)'}}><svg width="14" height="14" fill="none" stroke="#34d399" strokeWidth="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div><div><h6>Page Behavior</h6><p>Per-page GA4 engagement analysis</p></div></a>
+                <a href="/roadmap" className="mmi"><div className="mmii s"><svg width="13" height="13" fill="none" stroke="#f59e0b" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg></div><div><h6>View Roadmap</h6><p>See what’s coming next</p></div></a>
               </div>
             </div>
           </div>
