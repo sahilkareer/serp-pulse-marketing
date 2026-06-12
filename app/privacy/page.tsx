@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function PrivacyPage() {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'privacy' }).catch(() => null)
-  const updated = d?.sections?.[0]?.label || 'June 8, 2026'
+  const updated = d?.sections?.[0]?.label || 'June 12, 2026'
   return (
     <>
       <SiteNav />
@@ -98,7 +98,26 @@ export default async function PrivacyPage() {
             </div>
 
             <div>
-              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>5. Data Storage & Security</h2>
+              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>5. Google API Services User Data Policy</h2>
+              <p style={{fontSize:15,color:'var(--mt2)',lineHeight:1.75,marginBottom:12}}>SERP-Pulse&apos;s use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" style={{color:'var(--tl)'}}>Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+              <ul style={{paddingLeft:20,display:'flex',flexDirection:'column',gap:8}}>
+                {[
+                  'We only access Google data that you explicitly authorize through the OAuth consent screen.',
+                  'We use Google Search Console data (webmasters.readonly scope) solely to display search performance metrics in your dashboard.',
+                  'We use Google Analytics data (analytics.readonly scope) solely to display GA4 analytics in your dashboard.',
+                  'We do not use Google data for advertising, market research, or any purpose unrelated to providing SERP-Pulse functionality.',
+                  'We do not sell, rent, or share your Google user data with third parties.',
+                  'We do not use Google data to train AI models or build user profiles for ad targeting.',
+                  'Google Search Console and Analytics data is fetched live via the Google API and is not permanently stored on our servers.',
+                  'You can revoke SERP-Pulse access at any time from your Google Account permissions page (myaccount.google.com/permissions).',
+                ].map((item, i) => (
+                  <li key={i} style={{fontSize:15,color:'var(--mt2)',lineHeight:1.7}}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>6. Data Storage & Security</h2>
               <ul style={{paddingLeft:20,display:'flex',flexDirection:'column',gap:8}}>
                 {[
                   'User accounts and OAuth tokens are stored in Supabase (PostgreSQL), hosted on secure cloud infrastructure.',
@@ -113,7 +132,7 @@ export default async function PrivacyPage() {
             </div>
 
             <div>
-              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>6. Third-Party Services</h2>
+              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>7. Third-Party Services</h2>
               <p style={{fontSize:15,color:'var(--mt2)',lineHeight:1.75,marginBottom:12}}>We use the following third-party services to operate SERP-Pulse:</p>
               <ul style={{paddingLeft:20,display:'flex',flexDirection:'column',gap:8}}>
                 {[
@@ -129,7 +148,7 @@ export default async function PrivacyPage() {
             </div>
 
             <div>
-              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>7. Your Rights</h2>
+              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>8. Your Rights</h2>
               <p style={{fontSize:15,color:'var(--mt2)',lineHeight:1.75,marginBottom:12}}>You have the right to:</p>
               <ul style={{paddingLeft:20,display:'flex',flexDirection:'column',gap:8}}>
                 {[
@@ -146,22 +165,22 @@ export default async function PrivacyPage() {
             </div>
 
             <div>
-              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>8. Cookies</h2>
+              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>9. Cookies</h2>
               <p style={{fontSize:15,color:'var(--mt2)',lineHeight:1.75}}>SERP-Pulse uses essential cookies and browser local storage to maintain your session and store your authentication token. We do not use advertising cookies or third-party tracking cookies.</p>
             </div>
 
             <div>
-              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>9. Data Retention</h2>
+              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>10. Data Retention</h2>
               <p style={{fontSize:15,color:'var(--mt2)',lineHeight:1.75}}>We retain your account data for as long as your account is active. If you delete your account, your personal data and OAuth tokens will be deleted within 30 days. Anonymised usage statistics may be retained longer for product improvement purposes.</p>
             </div>
 
             <div>
-              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>10. Changes to This Policy</h2>
+              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>11. Changes to This Policy</h2>
               <p style={{fontSize:15,color:'var(--mt2)',lineHeight:1.75}}>We may update this Privacy Policy from time to time. When we do, we will update the &ldquo;Last updated&rdquo; date at the top of this page. For significant changes, we will notify you by email or via an in-app notification.</p>
             </div>
 
             <div>
-              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>11. Contact</h2>
+              <h2 style={{fontFamily:'var(--hd)',fontSize:20,fontWeight:700,marginBottom:10}}>12. Contact</h2>
               <p style={{fontSize:15,color:'var(--mt2)',lineHeight:1.75}}>For any privacy-related questions or requests, contact us at: <a href="mailto:sahilkareer46@gmail.com" style={{color:'var(--tl)'}}>sahilkareer46@gmail.com</a></p>
             </div>
 
