@@ -11,6 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: d?.seoTitle || 'Documentation — SERP-Pulse',
     description: d?.seoDesc || 'SERP-Pulse documentation. Getting started guides, feature references, MCP server setup, and API documentation.',
+    robots: { index: false, follow: true },
   }
 }
 

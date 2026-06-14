@@ -349,7 +349,7 @@ export default async function FeaturesPage() {
               <span key={i}>{i > 0 && <br/>}{l}</span>
             )) : <>Nine features.<br/>One dashboard.</>}
           </h2>
-          <p>{d?.ctaSubtext || 'Try every feature free for 30 days. No credit card required.'}</p>
+          <p>{d?.ctaSubtext || 'Try every feature free for 90 days. No credit card required.'}</p>
           <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap'}}>
             <a href={`${APP}/signup?ref=features`} className="btn-h">Start Free Trial — No Card Needed <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="/pricing" className="btn-g">View pricing →</a>

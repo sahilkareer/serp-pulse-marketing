@@ -320,7 +320,7 @@ export default async function SearchConsolePage() {
             <a href={APP} className="btn-g">View live app →</a>
           </div>
           <div style={{display:'flex',justifyContent:'center',gap:20,flexWrap:'wrap',marginTop:16}}>
-            <span className="fck">30-day free trial</span><span className="fck">No credit card</span><span className="fck">2-min setup</span><span className="fck">Cancel anytime</span>
+            <span className="fck">90-day free trial</span><span className="fck">No credit card</span><span className="fck">2-min setup</span><span className="fck">Cancel anytime</span>
           </div>
         </div>
       </section>

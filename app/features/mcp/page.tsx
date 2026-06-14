@@ -193,7 +193,7 @@ export default async function McpPage() {
             <a href={APP} className="btn-g">View live app →</a>
           </div>
           <div style={{display:'flex',justifyContent:'center',gap:20,flexWrap:'wrap',marginTop:16}}>
-            <span className="fck">30-day free trial</span><span className="fck">No credit card</span><span className="fck">16 tools included</span><span className="fck">All plans</span>
+            <span className="fck">90-day free trial</span><span className="fck">No credit card</span><span className="fck">16 tools included</span><span className="fck">All plans</span>
           </div>
         </div>
       </section>

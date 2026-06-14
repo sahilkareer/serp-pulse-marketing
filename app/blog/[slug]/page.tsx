@@ -3,11 +3,11 @@ import { notFound } from 'next/navigation'
 import { PortableText } from '@portabletext/react'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
-import { client, BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '@/sanity/lib/client'
+import BlogPostClient from '@/components/BlogPostClient'
+import { client, BLOG_POST_QUERY, BLOG_SLUGS_QUERY, BLOG_INDEX_QUERY } from '@/sanity/lib/client'
 
 export const revalidate = 60
 
-// Pre-generate known slugs at build time
 export async function generateStaticParams() {
   const slugs: any[] = await client.fetch(BLOG_SLUGS_QUERY).catch(() => [])
   return (slugs || []).map((item: any) => ({ slug: item.slug }))
@@ -16,187 +16,206 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const post: any = await client.fetch(BLOG_POST_QUERY, { slug }).catch(() => null)
-  if (!post) return { title: 'Post not found — SERP-Pulse' }
+  const title = post?.title || FALLBACK_POSTS[slug]?.title || 'Post not found'
+  const desc = post?.excerpt || FALLBACK_POSTS[slug]?.excerpt || ''
   return {
-    title: `${post.title} — SERP-Pulse`,
-    description: post.excerpt,
+    title: `${title} \u2014 SERP-Pulse`,
+    description: desc,
+    alternates: { canonical: `https://www.serp-pulse.com/blog/${slug}` },
+    openGraph: {
+      title: `${title} \u2014 SERP-Pulse`,
+      description: desc,
+      url: `https://www.serp-pulse.com/blog/${slug}`,
+      type: 'article',
+      images: [{ url: '/og-default.png', width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      title: `${title} \u2014 SERP-Pulse`,
+      description: desc,
+      images: ['/og-default.png'],
+    },
   }
 }
 
 const APP = 'https://app.serp-pulse.com'
 
-const CATEGORY_CONFIG: Record<string, { label: string; color: string; bg: string }> = {
-  'ai-traffic':            { label: 'AI Traffic',             color: '#8b5cf6', bg: 'rgba(139,92,246,.1)'  },
-  'google-search-console': { label: 'Google Search Console',  color: '#0891b2', bg: 'rgba(8,145,178,.08)' },
-  'analytics':             { label: 'Analytics',              color: '#f59e0b', bg: 'rgba(245,158,11,.08)' },
-  'agency-seo':            { label: 'Agency SEO',             color: '#10b981', bg: 'rgba(16,185,129,.08)' },
-  'seo-strategy':          { label: 'SEO Strategy',           color: '#0891b2', bg: 'rgba(8,145,178,.08)' },
+const CATEGORY_CONFIG: Record<string, { label: string; catClass: string }> = {
+  'ai-traffic':            { label: 'AI Traffic',            catClass: 'bl' },
+  'google-search-console': { label: 'Search Console',       catClass: 'bl' },
+  'analytics':             { label: 'Analytics',             catClass: 'am' },
+  'agency-seo':            { label: 'Agency SEO',            catClass: 'pu' },
+  'seo-strategy':          { label: 'SEO Strategy',          catClass: 'bl' },
 }
 
 function formatDate(iso: string) {
   if (!iso) return ''
-  return new Date(iso).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })
+  return new Date(iso).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
-// Portable text components matching the site design system
+/* ── Fallback content for known posts when Sanity has no body yet ───────── */
+const FALLBACK_POSTS: Record<string, any> = {
+  'how-to-track-ai-traffic-in-ga4': {
+    title: 'How to track ChatGPT, Claude & Perplexity traffic in Google Analytics 4',
+    excerpt: 'AI platforms are sending real visitors to your site right now. But GA4 categorises them as raw referral domains with no labels. Here\u2019s how to find them \u2014 and why SERP-Pulse makes it automatic.',
+    category: 'ai-traffic',
+    readTime: '8 min read',
+    publishedAt: '2026-06-09',
+    toc: [
+      { id: 's1', label: 'Why AI traffic looks like direct traffic' },
+      { id: 's2', label: 'How to find AI traffic manually in GA4' },
+      { id: 's3', label: 'The three real problems with manual tracking' },
+      { id: 's4', label: 'How SERP-Pulse handles AI traffic' },
+      { id: 's5', label: 'Why this matters for content strategy' },
+      { id: 's-faq', label: 'Frequently asked questions' },
+    ],
+    faqs: [
+      { q: 'Does SERP-Pulse track all AI platforms?', a: 'Yes. 16+ platforms including ChatGPT, Claude, Perplexity, Gemini, Grok, Copilot, and more. New platforms added automatically.' },
+      { q: 'Does AI tracking cost extra?', a: 'No. Included in every plan, including Freelancer at $20/month.' },
+      { q: 'Can I see which pages AI platforms cite?', a: 'Yes. Per-page attribution shows sessions, engagement rate, and conversions from each AI platform.' },
+      { q: 'What\u2019s the difference between AI traffic and AI citations?', a: 'AI traffic = actual visits via clicked links. AI citations = mentions without clicks. SERP-Pulse tracks traffic now; citation monitoring is on the roadmap.' },
+    ],
+    htmlContent: true, // flag: render hardcoded HTML instead of PortableText
+  },
+}
+
+/* ── PortableText components ────────────────────────────────────────────── */
 const ptComponents = {
   block: {
-    normal: ({ children }: any) => (
-      <p style={{ fontSize: 17, lineHeight: 1.78, color: 'var(--ink3)', marginBottom: 22 }}>{children}</p>
-    ),
-    h2: ({ children }: any) => (
-      <h2 style={{ fontFamily: 'var(--hd)', fontSize: 'clamp(22px,3vw,26px)', fontWeight: 800, letterSpacing: -0.8, lineHeight: 1.25, color: 'var(--ink)', marginTop: 52, marginBottom: 16 }}>{children}</h2>
-    ),
-    h3: ({ children }: any) => (
-      <h3 style={{ fontFamily: 'var(--hd)', fontSize: 19, fontWeight: 700, letterSpacing: -0.3, lineHeight: 1.3, color: 'var(--ink)', marginTop: 36, marginBottom: 12 }}>{children}</h3>
-    ),
-    h4: ({ children }: any) => (
-      <h4 style={{ fontFamily: 'var(--hd)', fontSize: 16, fontWeight: 700, color: 'var(--ink)', marginTop: 28, marginBottom: 8 }}>{children}</h4>
-    ),
-    blockquote: ({ children }: any) => (
-      <blockquote style={{ borderLeft: '4px solid var(--tl)', paddingLeft: 20, margin: '32px 0', color: 'var(--mt)', fontStyle: 'italic', fontSize: 16, lineHeight: 1.7, background: 'var(--bg)', borderRadius: '0 8px 8px 0', padding: '16px 20px' }}>
-        {children}
-      </blockquote>
-    ),
+    normal: ({ children }: any) => <p>{children}</p>,
+    h2: ({ children, value }: any) => <h2 id={value?._key || undefined}>{children}</h2>,
+    h3: ({ children }: any) => <h3>{children}</h3>,
+    blockquote: ({ children }: any) => <div className="bp-callout">{children}</div>,
   },
   marks: {
-    strong: ({ children }: any) => <strong style={{ fontWeight: 700, color: 'var(--ink)' }}>{children}</strong>,
+    strong: ({ children }: any) => <strong>{children}</strong>,
     em: ({ children }: any) => <em>{children}</em>,
-    code: ({ children }: any) => (
-      <code style={{ fontFamily: 'monospace', fontSize: '0.88em', background: 'var(--bg2)', color: 'var(--tl)', padding: '2px 6px', borderRadius: 4, border: '1px solid var(--bd)' }}>
-        {children}
-      </code>
-    ),
+    code: ({ children }: any) => <code>{children}</code>,
     link: ({ children, value }: any) => (
-      <a href={value?.href} target={value?.blank ? '_blank' : undefined} rel="noopener noreferrer"
-        style={{ color: 'var(--tl)', textDecoration: 'underline', textUnderlineOffset: 3, fontWeight: 500 }}>
+      <a href={value?.href} target={value?.blank ? '_blank' : undefined} rel="noopener noreferrer" style={{ color: 'var(--bl-blue)', textDecoration: 'underline', textUnderlineOffset: 3, fontWeight: 500 }}>
         {children}
       </a>
     ),
   },
   list: {
-    bullet: ({ children }: any) => (
-      <ul style={{ paddingLeft: 24, marginBottom: 22, display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
-        {children}
-      </ul>
-    ),
-    number: ({ children }: any) => (
-      <ol style={{ paddingLeft: 24, marginBottom: 22, display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
-        {children}
-      </ol>
-    ),
+    bullet: ({ children }: any) => <ul style={{ paddingLeft: 24, marginBottom: 22, display: 'flex', flexDirection: 'column', gap: 8 }}>{children}</ul>,
+    number: ({ children }: any) => <ol style={{ paddingLeft: 24, marginBottom: 22, display: 'flex', flexDirection: 'column', gap: 8 }}>{children}</ol>,
   },
   listItem: {
-    bullet: ({ children }: any) => (
-      <li style={{ fontSize: 16, lineHeight: 1.65, color: 'var(--ink3)', paddingLeft: 4 }}>{children}</li>
-    ),
-    number: ({ children }: any) => (
-      <li style={{ fontSize: 16, lineHeight: 1.65, color: 'var(--ink3)', paddingLeft: 4 }}>{children}</li>
-    ),
+    bullet: ({ children }: any) => <li style={{ fontSize: 16, lineHeight: 1.65, color: 'var(--bl-text2)', paddingLeft: 4 }}>{children}</li>,
+    number: ({ children }: any) => <li style={{ fontSize: 16, lineHeight: 1.65, color: 'var(--bl-text2)', paddingLeft: 4 }}>{children}</li>,
   },
+}
+
+/* ── Hardcoded HTML content for the AI traffic post ─────────────────────── */
+function AITrafficContent() {
+  return (
+    <>
+      <h2 id="s1">Why AI traffic looks like direct traffic</h2>
+      <p>When a user reads a response in ChatGPT and clicks a link to your site, their browser sends a referral header of <code>chat.openai.com</code>. GA4 records this as a referral from that domain. That&rsquo;s the good news.</p>
+      <p>The bad news: GA4 doesn&rsquo;t label it as &ldquo;ChatGPT.&rdquo; It appears as a raw referral domain in a long table of dozens of referrers. If you&rsquo;re not specifically looking for <code>chat.openai.com</code>, <code>claude.ai</code>, or <code>perplexity.ai</code>, you&rsquo;ll scroll straight past them.</p>
+      <div className="bp-callout"><strong>Key insight:</strong> AI referral traffic already exists in your analytics. It&rsquo;s not hidden &mdash; it&rsquo;s mislabelled. The challenge is aggregation, not detection.</div>
+
+      <h2 id="s2">How to find AI traffic manually in GA4</h2>
+      <p>Go to <strong>Reports &rarr; Acquisition &rarr; Traffic acquisition</strong>. Switch the primary dimension to Session source. Then search for individual AI domains one by one:</p>
+      <div className="bp-codeblk">
+        <div className="bp-codeblk-h"><span className="bp-codeblk-l">GA4 referral domains</span></div>
+        <div className="bp-codeblk-b">chat.openai.com<br/>chatgpt.com<br/>claude.ai<br/>perplexity.ai<br/>gemini.google.com</div>
+      </div>
+
+      <h2 id="s3">The three real problems with manual tracking</h2>
+      <p><strong>It&rsquo;s fragmented.</strong> You get separate rows for <code>chat.openai.com</code>, <code>chatgpt.com</code>, and the ChatGPT iOS app. They&rsquo;re all the same platform.</p>
+      <p><strong>It&rsquo;s static.</strong> Every new AI platform requires manual filter updates. When Grok launched, every GA4 user had to update manually.</p>
+      <p><strong>It has no trends.</strong> Understanding month-over-month growth requires exporting and spreadsheets.</p>
+      <div className="bp-callout warn"><strong>Real example:</strong> One agency discovered they had been missing 2,400 monthly AI referral sessions &mdash; simply because nobody was searching for the right referral domains in GA4.</div>
+
+      <h2 id="s4">How SERP-Pulse handles AI traffic</h2>
+      <p>SERP-Pulse reads your raw GA4 referral data and automatically maps each domain to its parent AI platform. <code>chat.openai.com</code>, <code>chatgpt.com</code>, and the iOS variants all become &ldquo;ChatGPT.&rdquo;</p>
+      <p>The result is a clean breakdown &mdash; by platform, by page, by engagement metric, by trend &mdash; that would take hours to produce manually.</p>
+
+      <h2 id="s5">Why this matters for your content strategy</h2>
+      <p>Once you can see which pages receive AI citation traffic, your content strategy changes. If your blog guide receives 1,840 AI referral sessions and your pricing page receives zero &mdash; <strong>AI models are citing educational content, not commercial pages.</strong></p>
+      <p>That&rsquo;s a signal to write more in-depth guides. Structure them for citation. The traffic will follow.</p>
+    </>
+  )
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const post: any = await client.fetch(BLOG_POST_QUERY, { slug }).catch(() => null)
+  const fallback = FALLBACK_POSTS[slug]
 
-  if (!post) notFound()
+  if (!post && !fallback) notFound()
 
-  const cat = CATEGORY_CONFIG[post.category] || CATEGORY_CONFIG['seo-strategy']
+  const title = post?.title || fallback?.title
+  const excerpt = post?.excerpt || fallback?.excerpt
+  const category = post?.category || fallback?.category
+  const readTime = post?.readTime || fallback?.readTime
+  const publishedAt = post?.publishedAt || fallback?.publishedAt
+  const cat = CATEGORY_CONFIG[category] || CATEGORY_CONFIG['seo-strategy']
+  const toc = fallback?.toc || []
+  const faqs = fallback?.faqs || []
+  const hasPortableText = post?.content && Array.isArray(post.content) && post.content.length > 0
+  const useHtmlFallback = fallback?.htmlContent && !hasPortableText
+
+  // Fetch all posts for related + prev/next
+  const allPosts: any[] = await client.fetch(BLOG_INDEX_QUERY).catch(() => []) || []
+  const otherPosts = allPosts.filter((p) => p.slug !== slug)
+  const currentIdx = allPosts.findIndex((p) => p.slug === slug)
+  const prevPost = currentIdx > 0 ? allPosts[currentIdx - 1] : null
+  const nextPost = currentIdx < allPosts.length - 1 ? allPosts[currentIdx + 1] : null
+
+  // Article schema
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description: excerpt,
+    author: { '@type': 'Person', name: 'Sahil Kareer' },
+    publisher: { '@type': 'Organization', name: 'SERP-Pulse', url: 'https://www.serp-pulse.com' },
+    datePublished: publishedAt,
+    url: `https://www.serp-pulse.com/blog/${slug}`,
+  }
+
+  const pageUrl = `https://www.serp-pulse.com/blog/${slug}`
 
   return (
     <>
       <SiteNav />
+      <div className="blog-post">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-      {/* POST HEADER */}
-      <section style={{ padding: '80px 24px 48px', background: 'var(--bg)', borderBottom: '1px solid var(--bd)' }}>
-        <div style={{ maxWidth: 740, margin: '0 auto' }}>
-          {/* Breadcrumb */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'var(--mt)', marginBottom: 24 }}>
-            <a href="/" style={{ color: 'var(--mt)', textDecoration: 'none' }}>Home</a>
-            <span>→</span>
-            <a href="/blog" style={{ color: 'var(--mt)', textDecoration: 'none' }}>Blog</a>
-            <span>→</span>
-            <span style={{ color: 'var(--ink3)' }}>{post.title}</span>
-          </div>
-
-          {/* Category + meta */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20, flexWrap: 'wrap' as const }}>
-            <span style={{ fontSize: 11, fontWeight: 700, color: cat.color, background: cat.bg, padding: '4px 12px', borderRadius: 20 }}>
-              {cat.label}
-            </span>
-            {post.readTime && <span style={{ fontSize: 12, color: 'var(--mt)' }}>{post.readTime}</span>}
-            {post.publishedAt && (
-              <>
-                <span style={{ fontSize: 12, color: 'var(--mt3)' }}>·</span>
-                <span style={{ fontSize: 12, color: 'var(--mt)' }}>{formatDate(post.publishedAt)}</span>
-              </>
-            )}
-          </div>
-
-          {/* Headline */}
-          <h1 style={{ fontFamily: 'var(--hd)', fontSize: 'clamp(28px,5vw,44px)', fontWeight: 800, letterSpacing: -1.5, lineHeight: 1.1, color: 'var(--ink)', marginBottom: 18 }}>
-            {post.title}
-          </h1>
-
-          {/* Excerpt */}
-          {post.excerpt && (
-            <p style={{ fontSize: 18, color: 'var(--mt)', lineHeight: 1.65, borderLeft: '3px solid var(--tl)', paddingLeft: 16, margin: 0 }}>
-              {post.excerpt}
-            </p>
-          )}
-        </div>
-      </section>
-
-      {/* POST CONTENT */}
-      <section style={{ padding: '56px 24px 80px', background: 'var(--wh)' }}>
-        <div style={{ maxWidth: 740, margin: '0 auto' }}>
-          {post.content ? (
+        <BlogPostClient
+          title={title}
+          excerpt={excerpt}
+          category={category}
+          catLabel={cat.label}
+          readTime={readTime}
+          publishedAt={publishedAt ? formatDate(publishedAt) : ''}
+          toc={toc}
+          faqs={faqs}
+          pageUrl={pageUrl}
+          prevPost={prevPost ? { slug: prevPost.slug, title: prevPost.title } : null}
+          nextPost={nextPost ? { slug: nextPost.slug, title: nextPost.title } : null}
+          relatedPosts={otherPosts.slice(0, 2).map((p) => ({
+            slug: p.slug,
+            title: p.title,
+            category: p.category,
+            catLabel: (CATEGORY_CONFIG[p.category] || CATEGORY_CONFIG['seo-strategy']).label,
+            catClass: (CATEGORY_CONFIG[p.category] || CATEGORY_CONFIG['seo-strategy']).catClass,
+            readTime: p.readTime,
+            publishedAt: p.publishedAt ? formatDate(p.publishedAt) : '',
+          }))}
+        >
+          {/* Body content — either PortableText or hardcoded HTML */}
+          {hasPortableText ? (
             <PortableText value={post.content} components={ptComponents} />
+          ) : useHtmlFallback ? (
+            <AITrafficContent />
           ) : (
-            <p style={{ color: 'var(--mt)', fontSize: 16 }}>Content coming soon.</p>
+            <p>Content coming soon.</p>
           )}
-        </div>
-      </section>
-
-      {/* AUTHOR + BACK */}
-      <section style={{ padding: '40px 24px', background: 'var(--bg)', borderTop: '1px solid var(--bd)', borderBottom: '1px solid var(--bd)' }}>
-        <div style={{ maxWidth: 740, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap' as const }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'linear-gradient(135deg,var(--tl),var(--tl3))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--hd)', fontSize: 15, fontWeight: 700, color: 'white', flexShrink: 0 }}>SK</div>
-            <div>
-              <div style={{ fontFamily: 'var(--hd)', fontSize: 14, fontWeight: 700, color: 'var(--ink)' }}>Sahil Kareer</div>
-              <div style={{ fontSize: 12, color: 'var(--mt)' }}>Founder, SERP-Pulse · 6+ years in SEO & agencies</div>
-            </div>
-          </div>
-          <a href="/blog" style={{ fontSize: 13, color: 'var(--tl)', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 5 }}>
-            ← Back to all posts
-          </a>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="cta-band dark-sec" style={{ background: 'var(--d)', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 50% 50%,rgba(6,214,199,.07),transparent 60%)', pointerEvents: 'none' }} />
-        <div className="w" style={{ position: 'relative', zIndex: 1 }}>
-          <h2>See it in your own data.</h2>
-          <p>Connect SERP-Pulse to your GSC and GA4 in under 2 minutes. Free 30-day trial.</p>
-          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' as const }}>
-            <a href={`${APP}/signup`} className="btn-h">
-              Start Free Trial — No Card Needed{' '}
-              <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-            </a>
-            <a href={APP} className="btn-g">View live app →</a>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 20, flexWrap: 'wrap' as const, marginTop: 16 }}>
-            <span className="fck">30-day free trial</span>
-            <span className="fck">No credit card</span>
-            <span className="fck">2-min setup</span>
-            <span className="fck">Cancel anytime</span>
-          </div>
-        </div>
-      </section>
-
+        </BlogPostClient>
+      </div>
       <SiteFooter />
     </>
   )
