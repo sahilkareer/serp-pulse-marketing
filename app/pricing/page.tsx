@@ -18,8 +18,8 @@ export async function generateMetadata(): Promise<Metadata> {
 const APP = 'https://app.serp-pulse.com'
 
 // ── Live pricing from backend ─────────────────────────────────────────────────
-// Fetches USD prices from the payments API at build time (ISR revalidates every
-// 5 minutes). If the API is unreachable, DEFAULT_PLANS prices are used as fallback.
+// Fetches prices from the payments API at request time using Vercel geo headers
+// to detect the user's country. Falls back to USD if detection fails.
 // This makes payments.js the single source of truth for prices across both sites.
 async function fetchLivePrices(): Promise<{ monthly: number; annual: number } | null> {
   try {
