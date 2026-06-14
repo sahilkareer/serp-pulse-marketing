@@ -1,3 +1,4 @@
+import { headers } from 'next/headers'
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
@@ -22,7 +23,10 @@ const APP = 'https://app.serp-pulse.com'
 // This makes payments.js the single source of truth for prices across both sites.
 async function fetchLivePrices(): Promise<{ monthly: number; annual: number } | null> {
   try {
-    const res = await fetch('https://api.serp-pulse.com/api/payments/pricing?country=US', {
+    // Detect country from Vercel geo headers (auto-set by Vercel Edge)
+    const hdrs = await headers()
+    const country = hdrs.get('x-vercel-ip-country') || 'US'
+    const res = await fetch(`https://api.serp-pulse.com/api/payments/pricing?country=${country}`, {
       next: { revalidate: 300 },
     })
     if (!res.ok) return null

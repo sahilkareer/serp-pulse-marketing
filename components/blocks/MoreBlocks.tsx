@@ -173,7 +173,7 @@ export function FounderStory({ data }: { data?: any }) {
               <p key={i} style={{ fontSize: 15, color: '#334155', lineHeight: 1.75, marginBottom: i < paragraphs.length - 1 ? 16 : 20 }}>{p}</p>
             ))}
             <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-              <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06d6c7)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: 'white' }}>{initials}</div>
+              <img src={data?.photo || FOUNDER_IMG} alt={name} width={44} height={44} style={{ width: 44, height: 44, borderRadius: '50%', objectFit: 'cover' }} />
               <div>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#0f172a' }}>{name}</div>
                 <div style={{ fontSize: 12, color: '#64748b' }}>{role}</div>
