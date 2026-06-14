@@ -10,6 +10,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: d?.seoTitle || 'About — SERP-Pulse',
     description: d?.seoDesc || 'SERP-Pulse was built by Sahil Kareer after 6 years in SEO agencies. The story behind the tool.',
+    alternates: { canonical: 'https://www.serp-pulse.com/about' },
+    openGraph: {
+      title: d?.seoTitle || 'About — SERP-Pulse',
+      description: d?.seoDesc || 'SERP-Pulse was built by Sahil Kareer after 6 years in SEO agencies. The story behind the tool.',
+      url: 'https://www.serp-pulse.com/about',
+      images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'About SERP-Pulse' }],
+    },
+    twitter: {
+      title: d?.seoTitle || 'About — SERP-Pulse',
+      description: d?.seoDesc || 'SERP-Pulse was built by Sahil Kareer after 6 years in SEO agencies. The story behind the tool.',
+      images: ['/og-default.png'],
+    },
   }
 }
 

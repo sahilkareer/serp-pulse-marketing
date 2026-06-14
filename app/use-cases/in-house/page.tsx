@@ -10,6 +10,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: d?.seoTitle || 'SERP-Pulse for In-House SEO Teams',
     description: d?.seoDesc || 'SERP-Pulse helps in-house SEO teams track multiple brand properties, monitor AI traffic, and report to stakeholders.',
+    alternates: { canonical: 'https://www.serp-pulse.com/use-cases/in-house' },
+    openGraph: {
+      title: d?.seoTitle || 'SERP-Pulse for In-House SEO Teams',
+      description: d?.seoDesc || 'SERP-Pulse helps in-house SEO teams track multiple brand properties, monitor AI traffic, and report to stakeholders.',
+      url: 'https://www.serp-pulse.com/use-cases/in-house',
+      images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'SERP-Pulse for In-House SEO' }],
+    },
+    twitter: {
+      title: d?.seoTitle || 'SERP-Pulse for In-House SEO Teams',
+      description: d?.seoDesc || 'SERP-Pulse helps in-house SEO teams track multiple brand properties, monitor AI traffic, and report to stakeholders.',
+      images: ['/og-default.png'],
+    },
   }
 }
 

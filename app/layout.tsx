@@ -5,6 +5,27 @@ import AnimationProvider from '@/components/AnimationProvider'
 export const metadata: Metadata = {
   title: 'SERP-Pulse — Your SEO Data, Finally Unified',
   description: 'Unified GSC + GA4 analytics, AI citation tracking from ChatGPT/Claude/Perplexity/Gemini, white-label reports, and MCP server. Built by an SEO.',
+  metadataBase: new URL('https://www.serp-pulse.com'),
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
+  openGraph: {
+    type: 'website',
+    siteName: 'SERP-Pulse',
+    title: 'SERP-Pulse — Your SEO Data, Finally Unified',
+    description: 'Unified GSC + GA4 analytics, AI citation tracking from ChatGPT/Claude/Perplexity/Gemini, white-label reports, and MCP server. Built by an SEO.',
+    url: 'https://www.serp-pulse.com',
+    images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'SERP-Pulse — Unified SEO Analytics' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@serppulse',
+    title: 'SERP-Pulse — Your SEO Data, Finally Unified',
+    description: 'Unified GSC + GA4 analytics, AI citation tracking from ChatGPT/Claude/Perplexity/Gemini, white-label reports, and MCP server. Built by an SEO.',
+    images: ['/og-default.png'],
+  },
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },

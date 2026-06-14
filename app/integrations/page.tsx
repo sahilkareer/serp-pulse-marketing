@@ -10,6 +10,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: d?.seoTitle || 'Integrations — SERP-Pulse',
     description: d?.seoDesc || 'SERP-Pulse integrates with Google Search Console and Google Analytics 4 via official APIs.',
+    alternates: { canonical: 'https://www.serp-pulse.com/integrations' },
+    openGraph: {
+      title: d?.seoTitle || 'Integrations — SERP-Pulse',
+      description: d?.seoDesc || 'SERP-Pulse integrates with Google Search Console and Google Analytics 4 via official APIs.',
+      url: 'https://www.serp-pulse.com/integrations',
+      images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'SERP-Pulse Integrations' }],
+    },
+    twitter: {
+      title: d?.seoTitle || 'Integrations — SERP-Pulse',
+      description: d?.seoDesc || 'SERP-Pulse integrates with Google Search Console and Google Analytics 4 via official APIs.',
+      images: ['/og-default.png'],
+    },
   }
 }
 
@@ -96,7 +108,7 @@ export default async function IntegrationsPage() {
             <a href={APP} className="btn-g">View live app →</a>
           </div>
           <div style={{display:'flex',justifyContent:'center',gap:20,flexWrap:'wrap',marginTop:18}}>
-            <span className="fck">30-day free trial</span><span className="fck">No credit card</span><span className="fck">2-min setup</span><span className="fck">Cancel anytime</span>
+            <span className="fck">90-day free trial</span><span className="fck">No credit card</span><span className="fck">2-min setup</span><span className="fck">Cancel anytime</span>
           </div>
         </div>
       </section>

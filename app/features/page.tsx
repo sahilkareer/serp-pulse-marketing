@@ -10,6 +10,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: d?.seoTitle || 'Features — SERP-Pulse',
     description: d?.seoDesc || 'Every feature inside SERP-Pulse. GSC + GA4 analytics, AI citation tracking, white-label reports, smart filters, MCP server, and portfolio growth monitoring.',
+    alternates: { canonical: 'https://www.serp-pulse.com/features' },
+    openGraph: {
+      title: d?.seoTitle || 'Features — SERP-Pulse',
+      description: d?.seoDesc || 'Every feature inside SERP-Pulse. GSC + GA4 analytics, AI citation tracking, white-label reports, smart filters, MCP server, and portfolio growth monitoring.',
+      url: 'https://www.serp-pulse.com/features',
+      images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'SERP-Pulse Features' }],
+    },
+    twitter: {
+      title: d?.seoTitle || 'Features — SERP-Pulse',
+      description: d?.seoDesc || 'Every feature inside SERP-Pulse. GSC + GA4 analytics, AI citation tracking, white-label reports, smart filters, MCP server, and portfolio growth monitoring.',
+      images: ['/og-default.png'],
+    },
   }
 }
 
@@ -224,7 +236,7 @@ export default async function FeaturesPage() {
             <a href={`${APP}/signup?ref=features`} className="btn-h">Try Every Feature Free <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a href="/pricing" className="btn-g">See pricing</a>
           </div>
-          <p style={{fontSize:12,color:'var(--dm2)',marginTop:12}}>30-day free trial · No credit card · All 9 features included</p>
+          <p style={{fontSize:12,color:'var(--dm2)',marginTop:12}}>90-day free trial · No credit card · All 9 features included</p>
         </div>
       </section>
 
@@ -343,7 +355,7 @@ export default async function FeaturesPage() {
             <a href="/pricing" className="btn-g">View pricing →</a>
           </div>
           <div style={{display:'flex',justifyContent:'center',gap:20,flexWrap:'wrap',marginTop:16}}>
-            <span className="fck">30-day free trial</span><span className="fck">No credit card</span><span className="fck">2-min setup</span>
+            <span className="fck">90-day free trial</span><span className="fck">No credit card</span><span className="fck">2-min setup</span>
           </div>
         </div>
       </section>

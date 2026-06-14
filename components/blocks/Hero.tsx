@@ -12,7 +12,7 @@ const defaultTabs = [
     primaryCtaUrl: 'https://app.serp-pulse.com/signup?ref=homepage',
     secondaryCtaText: 'See all features',
     secondaryCtaUrl: '#features',
-    note: 'Free 14-day trial · 2-minute setup · No credit card',
+    note: '90-day free trial · 2-minute setup · No credit card',
   },
   {
     label: 'Results First',

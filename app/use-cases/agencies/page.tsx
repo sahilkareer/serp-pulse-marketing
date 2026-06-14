@@ -10,6 +10,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: d?.seoTitle || 'SERP-Pulse for Agencies — Manage 100+ SEO Projects',
     description: d?.seoDesc || 'SERP-Pulse is built for agencies. Unlimited projects, white-label reports, and AI traffic tracking.',
+    alternates: { canonical: 'https://www.serp-pulse.com/use-cases/agencies' },
+    openGraph: {
+      title: d?.seoTitle || 'SERP-Pulse for Agencies — Manage 100+ SEO Projects',
+      description: d?.seoDesc || 'SERP-Pulse is built for agencies. Unlimited projects, white-label reports, and AI traffic tracking.',
+      url: 'https://www.serp-pulse.com/use-cases/agencies',
+      images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'SERP-Pulse for Agencies' }],
+    },
+    twitter: {
+      title: d?.seoTitle || 'SERP-Pulse for Agencies — Manage 100+ SEO Projects',
+      description: d?.seoDesc || 'SERP-Pulse is built for agencies. Unlimited projects, white-label reports, and AI traffic tracking.',
+      images: ['/og-default.png'],
+    },
   }
 }
 

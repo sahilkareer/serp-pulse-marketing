@@ -8,8 +8,20 @@ export const revalidate = 60
 export async function generateMetadata(): Promise<Metadata> {
   const d: any = await client.fetch(STANDARD_PAGE_QUERY, { slug: 'use-cases-freelancers' }).catch(() => null)
   return {
-    title: d?.seoTitle || 'SERP-Pulse for Freelancers',
+    title: d?.seoTitle || 'SERP-Pulse for Freelancers — SEO Dashboard',
     description: d?.seoDesc || 'SERP-Pulse helps freelance SEOs manage multiple client projects, generate reports, and track AI traffic.',
+    alternates: { canonical: 'https://www.serp-pulse.com/use-cases/freelancers' },
+    openGraph: {
+      title: d?.seoTitle || 'SERP-Pulse for Freelancers — SEO Dashboard',
+      description: d?.seoDesc || 'SERP-Pulse helps freelance SEOs manage multiple client projects, generate reports, and track AI traffic.',
+      url: 'https://www.serp-pulse.com/use-cases/freelancers',
+      images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'SERP-Pulse for Freelancers' }],
+    },
+    twitter: {
+      title: d?.seoTitle || 'SERP-Pulse for Freelancers — SEO Dashboard',
+      description: d?.seoDesc || 'SERP-Pulse helps freelance SEOs manage multiple client projects, generate reports, and track AI traffic.',
+      images: ['/og-default.png'],
+    },
   }
 }
 

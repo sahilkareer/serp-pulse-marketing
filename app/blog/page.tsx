@@ -10,6 +10,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: d?.seoTitle || 'Blog — SERP-Pulse',
     description: d?.seoDesc || 'SEO guides, AI traffic insights, and data-driven strategies from the SERP-Pulse team.',
+    alternates: { canonical: 'https://www.serp-pulse.com/blog' },
+    openGraph: {
+      title: d?.seoTitle || 'Blog — SERP-Pulse',
+      description: d?.seoDesc || 'SEO guides, AI traffic insights, and data-driven strategies from the SERP-Pulse team.',
+      url: 'https://www.serp-pulse.com/blog',
+      images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'SERP-Pulse Blog' }],
+    },
+    twitter: {
+      title: d?.seoTitle || 'Blog — SERP-Pulse',
+      description: d?.seoDesc || 'SEO guides, AI traffic insights, and data-driven strategies from the SERP-Pulse team.',
+      images: ['/og-default.png'],
+    },
   }
 }
 

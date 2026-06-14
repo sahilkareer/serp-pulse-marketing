@@ -10,6 +10,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: d?.seoTitle || 'Contact — SERP-Pulse',
     description: d?.seoDesc || 'Get in touch with the SERP-Pulse team for questions, support, or partnerships.',
+    alternates: { canonical: 'https://www.serp-pulse.com/contact' },
+    openGraph: {
+      title: d?.seoTitle || 'Contact — SERP-Pulse',
+      description: d?.seoDesc || 'Get in touch with the SERP-Pulse team for questions, support, or partnerships.',
+      url: 'https://www.serp-pulse.com/contact',
+      images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'Contact SERP-Pulse' }],
+    },
+    twitter: {
+      title: d?.seoTitle || 'Contact — SERP-Pulse',
+      description: d?.seoDesc || 'Get in touch with the SERP-Pulse team for questions, support, or partnerships.',
+      images: ['/og-default.png'],
+    },
   }
 }
 

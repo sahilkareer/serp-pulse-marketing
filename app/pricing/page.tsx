@@ -1,5 +1,4 @@
 import { headers } from 'next/headers'
-import { headers } from 'next/headers'
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
@@ -13,6 +12,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: d?.seoTitle || 'Pricing — SERP-Pulse',
     description: d?.seoDesc || 'Simple, transparent pricing. AI tracking, white-label reports, MCP server — all included. 90-day free trial on every tier.',
+    alternates: { canonical: 'https://www.serp-pulse.com/pricing' },
+    openGraph: {
+      title: d?.seoTitle || 'Pricing — SERP-Pulse',
+      description: d?.seoDesc || 'Simple, transparent pricing. AI tracking, white-label reports, MCP server — all included. 90-day free trial on every tier.',
+      url: 'https://www.serp-pulse.com/pricing',
+      images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'SERP-Pulse Pricing' }],
+    },
+    twitter: {
+      title: d?.seoTitle || 'Pricing — SERP-Pulse',
+      description: d?.seoDesc || 'Simple, transparent pricing. AI tracking, white-label reports, MCP server — all included. 90-day free trial on every tier.',
+      images: ['/og-default.png'],
+    },
   }
 }
 
@@ -99,6 +110,20 @@ export default async function PricingPage() {
   return (
     <>
       <SiteNav />
+
+      {/* FAQPage JSON-LD Schema — enables FAQ rich results in Google SERPs */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((faq: any) => ({
+            '@type': 'Question',
+            name: faq.q,
+            acceptedAnswer: { '@type': 'Answer', text: faq.a },
+          })),
+        }) }}
+      />
 
       {/* HERO */}
       <section style={{padding:'120px 24px 40px',textAlign:'center',background:'var(--bg)',position:'relative',overflow:'hidden'}}>
