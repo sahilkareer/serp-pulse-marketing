@@ -210,7 +210,7 @@ export default async function AgenciesPage() {
                   <span style={{color:'var(--gn)',fontWeight:700,flexShrink:0}}>✓</span>{f}
                 </div>
               ))}
-              <a href={`${APP}/signup`} style={{display:'block',marginTop:20,padding:'13px',background:'var(--ink)',color:'white',borderRadius:10,fontSize:14,fontWeight:600,textDecoration:'none',textAlign:'center'}}>Start 30-Day Free Trial →</a>
+              <a href={`${APP}/signup`} style={{display:'block',marginTop:20,padding:'13px',background:'var(--ink)',color:'white',borderRadius:10,fontSize:14,fontWeight:600,textDecoration:'none',textAlign:'center'}}>Start 90-Day Free Trial →</a>
               <p style={{fontSize:11,color:'var(--mt)',textAlign:'center',marginTop:8}}>No credit card required</p>
             </div>
           </div>
