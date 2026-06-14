@@ -31,6 +31,8 @@ const staticRoutes: { url: string; priority: number; changeFrequency: MetadataRo
 // Known blog posts — extend this list as new posts are published
 const blogPosts: string[] = [
   '/blog/how-to-track-ai-traffic-in-ga4',
+  '/blog/sweet-spot-keywords',
+  '/blog/manage-50-seo-projects',
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

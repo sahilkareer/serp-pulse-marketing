@@ -136,7 +136,7 @@ export default function BlogListingClient({ posts, comingSoon }: { posts: any[];
                     {featured.publishedAt && <span>{formatDate(featured.publishedAt)}</span>}
                     {featured.readTime && <span>{featured.readTime}</span>}
                   </div>
-                  <div className="bl-feat-arrow">Read article <span>\u2192</span></div>
+                  <div className="bl-feat-arrow">Read article <span>→</span></div>
                 </div>
               </div>
             </div>
@@ -164,8 +164,8 @@ export default function BlogListingClient({ posts, comingSoon }: { posts: any[];
                       <h3 className="bl-cttl">{post.title}</h3>
                       <p className="bl-cdesc">{post.excerpt}</p>
                       <div className="bl-cfoot">
-                        <span>{post.readTime}{post.publishedAt ? ` \u00b7 ${formatDate(post.publishedAt)}` : ''}</span>
-                        <span className="bl-crd">Read \u2192</span>
+                        <span>{post.readTime}{post.publishedAt ? ` · ${formatDate(post.publishedAt)}` : ''}</span>
+                        <span className="bl-crd">Read →</span>
                       </div>
                     </div>
                   </a>
@@ -222,7 +222,7 @@ export default function BlogListingClient({ posts, comingSoon }: { posts: any[];
                   <span className="bl-pop-num">{String(i + 1).padStart(2, '0')}</span>
                   <div>
                     <div className="bl-pop-h">{post.title}</div>
-                    <div className="bl-pop-meta">{cat.label} \u00b7 {post.readTime}</div>
+                    <div className="bl-pop-meta">{cat.label} · {post.readTime}</div>
                   </div>
                 </a>
               )
@@ -232,7 +232,7 @@ export default function BlogListingClient({ posts, comingSoon }: { posts: any[];
       )}
 
       <p style={{ textAlign: 'center', fontSize: 13, color: '#94a3b8' }}>
-        Showing {posts.length} of {posts.length} articles \u00b7 <span style={{ color: '#3b82f6', fontWeight: 500 }}>More coming soon</span>
+        Showing {posts.length} of {posts.length} articles · <span style={{ color: '#3b82f6', fontWeight: 500 }}>More coming soon</span>
       </p>
     </div>
   )

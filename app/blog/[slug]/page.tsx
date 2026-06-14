@@ -74,7 +74,25 @@ const FALLBACK_POSTS: Record<string, any> = {
       { q: 'Can I see which pages AI platforms cite?', a: 'Yes. Per-page attribution shows sessions, engagement rate, and conversions from each AI platform.' },
       { q: 'What\u2019s the difference between AI traffic and AI citations?', a: 'AI traffic = actual visits via clicked links. AI citations = mentions without clicks. SERP-Pulse tracks traffic now; citation monitoring is on the roadmap.' },
     ],
-    htmlContent: true, // flag: render hardcoded HTML instead of PortableText
+    htmlContent: true,
+  },
+  'sweet-spot-keywords': {
+    title: 'Sweet spot keywords: the filter most SEOs have never used',
+    excerpt: 'High impressions, low CTR. These keywords are the easiest ranking wins on any site \u2014 you already rank for them. Here\u2019s how to find and act on them.',
+    category: 'google-search-console',
+    readTime: '6 min read',
+    publishedAt: '2026-06-05',
+    toc: [],
+    faqs: [],
+  },
+  'manage-50-seo-projects': {
+    title: 'How to manage 50+ client SEO projects without losing your mind',
+    excerpt: 'The exact workflow for monitoring an entire client portfolio in under 30 minutes per week \u2014 without switching tabs, building spreadsheets, or missing a single declining site.',
+    category: 'agency-seo',
+    readTime: '10 min read',
+    publishedAt: '2026-06-01',
+    toc: [],
+    faqs: [],
   },
 }
 

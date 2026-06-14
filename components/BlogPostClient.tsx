@@ -43,10 +43,10 @@ export default function BlogPostClient({
         {/* Breadcrumb */}
         <nav className="bp-bread bl-rv">
           <a href="/blog">Blog</a>{' '}
-          <span style={{ opacity: 0.4 }}>\u203A</span>{' '}
+          <span style={{ opacity: 0.4 }}>›</span>{' '}
           <a href="/blog">{catLabel}</a>{' '}
-          <span style={{ opacity: 0.4 }}>\u203A</span>{' '}
-          <span style={{ color: 'var(--bl-text2)' }}>{title.length > 40 ? title.slice(0, 40) + '\u2026' : title}</span>
+          <span style={{ opacity: 0.4 }}>›</span>{' '}
+          <span style={{ color: 'var(--bl-text2)' }}>{title.length > 40 ? title.slice(0, 40) + '…' : title}</span>
         </nav>
 
         {/* Header */}
@@ -82,8 +82,8 @@ export default function BlogPostClient({
           <div className="bp-mcta">
             <h3>See your AI traffic in 30 seconds</h3>
             <p>SERP-Pulse automatically identifies traffic from 16+ AI platforms. No manual setup.</p>
-            <a href={`${APP}/signup`} className="bl-btn-blue">Start free trial \u2192</a>
-            <p className="bp-nt">90-day free trial \u00b7 No credit card \u00b7 2-minute setup</p>
+            <a href={`${APP}/signup`} className="bl-btn-blue">Start free trial →</a>
+            <p className="bp-nt">90-day free trial · No credit card · 2-minute setup</p>
           </div>
         </div>
 
@@ -115,7 +115,7 @@ export default function BlogPostClient({
                   <a href={`/blog/${rp.slug}`} className="bp-rc">
                     <div className={`bp-rc-cat ${rp.catClass}`}>{rp.catLabel}</div>
                     <div className="bp-rc-t">{rp.title}</div>
-                    <div className="bp-rc-m">{rp.readTime}{rp.publishedAt ? ` \u00b7 ${rp.publishedAt}` : ''}</div>
+                    <div className="bp-rc-m">{rp.readTime}{rp.publishedAt ? ` · ${rp.publishedAt}` : ''}</div>
                   </a>
                 </div>
               ))}
@@ -128,13 +128,13 @@ export default function BlogPostClient({
           <div className="bp-anav bl-rv">
             {prevPost ? (
               <a href={`/blog/${prevPost.slug}`} className="bp-nc">
-                <div className="bp-nc-d">\u2190 Previous</div>
+                <div className="bp-nc-d">← Previous</div>
                 <div className="bp-nc-t">{prevPost.title}</div>
               </a>
             ) : <div />}
             {nextPost ? (
               <a href={`/blog/${nextPost.slug}`} className="bp-nc next">
-                <div className="bp-nc-d">Next \u2192</div>
+                <div className="bp-nc-d">Next →</div>
                 <div className="bp-nc-t">{nextPost.title}</div>
               </a>
             ) : <div />}
