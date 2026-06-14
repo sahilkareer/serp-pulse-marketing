@@ -20,7 +20,7 @@ export default function PageBuilder({ blocks }: { blocks: any[] }) {
           case 'howItWorks':
             return <HowItWorks key={block._key} data={block} />
           case 'testimonials':
-            return <Testimonials key={block._key} data={block} />
+            return null // Removed: unverified testimonials
           case 'founderStory':
             return <FounderStory key={block._key} data={block} />
           case 'pricing':
