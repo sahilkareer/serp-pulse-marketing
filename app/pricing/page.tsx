@@ -1,4 +1,5 @@
 import { headers } from 'next/headers'
+import { headers } from 'next/headers'
 import type { Metadata } from 'next'
 import SiteNav from '@/components/SiteNav'
 import SiteFooter from '@/components/SiteFooter'
